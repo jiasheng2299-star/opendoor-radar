@@ -2,7 +2,8 @@
 """Fetch public Opendoor (NASDAQ: OPEN) data into data/*.json.
 
 Stdlib only. On failure, keep the last successful payload and mark it stale.
-Does not modify data/briefing.json (that file is replaced by a later process).
+After each run, write an English data/briefing.json from those files and
+archive the previous day under data/briefings/.
 """
 
 from __future__ import annotations
@@ -62,7 +63,7 @@ NEWS_RSS = "https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US
 # not scrape a new 13F table, so an unverified number cannot replace it.
 SNAPSHOT_13F = {
     "as_of": "2026-06-30",
-    "quarter_label": "2026 年第二季度",
+    "quarter_label": "Q2 2026",
     "source_label": "13fholding.com",
     "source_url": "https://13fholding.com/stock/open-683712103",
     "static_seed": True,
@@ -73,23 +74,23 @@ SNAPSHOT_13F = {
     ],
 }
 
-ITEM_ZH = {
-    "1.01": "重大协议",
-    "1.02": "终止重大协议",
-    "1.03": "破产或接管",
-    "2.01": "完成资产收购或处置",
-    "2.02": "经营业绩与财务状况",
-    "2.03": "产生直接财务义务",
-    "2.04": "触发直接财务义务",
-    "3.01": "退市或无法继续上市",
-    "3.02": "未注册股权出售",
-    "3.03": "证券持有人权利重大修改",
-    "5.02": "董事或高管变动",
-    "5.03": "章程或细则修订",
-    "5.07": "提交股东表决的事项",
-    "7.01": "Regulation FD 披露",
-    "8.01": "其他事项",
-    "9.01": "财务报表与附件",
+ITEM_EN = {
+    "1.01": "entry into a material agreement",
+    "1.02": "termination of a material agreement",
+    "1.03": "bankruptcy or receivership",
+    "2.01": "completion of an acquisition or disposition of assets",
+    "2.02": "results of operations and financial condition",
+    "2.03": "creation of a direct financial obligation",
+    "2.04": "triggering events that accelerate a direct financial obligation",
+    "3.01": "notice of delisting or failure to satisfy a listing rule",
+    "3.02": "unregistered sales of equity securities",
+    "3.03": "material modification of security-holder rights",
+    "5.02": "departure or appointment of directors or officers",
+    "5.03": "amendments to articles or bylaws",
+    "5.07": "submission of matters to a vote of security holders",
+    "7.01": "Regulation FD disclosure",
+    "8.01": "other events",
+    "9.01": "financial statements and exhibits",
 }
 
 OWNERSHIP_FORMS = {"3", "3/A", "4", "4/A", "5", "5/A", "144", "144/A"}
@@ -257,10 +258,10 @@ def describe_filing(form: str, items: str, primary_desc: str) -> str:
     parts = []
     if items:
         for code in [p.strip() for p in items.split(",") if p.strip()]:
-            gloss = ITEM_ZH.get(code)
+            gloss = ITEM_EN.get(code)
             parts.append(f"{code} {gloss}" if gloss else code)
     if parts:
-        return "事项 " + "；".join(parts)
+        return "Items " + "; ".join(parts)
     desc = (primary_desc or "").strip()
     if desc and desc.upper() != (form or "").upper():
         return desc
@@ -319,7 +320,7 @@ def produce_filings(_old) -> dict:
         "source_label": "SEC EDGAR submissions",
         "source_url": EDGAR_BROWSE,
         "source_api": SUBMISSIONS_URL,
-        "note": "列表不含 Form 3/4/5 与 Form 144，那些表格在「内部人交易」。申报日按 EDGAR 原文，不做时区换算。",
+        "note": "Form 3/4/5 and Form 144 are omitted here and listed under Insider trades. Filing dates are the EDGAR dates, with no timezone conversion.",
         "filings": rows,
     }
 
@@ -367,7 +368,7 @@ def produce_insiders(_old) -> dict:
         "source_label": "SEC EDGAR Form 4 XML",
         "source_url": EDGAR_BROWSE,
         "source_api": SUBMISSIONS_URL,
-        "note": "交易代码与 10b5-1 标记均来自申报原文。代码只说明表格里填写的类型，不是买卖建议。",
+        "note": "Transaction codes and 10b5-1 flags are copied from the filing. They describe the form, not a recommendation.",
         "filings": filings,
         "parse_errors": errors,
     }
@@ -414,13 +415,13 @@ def fetch_form4(row: dict) -> dict:
     if officer_title:
         title_parts.append(officer_title)
     elif flag("isOfficer") == "1":
-        title_parts.append("高管")
+        title_parts.append("Officer")
     if flag("isDirector") == "1":
-        title_parts.append("董事")
+        title_parts.append("Director")
     if flag("isTenPercentOwner") == "1":
-        title_parts.append("持股超过 5%")
+        title_parts.append("More than 5% owner")
     if flag("isOther") == "1" and not title_parts:
-        title_parts.append("其他")
+        title_parts.append("Other")
 
     transactions = []
     for tx in list(root.findall(".//nonDerivativeTransaction")) + list(root.findall(".//derivativeTransaction")):
@@ -511,14 +512,14 @@ def produce_holders(old) -> dict:
     else:
         dg_fetched_at = utcnow()
     return {
-        "source_label": "SEC EDGAR 13G/13D 与已核对的 13F 快照",
+        "source_label": "SEC EDGAR 13G/13D and the checked 13F snapshot",
         "source_url": EDGAR_BROWSE,
         "snapshot_13f": SNAPSHOT_13F,
         "filings_13dg": filings,
         "filings_13dg_stale": stale,
         "filings_13dg_error": error,
         "filings_13dg_fetched_at": dg_fetched_at,
-        "note_13f": "13F 在季度结束后最多滞后约 45 天才申报。上表是已核对的 2026-06-30 静态快照，自动任务不会用未核对的数字覆盖它。",
+        "note_13f": "13F filings can lag up to 45 days after quarter end. The table above is a checked static snapshot as of 2026-06-30. The automatic job does not replace it with unchecked figures.",
     }
 
 
@@ -561,7 +562,7 @@ def fetch_13dg() -> list:
                 )
             item["reporting_persons"] = persons
             if not persons:
-                item["parse_error"] = "XML 中没有封面报告人"
+                item["parse_error"] = "No cover-page reporting person in the XML"
         except Exception as exc:  # noqa: BLE001
             failures += 1
             item["parse_error"] = str(exc)
@@ -681,7 +682,7 @@ def produce_accountable(_old) -> dict:
         "source_label": "Opendoor Accountable",
         "source_url": ACCOUNTABLE_URL,
         "official_note": note,
-        "contracts_label": "合约是 Opendoor 预期收购房产的协议（含 Cash Now, More Later），不是已完成的购买，也不扣除之后取消的合约。",
+        "contracts_label": "Contracts are agreements under which Opendoor expects to buy a property, including Cash Now, More Later. They are not completed purchases, and later cancellations are not removed.",
         "weeks": weeks,
         "launches": launches,
         "crosscheck": cross,
@@ -719,14 +720,14 @@ def try_army_crosscheck(weeks: list) -> dict:
         return {"ok": False, "source_url": ARMY_URL, "error": "Cloudflare challenge", "latest": None}
     found = re.findall(r"(20\d\d-\d\d-\d\d)[^\d]{0,40}(\d{2,5})", text)
     if not found:
-        return {"ok": False, "source_url": ARMY_URL, "error": "页面里没有可识别的周合约数", "latest": None}
+        return {"ok": False, "source_url": ARMY_URL, "error": "No recognizable weekly contract counts on the page", "latest": None}
     latest = weeks[-1]
     match = next((pair for pair in found if pair[0] == latest["week_ending"]), None)
     if not match:
         return {
             "ok": False,
             "source_url": ARMY_URL,
-            "error": "没有对上最新一周的日期",
+            "error": "The latest week-ending date was not found",
             "latest": None,
         }
     return {
@@ -966,11 +967,11 @@ def produce_short(old) -> dict:
     if not si.get("ok") and not finra.get("ok") and not si.get("stale") and not finra.get("stale"):
         raise RuntimeError(f"{si_error}; {finra_error}")
     return {
-        "source_label": "Nasdaq 未平仓做空 与 FINRA 每日卖空量",
+        "source_label": "Nasdaq short interest and FINRA daily short volume",
         "source_url": NASDAQ_SI_PAGE,
         "short_interest": si,
         "finra": finra,
-        "note": "未平仓做空来自交易所结算数据，大约每两周一次。每日比例是 FINRA Reg SHO 卖空成交量除以当日总成交量，两者不是同一指标。",
+        "note": "Exchange short interest is a settlement figure published about every two weeks. The daily ratio is FINRA Reg SHO short volume divided by that file's total volume. They are not the same measure.",
     }
 
 
@@ -1013,7 +1014,7 @@ def produce_news(_old) -> dict:
     return {
         "source_label": "Google News RSS",
         "source_url": NEWS_RSS,
-        "note": "标题是媒体原文，本站不改写，也不代表本站观点。",
+        "note": "Headlines are the publishers' original text. This site does not rewrite them or endorse them.",
         "items": items,
     }
 
@@ -1023,6 +1024,7 @@ def source_status(name: str, label: str, payload: dict, error: str | None, url: 
         "id": name,
         "label": label,
         "ok": bool(payload.get("ok")),
+        "placeholder": bool(payload.get("placeholder")),
         "stale": bool(payload.get("stale")),
         "error": error or payload.get("fetch_error"),
         "fetched_at": payload.get("fetched_at"),
@@ -1031,9 +1033,372 @@ def source_status(name: str, label: str, payload: dict, error: str | None, url: 
     }
 
 
+BRIEFINGS = DATA / "briefings"
+MYT = ZoneInfo("Asia/Kuala_Lumpur")
+
+
+def myt_today() -> str:
+    return datetime.now(MYT).date().isoformat()
+
+
+def fmt_price(value) -> str | None:
+    if value is None:
+        return None
+    number = float(value)
+    sign = "-" if number < 0 else ""
+    text = f"{abs(number):.4f}".rstrip("0").rstrip(".")
+    if "." not in text:
+        text += ".00"
+    elif len(text.split(".")[1]) == 1:
+        text += "0"
+    whole, frac = text.split(".")
+    return f"{sign}${int(whole):,}.{frac}"
+
+
+def signed_price(value) -> str:
+    if value is None:
+        return "No data"
+    if float(value) > 0:
+        return "+" + (fmt_price(value) or "No data")
+    return fmt_price(value) or "No data"
+
+
+def fmt_count(value) -> str | None:
+    if value is None:
+        return None
+    number = float(value)
+    if abs(number - round(number)) < 1e-6:
+        return f"{int(round(number)):,}"
+    return f"{number:,.2f}"
+
+
+def tx_action(code: str | None) -> str:
+    return {
+        "P": "buy",
+        "S": "sell",
+        "A": "award",
+        "M": "exercise or conversion",
+        "X": "exercise or conversion",
+        "F": "tax withholding",
+        "G": "gift",
+        "C": "conversion",
+        "D": "disposition to the issuer",
+        "J": "other",
+        "V": "voluntary transaction",
+        "L": "small acquisition",
+        "W": "inheritance",
+        "I": "discretionary exercise",
+    }.get(code or "", f"code {code}" if code else "transaction")
+
+
+def plan_phrase(flag: str | None) -> str:
+    if flag == "yes":
+        return "10b5-1 plan flagged"
+    if flag == "footnote":
+        return "10b5-1 mentioned in a footnote"
+    if flag == "no":
+        return "10b5-1 not flagged"
+    return "10b5-1 flag not available"
+
+
+def briefing_highlight(form: str) -> bool:
+    text = (form or "").upper().strip()
+    compact = text.replace(" ", "")
+    if text.startswith(("8-K", "10-Q", "10-K", "S-3", "424B")):
+        return True
+    return "13D" in compact or "13G" in compact
+
+
+def prior_briefing(today: str) -> dict | None:
+    """Diff against the latest briefing from an earlier MYT date.
+
+    A later run on the same date rebuilds that day's briefing instead of
+    treating the morning bullets as already seen.
+    """
+    prior = None
+    if BRIEFINGS.exists():
+        older = sorted(path for path in BRIEFINGS.glob("????-??-??.json") if path.stem < today)
+        if older:
+            prior = load_json(older[-1])
+    current = load_json(DATA / "briefing.json")
+    if current and not current.get("placeholder") and current.get("date") and current["date"] < today:
+        if not prior or current["date"] > (prior or {}).get("date", ""):
+            prior = current
+    return prior
+
+
+def archive_previous(previous: dict | None, today: str) -> None:
+    if not previous or previous.get("placeholder") or not previous.get("date"):
+        return
+    if previous["date"] == today:
+        return
+    BRIEFINGS.mkdir(parents=True, exist_ok=True)
+    save_json(BRIEFINGS / f"{previous['date']}.json", previous)
+
+
+def refresh_briefing_index(today: str) -> None:
+    dates = []
+    if BRIEFINGS.exists():
+        dates = sorted((path.stem for path in BRIEFINGS.glob("????-??-??.json")), reverse=True)
+    if today not in dates:
+        dates.insert(0, today)
+    save_json(BRIEFINGS / "index.json", {"dates": dates[:7]})
+
+
+def bullet(category: str, text: str, href: str | None) -> dict:
+    return {"category": category, "text": text, "href": href}
+
+
+def news_title(item: dict) -> str:
+    title = item.get("title") or "Headline"
+    source = item.get("source")
+    suffix = f" - {source}" if source else ""
+    if suffix and title.endswith(suffix):
+        title = title[: -len(suffix)]
+    if source:
+        return f"{title} ({source})"
+    return title
+
+
+def build_briefing(quote, filings, insiders, accountable, holders, short, news) -> dict:
+    today = myt_today()
+    now = utcnow()
+    previous = prior_briefing(today)
+    archive_previous(previous, today)
+    seen_prev = (previous or {}).get("seen") or {}
+    bullets = []
+    seen = {
+        "filings": [],
+        "insiders": [],
+        "launches": [],
+        "news": [],
+        "contracts_week": None,
+        "short_settlement": None,
+    }
+
+    if quote.get("ok") and quote.get("last_close") is not None:
+        close = fmt_price(quote.get("last_close")) or "No data"
+        volume = fmt_count(quote.get("volume")) or "No data"
+        pct = quote.get("change_pct")
+        pct_text = "No data" if pct is None else f"{float(pct):+.2f}%"
+        text = (
+            f"Last close {close} on {quote.get('session_date') or 'No data'}, "
+            f"change {signed_price(quote.get('change'))} ({pct_text}), "
+            f"volume {volume}."
+        )
+        if pct is not None and abs(float(pct)) > 10:
+            text += " The absolute move is over 10%."
+        if quote.get("stale"):
+            text += " Quote figures are from the last successful fetch."
+        bullets.append(bullet("price", text, quote.get("source_url")))
+    else:
+        bullets.append(bullet("price", "No data", quote.get("source_url")))
+
+    filing_rows = list(filings.get("filings") or [])
+    known = {row.get("accession") for row in filing_rows}
+    for row in holders.get("filings_13dg") or []:
+        if row.get("accession") not in known:
+            filing_rows.append(
+                {
+                    "form": row.get("form"),
+                    "filing_date": row.get("filing_date"),
+                    "description": row.get("form") or "",
+                    "accession": row.get("accession"),
+                    "url": row.get("url"),
+                }
+            )
+            known.add(row.get("accession"))
+    prev_filings = set(seen_prev.get("filings") or [])
+    new_filings = []
+    for row in filing_rows:
+        accession = row.get("accession")
+        if accession:
+            seen["filings"].append(accession)
+        if accession and accession not in prev_filings:
+            new_filings.append(row)
+    if not filing_rows and not filings.get("ok"):
+        bullets.append(bullet("filings", "No data", filings.get("source_url") or EDGAR_BROWSE))
+    elif not new_filings:
+        bullets.append(bullet("filings", "No new updates", filings.get("source_url") or EDGAR_BROWSE))
+    else:
+        for row in new_filings:
+            form = row.get("form") or "Filing"
+            filed = row.get("filing_date") or "No data"
+            desc = (row.get("description") or "").strip()
+            detail = f"{form}: {desc}" if desc and desc.upper() != form.upper() else form
+            kind = "Highlighted new SEC filing" if briefing_highlight(form) else "New SEC filing"
+            bullets.append(bullet("filings", f"{kind} {detail}, filed {filed}.", row.get("url")))
+
+    prev_tx = set(seen_prev.get("insiders") or [])
+    new_trades = []
+    for filing in insiders.get("filings") or []:
+        for index, tx in enumerate(filing.get("transactions") or []):
+            key = "|".join(
+                [
+                    str(filing.get("accession") or ""),
+                    str(tx.get("date") or ""),
+                    str(tx.get("code") or ""),
+                    str(tx.get("shares") if tx.get("shares") is not None else ""),
+                    str(tx.get("security") or ""),
+                    str(index),
+                ]
+            )
+            seen["insiders"].append(key)
+            if key in prev_tx:
+                continue
+            who = filing.get("owner_name") or "No data"
+            title = filing.get("owner_title") or "No data"
+            shares = fmt_count(tx.get("shares")) or "No data"
+            security = f" of {tx['security']}" if tx.get("security") else ""
+            price = fmt_price(tx.get("price")) if tx.get("price") is not None else "No data"
+            when = tx.get("date") or filing.get("filing_date") or "No data"
+            text = (
+                f"{who} ({title}) {tx_action(tx.get('code'))}: {shares} shares{security} "
+                f"at {price} on {when}. {plan_phrase(tx.get('plan_10b5_1'))}."
+            )
+            new_trades.append(bullet("insiders", text, filing.get("url")))
+    if not (insiders.get("filings") or []) and not insiders.get("ok"):
+        bullets.append(bullet("insiders", "No data", insiders.get("source_url") or EDGAR_BROWSE))
+    elif not new_trades:
+        bullets.append(bullet("insiders", "No new updates", insiders.get("source_url") or EDGAR_BROWSE))
+    else:
+        bullets.extend(new_trades)
+
+    weeks = accountable.get("weeks") or []
+    if not weeks or not accountable.get("ok") and not weeks:
+        bullets.append(bullet("accountable", "No data", accountable.get("source_url") or ACCOUNTABLE_URL))
+    else:
+        latest = weeks[-1]
+        seen["contracts_week"] = latest.get("week_ending")
+        wow = latest.get("wow")
+        wow_text = "no prior published week to compare" if wow is None else f"{int(wow):+,} versus the prior week"
+        bullets.append(
+            bullet(
+                "accountable",
+                (
+                    f"Latest weekly acquisition contracts: {int(latest['contracts']):,} "
+                    f"for the week ending {latest.get('week_ending')} ({wow_text}). "
+                    "These are agreements to buy, not completed purchases."
+                ),
+                accountable.get("source_url"),
+            )
+        )
+        prev_launches = set(seen_prev.get("launches") or [])
+        cutoff = None
+        if not prev_launches:
+            cutoff = (datetime.now(MYT).date() - timedelta(days=14)).isoformat()
+        new_launches = []
+        for item in accountable.get("launches") or []:
+            launch_id = item.get("id") or f"{item.get('date')}:{item.get('title')}"
+            seen["launches"].append(str(launch_id))
+            if str(launch_id) in prev_launches:
+                continue
+            if cutoff and (item.get("date") or "") < cutoff:
+                continue
+            new_launches.append(item)
+        for item in new_launches:
+            when = item.get("date") or item.get("date_raw") or "No data"
+            title = item.get("title") or "No data"
+            tag = f" [{item['tag']}]" if item.get("tag") else ""
+            bullets.append(
+                bullet(
+                    "accountable",
+                    f"New launch{tag} on {when}: {title}.",
+                    accountable.get("source_url"),
+            )
+        )
+
+    si = (short or {}).get("short_interest") or {}
+    finra = (short or {}).get("finra") or {}
+    latest_si = si.get("latest")
+    prev_settlement = seen_prev.get("short_settlement")
+    if latest_si and latest_si.get("settlement_date"):
+        seen["short_settlement"] = latest_si.get("settlement_date")
+        if not prev_settlement or prev_settlement != latest_si.get("settlement_date"):
+            days = latest_si.get("days_to_cover")
+            days_text = "No data" if days is None else f"{float(days):.2f}"
+            bullets.append(
+                bullet(
+                    "short",
+                    (
+                        f"Exchange short interest {fmt_count(latest_si.get('shares_short')) or 'No data'} shares, "
+                        f"settlement date {latest_si.get('settlement_date')}, "
+                        f"average daily volume {fmt_count(latest_si.get('avg_daily_volume')) or 'No data'}, "
+                        f"days to cover {days_text}."
+                    ),
+                    si.get("source_url") or NASDAQ_SI_PAGE,
+                )
+            )
+        else:
+            bullets.append(bullet("short", "No new updates", si.get("source_url") or NASDAQ_SI_PAGE))
+    else:
+        bullets.append(bullet("short", "No data", si.get("source_url") or NASDAQ_SI_PAGE))
+    finra_rows = finra.get("rows") or []
+    if finra_rows:
+        last = finra_rows[-1]
+        ratio = last.get("short_ratio")
+        ratio_text = "No data" if ratio is None else f"{float(ratio) * 100:.1f}%"
+        bullets.append(
+            bullet(
+                "short",
+                (
+                    f"Latest FINRA short-volume ratio {ratio_text} on {last.get('date') or 'No data'} "
+                    f"(short volume {fmt_count(last.get('short_volume')) or 'No data'}, "
+                    f"total volume {fmt_count(last.get('total_volume')) or 'No data'})."
+                ),
+                last.get("source_url") or finra.get("source_url"),
+            )
+        )
+    elif not latest_si:
+        pass
+    else:
+        bullets.append(bullet("short", "No data", finra.get("source_url")))
+
+    prev_news = set(seen_prev.get("news") or [])
+    fresh_news = []
+    for item in news.get("items") or []:
+        key = item.get("url") or item.get("title")
+        if key:
+            seen["news"].append(key)
+        if key and key not in prev_news:
+            fresh_news.append(item)
+    if not (news.get("items") or []) and not news.get("ok"):
+        bullets.append(bullet("news", "No data", news.get("source_url") or NEWS_RSS))
+    elif not fresh_news:
+        bullets.append(bullet("news", "No new updates", news.get("source_url") or NEWS_RSS))
+    else:
+        for item in fresh_news[:5]:
+            bullets.append(bullet("news", news_title(item), item.get("url")))
+
+    for key in ("filings", "insiders", "launches", "news"):
+        seen[key] = sorted(set(seen[key]))
+    return {
+        "ok": True,
+        "placeholder": False,
+        "stale": False,
+        "date": today,
+        "updated_at": now,
+        "fetched_at": now,
+        "fetch_error": None,
+        "source_label": "This site's fetch",
+        "source_url": None,
+        "bullets": bullets,
+        "seen": seen,
+    }
+
+
+def write_briefing(quote, filings, insiders, accountable, holders, short, news) -> dict:
+    payload = build_briefing(quote, filings, insiders, accountable, holders, short, news)
+    save_json(DATA / "briefing.json", payload)
+    BRIEFINGS.mkdir(parents=True, exist_ok=True)
+    save_json(BRIEFINGS / f"{payload['date']}.json", payload)
+    refresh_briefing_index(payload["date"])
+    print(f"briefing {payload['date']} bullets={len(payload['bullets'])}")
+    return payload
+
+
 def main() -> int:
     DATA.mkdir(parents=True, exist_ok=True)
-    # briefing.json is intentionally not written here.
     print("fetching quote")
     quote, quote_err = refresh(DATA / "quote.json", produce_quote)
     print("fetching accountable")
@@ -1056,18 +1421,20 @@ def main() -> int:
         else:
             print("sanity week 2026-11-07 not in current series")
 
+    print("writing briefing")
+    briefing = write_briefing(quote, filings, insiders, accountable, holders, short, news)
     status = {
         "ok": True,
         "fetched_at": utcnow(),
         "sources": [
-            source_status("quote", "股价", quote, quote_err, quote.get("source_url")),
+            source_status("quote", "Price", quote, quote_err, quote.get("source_url")),
             source_status("accountable", "Opendoor Accountable", accountable, acc_err, ACCOUNTABLE_URL),
-            source_status("filings", "公司公告", filings, fil_err, EDGAR_BROWSE),
-            source_status("insiders", "内部人交易", insiders, ins_err, EDGAR_BROWSE),
-            source_status("holders", "机构持仓", holders, hold_err, EDGAR_BROWSE),
-            source_status("short", "做空数据", short, short_err, NASDAQ_SI_PAGE),
-            source_status("news", "新闻", news, news_err, NEWS_RSS),
-            source_status("briefing", "每日简报", load_json(DATA / "briefing.json") or {"ok": False}, None, None),
+            source_status("filings", "Company filings", filings, fil_err, EDGAR_BROWSE),
+            source_status("insiders", "Insider trades", insiders, ins_err, EDGAR_BROWSE),
+            source_status("holders", "Institutional holdings", holders, hold_err, EDGAR_BROWSE),
+            source_status("short", "Short interest", short, short_err, NASDAQ_SI_PAGE),
+            source_status("news", "News", news, news_err, NEWS_RSS),
+            source_status("briefing", "Daily briefing", briefing, None, None),
         ],
     }
     save_json(DATA / "status.json", status)

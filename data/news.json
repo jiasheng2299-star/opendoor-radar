@@ -1,7 +1,7 @@
 {
-  "fetch_attempted_at": "2026-11-14T12:12:29Z",
+  "fetch_attempted_at": "2026-11-14T12:46:41Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:12:29Z",
+  "fetched_at": "2026-11-14T12:46:41Z",
   "items": [
     {
       "published_at": "2026-11-14T03:26:11Z",
@@ -109,7 +109,7 @@
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB2ZkJMejVqR04teGRPb2JuMnZQN0FYSy1LMXJnR3JXVHh0ZVRGM1RUSGNia2pCNzFjQWc0Uko0a0x3MlZjWGV2ekVjNi1fSF81LTBzY2ZBRUhRaklybWpOTVg3clU2VHozaDlOT2Vn?oc=5"
     }
   ],
-  "note": "标题是媒体原文，本站不改写，也不代表本站观点。",
+  "note": "Headlines are the publishers' original text. This site does not rewrite them or endorse them.",
   "ok": true,
   "source_label": "Google News RSS",
   "source_url": "https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en",

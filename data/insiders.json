@@ -1,14 +1,14 @@
 {
-  "fetch_attempted_at": "2026-11-14T12:12:13Z",
+  "fetch_attempted_at": "2026-11-14T12:46:21Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:12:13Z",
+  "fetched_at": "2026-11-14T12:46:21Z",
   "filings": [
     {
       "accession": "0001816739-26-000008",
       "filing_date": "2026-11-02",
       "form": "4",
       "owner_name": "ALFRED MICHAEL",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-10-29",
       "transactions": [
@@ -104,7 +104,7 @@
       "filing_date": "2026-08-14",
       "form": "4",
       "owner_name": "Nejatian Kasra",
-      "owner_title": "Chief Executive Officer · 董事",
+      "owner_title": "Chief Executive Officer · Director",
       "parse_error": null,
       "period_of_report": "2026-08-14",
       "transactions": [
@@ -148,7 +148,7 @@
       "filing_date": "2026-06-16",
       "form": "4",
       "owner_name": "Benson David C",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-06-16",
       "transactions": [
@@ -170,7 +170,7 @@
       "filing_date": "2026-06-15",
       "form": "4",
       "owner_name": "Wu Eric Chung-Wei",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-06-11",
       "transactions": [
@@ -192,7 +192,7 @@
       "filing_date": "2026-06-15",
       "form": "4",
       "owner_name": "Rabois Keith",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-06-11",
       "transactions": [
@@ -214,7 +214,7 @@
       "filing_date": "2026-06-15",
       "form": "4",
       "owner_name": "Feder Eric",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-06-11",
       "transactions": [
@@ -236,7 +236,7 @@
       "filing_date": "2026-06-15",
       "form": "4",
       "owner_name": "HAMILTON DANA",
-      "owner_title": "董事",
+      "owner_title": "Director",
       "parse_error": null,
       "period_of_report": "2026-06-11",
       "transactions": [
@@ -254,7 +254,7 @@
       "url": "https://www.sec.gov/Archives/edgar/data/1195975/000119597526000002/0001195975-26-000002-index.html"
     }
   ],
-  "note": "交易代码与 10b5-1 标记均来自申报原文。代码只说明表格里填写的类型，不是买卖建议。",
+  "note": "Transaction codes and 10b5-1 flags are copied from the filing. They describe the form, not a recommendation.",
   "ok": true,
   "parse_errors": [],
   "source_api": "https://data.sec.gov/submissions/CIK0001801169.json",

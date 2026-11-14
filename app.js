@@ -3,20 +3,29 @@
 const FILES = ["briefing", "quote", "accountable", "filings", "insiders", "holders", "short", "news", "status"];
 
 const FORM4_CODES = {
-  P: "公开市场购入",
-  S: "公开市场售出",
-  A: "授予或奖励",
-  M: "衍生品行权或转换",
-  F: "缴税预扣",
-  G: "赠与",
-  D: "向公司处置",
-  C: "转换",
-  J: "其他",
-  V: "自愿申报",
-  L: "小额购入",
-  W: "继承或遗嘱",
-  I: "自由支配的行权",
-  X: "行权或衍生品结算",
+  P: "open-market buy",
+  S: "open-market sell",
+  A: "grant or award",
+  M: "exercise or conversion",
+  F: "tax withholding",
+  G: "gift",
+  D: "disposition to the issuer",
+  C: "conversion",
+  J: "other",
+  V: "voluntary transaction",
+  L: "small acquisition",
+  W: "inheritance",
+  I: "discretionary exercise",
+  X: "exercise or conversion",
+};
+
+const CATEGORY_LABELS = {
+  price: "Price",
+  filings: "SEC filings",
+  insiders: "Insider trades",
+  accountable: "Accountable",
+  short: "Short interest",
+  news: "News",
 };
 
 function el(tag, className, text) {
@@ -34,7 +43,7 @@ function safeUrl(url) {
 
 function link(url, label, className) {
   const href = safeUrl(url);
-  if (!href) return el("span", className, label || "暂无数据");
+  if (!href) return el("span", className, label || "No data");
   const a = el("a", className, label || href);
   a.href = href;
   a.target = "_blank";
@@ -68,7 +77,7 @@ function num(value, digits) {
 }
 
 function price(value) {
-  if (value == null || !Number.isFinite(Number(value))) return "暂无数据";
+  if (value == null || !Number.isFinite(Number(value))) return "No data";
   const abs = Math.abs(Number(value));
   const digits = abs >= 100 ? 2 : abs >= 1 ? 3 : 4;
   let text = Number(value).toFixed(digits).replace(/0+$/, "").replace(/\.$/, "");
@@ -78,14 +87,14 @@ function price(value) {
 }
 
 function fmtPct(value) {
-  if (value == null || !Number.isFinite(Number(value))) return "比例暂无数据";
+  if (value == null || !Number.isFinite(Number(value))) return "No data";
   const n = Number(value);
   const oneDecimal = Math.abs(n * 10 - Math.round(n * 10)) < 1e-6;
   return `${num(n, oneDecimal ? 1 : 2)}%`;
 }
 
 function signed(value, digits) {
-  if (value == null || !Number.isFinite(Number(value))) return "暂无数据";
+  if (value == null || !Number.isFinite(Number(value))) return "No data";
   const n = Number(value);
   const body = num(Math.abs(n), digits);
   if (n > 0) return `+${body}`;
@@ -108,17 +117,17 @@ function staleBanner(data, noun) {
   const when = formatMYT(data.fetched_at);
   const tried = formatMYT(data.fetch_attempted_at);
   const banner = el("p", "banner");
-  banner.textContent = `暂无数据（本次更新失败${tried ? "，尝试于 " + tried : ""}）。以下为上次成功数值${when ? "，更新于 " + when : ""}。`;
+  banner.textContent = `No data (this update failed${tried ? ", tried " + tried : ""}). Showing the last successful values${when ? ", updated " + when : ""}.`;
   if (noun) banner.dataset.section = noun;
   return banner;
 }
 
 function metaRow(url, label, fetchedAt) {
   const p = el("p", "meta");
-  p.append("来源：");
-  p.append(link(url, label || "链接"));
+  p.append("Source: ");
+  p.append(link(url, label || "link"));
   const when = formatMYT(fetchedAt);
-  p.append(` · 更新于 ${when || "暂无数据"}`);
+  p.append(` · Updated ${when || "No data"}`);
   return p;
 }
 
@@ -131,7 +140,7 @@ function section(id, title, kicker) {
 }
 
 function emptyNote(text) {
-  return el("p", "empty", text || "暂无数据");
+  return el("p", "empty", text || "No data");
 }
 
 function drawChart(host, series, yFormat) {
@@ -166,7 +175,7 @@ function drawChart(host, series, yFormat) {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", host.dataset.label || "图表");
+  svg.setAttribute("aria-label", host.dataset.label || "Chart");
   const ticks = [max, (max + min) / 2, min];
   ticks.forEach((tick) => {
     const y = yAt(tick);
@@ -221,46 +230,87 @@ function drawChart(host, series, yFormat) {
   }
 }
 
-function renderBriefing(data) {
-  const card = section("briefing", "每日简报", "每日 08:00 MYT 更新窗口之后替换本段");
+function renderBulletGroups(bullets) {
+  const wrap = el("div", "brief-groups");
+  let current = null;
+  let group = null;
+  (bullets || []).forEach((item) => {
+    const category = item.category || "note";
+    if (category !== current) {
+      current = category;
+      group = el("div", "brief-group");
+      if (CATEGORY_LABELS[category]) group.append(el("h3", null, CATEGORY_LABELS[category]));
+      wrap.append(group);
+    }
+    const line = el("p", "brief-item");
+    const href = safeUrl(item.href);
+    if (href) line.append(link(href, item.text || href));
+    else line.textContent = item.text || "No data";
+    group.append(line);
+  });
+  return wrap;
+}
+
+async function loadJson(url) {
+  try {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    return null;
+  }
+}
+
+async function renderBriefing(data) {
+  const card = section("briefing", "Daily briefing", "Built automatically at each 08:00 MYT update from the public files");
   if (!data) return card.append(emptyNote()), card;
   if (data.placeholder) {
-    card.append(el("p", null, (data.bullets && data.bullets[0] && data.bullets[0].text) || "暂无数据"));
-    const meta = el("p", "meta", "来源：本站占位 · 更新于 尚未生成（下次 08:00 MYT）");
-    card.append(meta);
+    card.append(el("p", null, (data.bullets && data.bullets[0] && data.bullets[0].text) || "No data"));
+    card.append(el("p", "meta", "Source: site placeholder · Updated not generated yet (next 08:00 MYT)"));
     return card;
   }
   addBanner(card, data);
-  if (data.date) card.append(el("p", "kicker", `简报日期 ${data.date}`));
-  const list = el("ul", "list");
-  (data.bullets || []).forEach((bullet) => {
-    const li = el("li");
-    const href = safeUrl(bullet.href);
-    if (href) li.append(link(href, bullet.text || href));
-    else li.textContent = bullet.text || "暂无数据";
-    list.append(li);
-  });
+  if (data.date) card.append(el("p", "kicker", `Briefing date ${data.date}`));
   if (!data.bullets || !data.bullets.length) card.append(emptyNote());
-  else card.append(list);
-  card.append(metaRow(data.source_url, data.source_label || "简报来源", data.updated_at || data.fetched_at));
+  else card.append(renderBulletGroups(data.bullets));
+  card.append(metaRow(data.source_url, data.source_label || "This site's fetch", data.updated_at || data.fetched_at));
+
+  const index = await loadJson("data/briefings/index.json");
+  const dates = ((index && index.dates) || []).filter((date) => date !== data.date).slice(0, 7);
+  const older = [];
+  for (const date of dates) {
+    const archived = await loadJson(`data/briefings/${date}.json`);
+    if (archived) older.push({ date, data: archived });
+  }
+  card.append(el("h3", null, "Earlier briefings"));
+  if (!older.length) {
+    card.append(el("p", "meta", "No earlier briefings yet."));
+  } else {
+    older.forEach((row) => {
+      const details = el("details", "more");
+      details.append(el("summary", null, row.date));
+      details.append(renderBulletGroups(row.data.bullets || []));
+      card.append(details);
+    });
+  }
   return card;
 }
 
 function renderQuote(data) {
-  const card = section("quote", "股价", "最近一个已收盘交易日，不是盘中报价");
+  const card = section("quote", "Price", "Last completed session, not an intraday quote");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   card.append(el("p", "price", price(data.last_close)));
   const row = el("div", "row");
-  const change = el("span", `chg ${direction(data.change)}`, `${signed(data.change, 3)}（${signed(data.change_pct, 2)}%）`);
+  const change = el("span", `chg ${direction(data.change)}`, `${signed(data.change, 3)} (${signed(data.change_pct, 2)}%)`);
   row.append(change);
   card.append(row);
   const stats = el("div", "stats");
   const cells = [
-    ["收盘日", data.session_date || "暂无数据"],
-    ["前收", price(data.previous_close)],
-    ["成交量", data.volume == null ? "暂无数据" : num(data.volume, 0)],
-    ["货币", data.currency || "USD"],
+    ["Session date", data.session_date || "No data"],
+    ["Prior close", price(data.previous_close)],
+    ["Volume", data.volume == null ? "No data" : num(data.volume, 0)],
+    ["Currency", data.currency || "USD"],
   ];
   cells.forEach(([label, value]) => {
     const box = el("div", "stat");
@@ -269,28 +319,28 @@ function renderQuote(data) {
   });
   card.append(stats);
   const chart = el("div", "chart");
-  chart.dataset.label = "约六个月收盘价";
+  chart.dataset.label = "About six months of closing prices";
   drawChart(chart, [{
-    name: "收盘价",
+    name: "Close",
     color: "#0f6e6b",
     points: (data.points || []).map((point) => ({ x: point.date, y: point.close })),
   }], (value) => `$${value.toFixed(2)}`);
   card.append(chart);
-  if (data.fallback_error) card.append(el("p", "note", `首选来源本次不可用，已改用 ${data.source_label}。`));
+  if (data.fallback_error) card.append(el("p", "note", `The preferred source was unavailable this time. Using ${data.source_label}.`));
   card.append(metaRow(data.source_url, data.source_label, data.fetched_at));
   return card;
 }
 
 function renderAccountable(data) {
-  const card = section("accountable", "Opendoor Accountable", "官方看板的每周收购合约");
+  const card = section("accountable", "Opendoor Accountable", "Official weekly acquisition contracts");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
-  card.append(el("p", "note", data.contracts_label || "合约是同意收购的协议，不是已完成的购买。"));
+  card.append(el("p", "note", data.contracts_label || "Contracts are agreements to buy, not completed purchases."));
   const weeks = data.weeks || [];
   const latest = weeks[weeks.length - 1];
   if (latest) {
     const stats = el("div", "stats");
-    [["最新一周", latest.week_ending], ["合约数", num(latest.contracts, 0)], ["较上周", latest.wow == null ? "—" : signed(latest.wow, 0)], ["去年同期", latest.prior_year == null ? "暂无数据" : num(latest.prior_year, 0)]]
+    [["Latest week", latest.week_ending], ["Contracts", num(latest.contracts, 0)], ["Vs prior week", latest.wow == null ? "—" : signed(latest.wow, 0)], ["Prior year", latest.prior_year == null ? "No data" : num(latest.prior_year, 0)]]
       .forEach(([label, value]) => {
         const box = el("div", "stat");
         box.append(el("span", null, label), el("strong", null, String(value)));
@@ -299,16 +349,16 @@ function renderAccountable(data) {
     card.append(stats);
   }
   const chart = el("div", "chart");
-  chart.dataset.label = "每周收购合约";
+  chart.dataset.label = "Weekly acquisition contracts";
   drawChart(chart, [
-    { name: "合约数", color: "#0f6e6b", points: weeks.map((row) => ({ x: row.week_ending, y: row.contracts })) },
-    { name: "去年同期", color: "#98a8b0", dash: "4 3", points: weeks.map((row) => ({ x: row.week_ending, y: row.prior_year })) },
+    { name: "Contracts", color: "#0f6e6b", points: weeks.map((row) => ({ x: row.week_ending, y: row.contracts })) },
+    { name: "Prior year", color: "#98a8b0", dash: "4 3", points: weeks.map((row) => ({ x: row.week_ending, y: row.prior_year })) },
   ], (value) => num(value, 0));
   card.append(chart);
   const table = el("table");
-  table.append(el("caption", "kicker", "较上周由相邻两个已公布周的合约数相减。"));
+  table.append(el("caption", "kicker", "Vs prior week is the difference between two adjacent published weeks."));
   const head = el("tr");
-  ["周截止", "合约", "较上周", "去年同期"].forEach((label) => head.append(el("th", null, label)));
+  ["Week ending", "Contracts", "Vs prior week", "Prior year"].forEach((label) => head.append(el("th", null, label)));
   table.append(head);
   weeks.slice().reverse().slice(0, 16).forEach((row) => {
     const tr = el("tr");
@@ -322,70 +372,70 @@ function renderAccountable(data) {
   const wrap = el("div", "scroll");
   wrap.append(table);
   card.append(wrap);
-  if ((weeks.length || 0) > 16) card.append(el("p", "meta", `表内为最近 16 周，图为全部 ${weeks.length} 个已公布周。`));
-  if (data.official_note) card.append(el("p", "note", `官网原文：${data.official_note}`));
+  if ((weeks.length || 0) > 16) card.append(el("p", "meta", `The table shows the latest 16 weeks. The chart shows all ${weeks.length} published weeks.`));
+  if (data.official_note) card.append(el("p", "note", `Official wording: ${data.official_note}`));
   const cross = data.crosscheck;
   if (cross && cross.ok && cross.latest) {
     const crossLine = el("p", "meta");
-    crossLine.append(`交叉验证 ${cross.latest.week_ending} = ${num(cross.latest.contracts, 0)}，${cross.matches_accountable ? "与官方看板一致" : "与官方看板不一致，页面仍用官方看板"}。来源：`);
+    crossLine.append(`Cross-check ${cross.latest.week_ending} = ${num(cross.latest.contracts, 0)}. ${cross.matches_accountable ? "It matches the official board." : "It does not match; the page still uses the official board."} Source: `);
     crossLine.append(link(cross.source_url, "opendoor.army"));
     card.append(crossLine);
   } else {
     const crossLine = el("p", "meta");
-    crossLine.append("交叉验证暂无数据，未改写官方数字。来源：");
+    crossLine.append("Cross-check: No data. Official figures were not changed. Source: ");
     crossLine.append(link(ARMY_URL, "opendoor.army"));
     card.append(crossLine);
   }
   card.append(metaRow(data.source_url, data.source_label, data.fetched_at));
-  card.append(el("h3", null, "产品、功能与合作发布"));
+  card.append(el("h3", null, "Product, feature, and partnership launches"));
   const launches = data.launches || [];
   if (!launches.length) card.append(emptyNote());
   else {
     const box = el("div", "launches");
     launches.forEach((item) => {
       const block = el("article", "launch");
-      block.append(el("h3", null, item.title || "暂无数据"));
+      block.append(el("h3", null, item.title || "No data"));
       const line = el("p", "subline");
       if (item.tag) line.append(el("span", "tag", item.tag), " · ");
-      line.append(item.date || item.date_raw || "日期暂无数据");
+      line.append(item.date || item.date_raw || "No data");
       block.append(line);
       if (item.description) block.append(el("p", "subline", item.description));
       box.append(block);
     });
     card.append(box);
-    card.append(el("p", "meta", `共 ${launches.length} 条，与上方合约同一来源、同一次更新。`));
+    card.append(el("p", "meta", `${launches.length} items, same source and update as the contracts above.`));
   }
   return card;
 }
 
 const ARMY_URL = "https://opendoor.army/charts/weekly";
 const FORM_GLOSS = {
-  "10-Q": "季度报告",
-  "10-Q/A": "季度报告修订",
-  "10-K": "年度报告",
-  "10-K/A": "年度报告修订",
-  "8-K": "临时报告",
-  "8-K/A": "临时报告修订",
-  "S-3": "证券注册声明",
-  "S-3ASR": "自动生效的货架注册",
-  "DEF 14A": "股东委托书",
+  "10-Q": "Quarterly report",
+  "10-Q/A": "Amended quarterly report",
+  "10-K": "Annual report",
+  "10-K/A": "Amended annual report",
+  "8-K": "Current report",
+  "8-K/A": "Amended current report",
+  "S-3": "Securities registration",
+  "S-3ASR": "Automatic shelf registration",
+  "DEF 14A": "Proxy statement",
 };
 
 function renderFilings(data) {
-  const card = section("filings", "公司公告", "SEC EDGAR 最新申报。8-K、10-Q、10-K、S-3、424B、DEF 14A 会标出。");
+  const card = section("filings", "Company filings", "Latest SEC EDGAR filings. 8-K, 10-Q, 10-K, S-3, 424B, and DEF 14A are highlighted.");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   (data.filings || []).forEach((row) => {
     const block = el("article", "filing");
     const title = el("h3");
-    if (row.highlight) title.append(el("span", "pill hot", row.form || "表格"));
-    else title.append(el("span", "pill flat", row.form || "表格"));
+    if (row.highlight) title.append(el("span", "pill hot", row.form || "Form"));
+    else title.append(el("span", "pill flat", row.form || "Form"));
     title.append(" ");
-    let desc = row.description || row.form || "申报";
+    let desc = row.description || row.form || "Filing";
     if (FORM_GLOSS[row.form] && (desc === row.form || desc === "")) desc = FORM_GLOSS[row.form];
     title.append(link(row.url, desc));
     block.append(title);
-    block.append(el("p", "subline", `申报日 ${row.filing_date || "暂无数据"}${row.report_date ? " · 报告期 " + row.report_date : ""}`));
+    block.append(el("p", "subline", `Filed ${row.filing_date || "No data"}${row.report_date ? " · Period " + row.report_date : ""}`));
     card.append(block);
   });
   if (!data.filings || !data.filings.length) card.append(emptyNote());
@@ -395,14 +445,14 @@ function renderFilings(data) {
 }
 
 function planLabel(flag) {
-  if (flag === "yes") return "10b5-1：是（申报已勾选）";
-  if (flag === "footnote") return "10b5-1：脚注提及";
-  if (flag === "no") return "10b5-1：否（申报未勾选）";
-  return "10b5-1：暂无数据";
+  if (flag === "yes") return "10b5-1: yes (box checked)";
+  if (flag === "footnote") return "10b5-1: mentioned in a footnote";
+  if (flag === "no") return "10b5-1: no (box not checked)";
+  return "10b5-1: No data";
 }
 
 function renderInsiders(data) {
-  const card = section("insiders", "内部人交易", "最近 Form 4。姓名与职务按申报原文。");
+  const card = section("insiders", "Insider trades", "Recent Form 4 filings. Names and titles are shown as filed.");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   let shown = 0;
@@ -410,67 +460,67 @@ function renderInsiders(data) {
     (filing.transactions || []).forEach((tx) => {
       shown += 1;
       const block = el("article", "filing");
-      const title = el("h3", null, filing.owner_name || "姓名暂无数据");
+      const title = el("h3", null, filing.owner_name || "No data");
       block.append(title);
       const code = tx.code || "—";
       const meaning = FORM4_CODES[code] ? `${code} ${FORM4_CODES[code]}` : code;
-      block.append(el("p", "subline", `${filing.owner_title || "职务暂无数据"} · ${tx.date || filing.filing_date || "日期暂无数据"}`));
-      block.append(el("p", null, `${tx.security || "证券暂无数据"}${tx.derivative ? "（衍生）" : ""}`));
-      const shares = tx.shares == null ? "股数暂无数据" : `${num(tx.shares, 0)} 股`;
-      const px = tx.price == null ? "价格暂无数据" : price(tx.price);
+      block.append(el("p", "subline", `${filing.owner_title || "No data"} · ${tx.date || filing.filing_date || "No data"}`));
+      block.append(el("p", null, `${tx.security || "No data"}${tx.derivative ? " (derivative)" : ""}`));
+      const shares = tx.shares == null ? "No data" : `${num(tx.shares, 0)} shares`;
+      const px = tx.price == null ? "No data" : price(tx.price);
       block.append(el("p", null, `${meaning} · ${shares} · ${px}${tx.acquired_disposed ? " · A/D " + tx.acquired_disposed : ""}`));
       block.append(el("p", "subline", planLabel(tx.plan_10b5_1)));
-      block.append(el("p", "subline", ""), link(filing.url, `${filing.form || "Form 4"} · 申报日 ${filing.filing_date || "暂无数据"}`));
+      block.append(link(filing.url, `${filing.form || "Form 4"} · Filed ${filing.filing_date || "No data"}`));
       card.append(block);
     });
     if ((!filing.transactions || !filing.transactions.length) && filing.parse_error) {
       const block = el("article", "filing");
-      block.append(el("h3", null, filing.owner_name || "明细暂无数据"));
-      block.append(el("p", "subline", `${filing.form} · 申报日 ${filing.filing_date || "暂无数据"} · 本次未能解析 XML`));
-      block.append(link(filing.url, "打开申报"));
+      block.append(el("h3", null, filing.owner_name || "No data"));
+      block.append(el("p", "subline", `${filing.form} · Filed ${filing.filing_date || "No data"} · The XML could not be parsed this time`));
+      block.append(link(filing.url, "Open filing"));
       card.append(block);
     }
   });
   if (!shown) card.append(emptyNote());
   const gloss = el("p", "glossary");
-  gloss.textContent = "代码对照（SEC Form 4，不是操作建议）：P 公开市场购入，S 公开市场售出，A 授予或奖励，M/X 行权或转换，F 缴税预扣。A/D 里 A 表示获得、D 表示处置。";
+  gloss.textContent = "Code key (SEC Form 4, not a recommendation): P open-market buy, S open-market sell, A grant or award, M/X exercise or conversion, F tax withholding. In A/D, A means acquired and D means disposed.";
   card.append(gloss);
   card.append(metaRow(data.source_url, data.source_label, data.fetched_at));
   return card;
 }
 
 function renderHolders(data) {
-  const card = section("holders", "机构持仓", "13F 快照与超过 5% 的 13G/13D 分开列示。");
+  const card = section("holders", "Institutional holdings", "The 13F snapshot and 13G/13D positions above 5% are listed separately.");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   const snap = data.snapshot_13f;
-  card.append(el("h3", null, snap ? `${snap.quarter_label || ""} 13F 持仓` : "13F 持仓"));
-  card.append(el("p", "note", data.note_13f || "13F 在季度结束后最多滞后约 45 天。"));
+  card.append(el("h3", null, snap ? `${snap.quarter_label || ""} 13F holdings` : "13F holdings"));
+  card.append(el("p", "note", data.note_13f || "13F filings can lag up to 45 days after quarter end."));
   if (!snap || !snap.holders || !snap.holders.length) card.append(emptyNote());
   else {
     const table = el("table");
     const head = el("tr");
-    ["机构", "股数"].forEach((label) => head.append(el("th", null, label)));
+    ["Institution", "Shares"].forEach((label) => head.append(el("th", null, label)));
     table.append(head);
     snap.holders.forEach((holder) => {
       const tr = el("tr");
-      tr.append(el("td", null, holder.name || "暂无数据"));
-      tr.append(el("td", null, holder.shares == null ? "暂无数据" : num(holder.shares, 0)));
+      tr.append(el("td", null, holder.name || "No data"));
+      tr.append(el("td", null, holder.shares == null ? "No data" : num(holder.shares, 0)));
       table.append(tr);
     });
     card.append(table);
     const snapMeta = el("p", "meta");
-    snapMeta.append("来源：");
-    snapMeta.append(link(snap.source_url, snap.source_label || "13F 来源"));
-    snapMeta.append(` · 快照日 ${snap.as_of || "暂无数据"}（静态核对值，不是本次抓取时钟）`);
+    snapMeta.append("Source: ");
+    snapMeta.append(link(snap.source_url, snap.source_label || "13F source"));
+    snapMeta.append(` · Snapshot date ${snap.as_of || "No data"} (a checked static value, not this fetch's clock time)`);
     card.append(snapMeta);
   }
-  card.append(el("h3", null, "13G / 13D（受益持有超过 5%）"));
-  card.append(el("p", "kicker", "股数与比例来自封面报告人，和上面的 13F 持仓不是同一口径。"));
+  card.append(el("h3", null, "13G / 13D (beneficial ownership above 5%)"));
+  card.append(el("p", "kicker", "Share counts and percentages come from the cover-page reporting persons. They are not the same measure as the 13F holdings above."));
   if (data.filings_13dg_stale) {
     const banner = el("p", "banner");
     const when = formatMYT(data.filings_13dg_fetched_at);
-    banner.textContent = `暂无数据（13G/13D 本次更新失败）。以下为上次成功解析${when ? "，更新于 " + when : ""}。`;
+    banner.textContent = `No data (the 13G/13D update failed). Showing the last successful parse${when ? ", updated " + when : ""}.`;
     card.append(banner);
   }
   const filings = data.filings_13dg || [];
@@ -480,15 +530,15 @@ function renderHolders(data) {
     const title = el("h3");
     title.append(el("span", filing.kind === "13D" ? "pill d13" : "pill g13", filing.form || filing.kind || "13G"));
     title.append(" ");
-    title.append(link(filing.url, "打开申报"));
+    title.append(link(filing.url, "Open filing"));
     block.append(title);
-    block.append(el("p", "subline", `申报日 ${filing.filing_date || "暂无数据"}${filing.event_date ? " · 事件日 " + filing.event_date : ""}`));
-    if (!filing.reporting_persons || !filing.reporting_persons.length) block.append(emptyNote(filing.parse_error ? "股数暂无数据" : "暂无数据"));
+    block.append(el("p", "subline", `Filed ${filing.filing_date || "No data"}${filing.event_date ? " · Event date " + filing.event_date : ""}`));
+    if (!filing.reporting_persons || !filing.reporting_persons.length) block.append(emptyNote());
     (filing.reporting_persons || []).forEach((person) => {
       const line = el("p", "person");
-      const shares = person.shares == null ? "股数暂无数据" : `${num(person.shares, 0)} 股`;
+      const shares = person.shares == null ? "No data" : `${num(person.shares, 0)} shares`;
       const pct = fmtPct(person.percent);
-      line.append(el("strong", null, person.name || "名称暂无数据"));
+      line.append(el("strong", null, person.name || "No data"));
       line.append(el("span", "subline", ` ${shares} · ${pct}`));
       block.append(line);
     });
@@ -499,14 +549,14 @@ function renderHolders(data) {
 }
 
 function renderShort(data) {
-  const card = section("short", "做空数据", "未平仓做空与每日卖空成交比分开列示");
+  const card = section("short", "Short interest", "Exchange short interest and the daily short-volume ratio are listed separately");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   const si = data.short_interest || {};
-  card.append(el("h3", null, "交易所未平仓做空"));
+  card.append(el("h3", null, "Exchange short interest"));
   if (si.stale) {
     const banner = el("p", "banner");
-    banner.textContent = `暂无数据（本次更新失败）。以下为上次成功数值${formatMYT(si.fetched_at) ? "，更新于 " + formatMYT(si.fetched_at) : ""}。`;
+    banner.textContent = `No data (this update failed). Showing the last successful values${formatMYT(si.fetched_at) ? ", updated " + formatMYT(si.fetched_at) : ""}.`;
     card.append(banner);
   }
   const latest = si.latest;
@@ -514,10 +564,10 @@ function renderShort(data) {
   else if (latest) {
     const stats = el("div", "stats");
     [
-      ["卖空股数", num(latest.shares_short, 0) || "暂无数据"],
-      ["结算日", latest.settlement_date || "暂无数据"],
-      ["日均成交量", latest.avg_daily_volume == null ? "暂无数据" : num(latest.avg_daily_volume, 0)],
-      ["回补天数", latest.days_to_cover == null ? "暂无数据" : num(latest.days_to_cover, 2)],
+      ["Shares short", num(latest.shares_short, 0) || "No data"],
+      ["Settlement date", latest.settlement_date || "No data"],
+      ["Avg. daily volume", latest.avg_daily_volume == null ? "No data" : num(latest.avg_daily_volume, 0)],
+      ["Days to cover", latest.days_to_cover == null ? "No data" : num(latest.days_to_cover, 2)],
     ].forEach(([label, value]) => {
       const box = el("div", "stat");
       box.append(el("span", null, label), el("strong", null, String(value)));
@@ -527,13 +577,13 @@ function renderShort(data) {
     if (si.history && si.history.length) {
       const table = el("table");
       const head = el("tr");
-      ["结算日", "卖空股数", "回补天数"].forEach((label) => head.append(el("th", null, label)));
+      ["Settlement", "Shares short", "Days to cover"].forEach((label) => head.append(el("th", null, label)));
       table.append(head);
       si.history.forEach((row) => {
         const tr = el("tr");
         tr.append(el("td", null, row.settlement_date));
-        tr.append(el("td", null, num(row.shares_short, 0) || "暂无数据"));
-        tr.append(el("td", null, row.days_to_cover == null ? "暂无数据" : num(row.days_to_cover, 2)));
+        tr.append(el("td", null, num(row.shares_short, 0) || "No data"));
+        tr.append(el("td", null, row.days_to_cover == null ? "No data" : num(row.days_to_cover, 2)));
         table.append(tr);
       });
       card.append(table);
@@ -541,36 +591,36 @@ function renderShort(data) {
     card.append(metaRow(si.source_url, si.source_label || "Nasdaq", si.fetched_at));
   }
   const finra = data.finra || {};
-  card.append(el("h3", null, "每日卖空成交比"));
-  card.append(el("p", "kicker", "FINRA Reg SHO：卖空成交量 ÷ 该文件里的当日总量。这个总量不是 Nasdaq 全日成交量，也不是上面的未平仓做空。"));
+  card.append(el("h3", null, "Daily short-volume ratio"));
+  card.append(el("p", "kicker", "FINRA Reg SHO: short volume divided by that file's total volume. That total is not Nasdaq's full-day volume, and it is not the short interest above."));
   if (finra.stale) {
     const banner = el("p", "banner");
-    banner.textContent = `暂无数据（本次更新失败）。以下为上次成功数值${formatMYT(finra.fetched_at) ? "，更新于 " + formatMYT(finra.fetched_at) : ""}。`;
+    banner.textContent = `No data (this update failed). Showing the last successful values${formatMYT(finra.fetched_at) ? ", updated " + formatMYT(finra.fetched_at) : ""}.`;
     card.append(banner);
   }
   const rows = finra.rows || [];
   if (!rows.length) card.append(emptyNote());
   else {
     const last = rows[rows.length - 1];
-    card.append(el("p", null, `最近交易日 ${last.date} · 比例 ${last.short_ratio == null ? "暂无数据" : num(last.short_ratio * 100, 1) + "%"}`));
+    card.append(el("p", null, `Latest session ${last.date} · ratio ${last.short_ratio == null ? "No data" : num(last.short_ratio * 100, 1) + "%"}`));
     const chart = el("div", "chart");
-    chart.dataset.label = "每日卖空成交比";
+    chart.dataset.label = "Daily short-volume ratio";
     drawChart(chart, [{
-      name: "卖空成交比",
+      name: "Short-volume ratio",
       color: "#0f6e6b",
       points: rows.map((row) => ({ x: row.date, y: row.short_ratio == null ? null : row.short_ratio * 100 })),
     }], (value) => `${value.toFixed(0)}%`);
     card.append(chart);
     const table = el("table");
     const head = el("tr");
-    ["日期", "卖空量", "总量", "比例"].forEach((label) => head.append(el("th", null, label)));
+    ["Date", "Short volume", "Total volume", "Ratio"].forEach((label) => head.append(el("th", null, label)));
     table.append(head);
     rows.slice().reverse().forEach((row) => {
       const tr = el("tr");
       tr.append(el("td", null, row.date));
-      tr.append(el("td", null, num(row.short_volume, 0) || "暂无数据"));
-      tr.append(el("td", null, num(row.total_volume, 0) || "暂无数据"));
-      tr.append(el("td", null, row.short_ratio == null ? "暂无数据" : `${num(row.short_ratio * 100, 1)}%`));
+      tr.append(el("td", null, num(row.short_volume, 0) || "No data"));
+      tr.append(el("td", null, num(row.total_volume, 0) || "No data"));
+      tr.append(el("td", null, row.short_ratio == null ? "No data" : `${num(row.short_ratio * 100, 1)}%`));
       table.append(tr);
     });
     const wrap = el("div", "scroll");
@@ -583,13 +633,13 @@ function renderShort(data) {
 }
 
 function renderNews(data) {
-  const card = section("news", "新闻", "标题含 Opendoor 的公开报道");
+  const card = section("news", "News", "Public headlines that mention Opendoor");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   (data.items || []).forEach((item) => {
     const block = el("article", "news-item");
     const title = el("h3");
-    let headline = item.title || "暂无数据";
+    let headline = item.title || "No data";
     if (item.source && headline.endsWith(` - ${item.source}`)) {
       headline = headline.slice(0, -(` - ${item.source}`).length);
     }
@@ -600,8 +650,8 @@ function renderNews(data) {
     if (item.source) {
       line.append(link(item.source_home, item.source));
       line.append(" · ");
-    } else line.append("来源暂无数据 · ");
-    line.append(when || "时间暂无数据");
+    } else line.append("No data · ");
+    line.append(when || "No data");
     block.append(line);
     card.append(block);
   });
@@ -612,17 +662,17 @@ function renderNews(data) {
 }
 
 function renderStatus(data) {
-  const card = section("status", "数据状态", "每次抓取的结果。失败时页面保留上次成功的数字。");
+  const card = section("status", "Data status", "Result of each fetch. If a fetch fails, the page keeps the last successful figures.");
   if (!data || !data.sources) return card.append(emptyNote()), card;
   const grid = el("div", "status-grid");
   data.sources.forEach((row) => {
     const line = el("div");
-    const state = row.id === "briefing" && row.ok ? "占位" : row.stale ? "沿用上次" : row.ok ? "成功" : "暂无数据";
+    const state = row.placeholder ? "Placeholder" : row.stale ? "Last good" : row.ok ? "OK" : "No data";
     line.append(el("span", null, row.label || row.id), el("strong", null, state));
     grid.append(line);
   });
   card.append(grid);
-  card.append(metaRow(null, "本站抓取脚本", data.fetched_at));
+  card.append(metaRow(null, "This site's fetch script", data.fetched_at));
   return card;
 }
 
@@ -646,7 +696,7 @@ async function main() {
   host.hidden = false;
   boot.hidden = true;
   host.append(
-    renderBriefing(data.briefing),
+    await renderBriefing(data.briefing),
     renderQuote(data.quote),
     renderAccountable(data.accountable),
     renderFilings(data.filings),

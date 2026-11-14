@@ -1,14 +1,14 @@
 {
-  "contracts_label": "合约是 Opendoor 预期收购房产的协议（含 Cash Now, More Later），不是已完成的购买，也不扣除之后取消的合约。",
+  "contracts_label": "Contracts are agreements under which Opendoor expects to buy a property, including Cash Now, More Later. They are not completed purchases, and later cancellations are not removed.",
   "crosscheck": {
     "error": "Cloudflare challenge",
     "latest": null,
     "ok": false,
     "source_url": "https://opendoor.army/charts/weekly"
   },
-  "fetch_attempted_at": "2026-11-14T12:12:10Z",
+  "fetch_attempted_at": "2026-11-14T12:46:17Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:12:10Z",
+  "fetched_at": "2026-11-14T12:46:17Z",
   "launches": [
     {
       "date": "2026-11-05",

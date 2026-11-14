@@ -1,9 +1,9 @@
 {
   "cik": "0001801169",
   "company": "Opendoor Technologies Inc.",
-  "fetch_attempted_at": "2026-11-14T12:12:10Z",
+  "fetch_attempted_at": "2026-11-14T12:46:18Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:12:10Z",
+  "fetched_at": "2026-11-14T12:46:18Z",
   "filings": [
     {
       "accession": "0001801169-26-000028",
@@ -17,7 +17,7 @@
     },
     {
       "accession": "0001801169-26-000027",
-      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "description": "Items 2.02 results of operations and financial condition; 7.01 Regulation FD disclosure; 9.01 financial statements and exhibits",
       "filing_date": "2026-11-05",
       "form": "8-K",
       "highlight": true,
@@ -27,7 +27,7 @@
     },
     {
       "accession": "0001140361-26-041579",
-      "description": "事项 5.02 董事或高管变动",
+      "description": "Items 5.02 departure or appointment of directors or officers",
       "filing_date": "2026-11-02",
       "form": "8-K/A",
       "highlight": true,
@@ -37,7 +37,7 @@
     },
     {
       "accession": "0001140361-26-041096",
-      "description": "事项 5.02 董事或高管变动；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "description": "Items 5.02 departure or appointment of directors or officers; 7.01 Regulation FD disclosure; 9.01 financial statements and exhibits",
       "filing_date": "2026-10-29",
       "form": "8-K",
       "highlight": true,
@@ -47,7 +47,7 @@
     },
     {
       "accession": "0001140361-26-040415",
-      "description": "事项 5.02 董事或高管变动",
+      "description": "Items 5.02 departure or appointment of directors or officers",
       "filing_date": "2026-10-21",
       "form": "8-K",
       "highlight": true,
@@ -57,7 +57,7 @@
     },
     {
       "accession": "0001140361-26-033739",
-      "description": "事项 1.01 重大协议；2.03 产生直接财务义务；3.02 未注册股权出售；8.01 其他事项；9.01 财务报表与附件",
+      "description": "Items 1.01 entry into a material agreement; 2.03 creation of a direct financial obligation; 3.02 unregistered sales of equity securities; 8.01 other events; 9.01 financial statements and exhibits",
       "filing_date": "2026-08-19",
       "form": "8-K",
       "highlight": true,
@@ -77,7 +77,7 @@
     },
     {
       "accession": "0001140361-26-032600",
-      "description": "事项 1.01 重大协议；3.02 未注册股权出售；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "description": "Items 1.01 entry into a material agreement; 3.02 unregistered sales of equity securities; 7.01 Regulation FD disclosure; 9.01 financial statements and exhibits",
       "filing_date": "2026-08-13",
       "form": "8-K",
       "highlight": true,
@@ -97,7 +97,7 @@
     },
     {
       "accession": "0001801169-26-000019",
-      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "description": "Items 2.02 results of operations and financial condition; 7.01 Regulation FD disclosure; 9.01 financial statements and exhibits",
       "filing_date": "2026-08-04",
       "form": "8-K",
       "highlight": true,
@@ -117,7 +117,7 @@
     },
     {
       "accession": "0001801169-26-000016",
-      "description": "事项 5.07 提交股东表决的事项",
+      "description": "Items 5.07 submission of matters to a vote of security holders",
       "filing_date": "2026-06-12",
       "form": "8-K",
       "highlight": true,
@@ -147,7 +147,7 @@
     },
     {
       "accession": "0001801169-26-000013",
-      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "description": "Items 2.02 results of operations and financial condition; 7.01 Regulation FD disclosure; 9.01 financial statements and exhibits",
       "filing_date": "2026-05-07",
       "form": "8-K",
       "highlight": true,
@@ -206,7 +206,7 @@
       "url": "https://www.sec.gov/Archives/edgar/data/102909/000010290926001916/0000102909-26-001916-index.html"
     }
   ],
-  "note": "列表不含 Form 3/4/5 与 Form 144，那些表格在「内部人交易」。申报日按 EDGAR 原文，不做时区换算。",
+  "note": "Form 3/4/5 and Form 144 are omitted here and listed under Insider trades. Filing dates are the EDGAR dates, with no timezone conversion.",
   "ok": true,
   "source_api": "https://data.sec.gov/submissions/CIK0001801169.json",
   "source_label": "SEC EDGAR submissions",

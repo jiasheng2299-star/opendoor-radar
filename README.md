@@ -1,89 +1,86 @@
 # Opendoor Radar
 
-Opendoor Technologies（NASDAQ: OPEN）的公开数据看板。页面是简体中文，时钟时间用马来西亚时间（MYT，UTC+8）。
+Public data dashboard for Opendoor Technologies (NASDAQ: OPEN). The page is in English. Clock times use Malaysia time (MYT, UTC+8).
 
-站点只读取 `data/` 里的 JSON，不在浏览器里直接请求券商或 SEC。数字、来源链接和更新时间都来自这些文件。抓取失败时，脚本保留上一份成功结果，页面显示「暂无数据」，并标明上次成功的时间。
+The site only reads JSON from `data/`. It does not call brokers or the SEC from the browser. Figures, source links, and update times come from those files. If a fetch fails, the script keeps the last successful file and the page shows "No data" together with that file's time.
 
-**仅汇总公开数据，不构成投资建议。**
+**Public data summary only. Not investment advice.**
 
-线上地址：<https://jiasheng2299-star.github.io/opendoor-radar/>
+Live URL: <https://jiasheng2299-star.github.io/opendoor-radar/>
 
-## 板块
+## Sections
 
-| 板块 | 文件 | 内容 |
+| Section | File | Contents |
 | --- | --- | --- |
-| 每日简报 | `data/briefing.json` | 日期和带链接的条目。当前是占位，等下一次 08:00 MYT 更新时替换整个文件 |
-| 股价 | `data/quote.json` | 最近收盘、涨跌额、涨跌幅、成交量，以及约 6 个月收盘价 |
-| Opendoor Accountable | `data/accountable.json` | 每周收购合约（协议，不是已完成的购买）和产品 / 功能 / 合作发布 |
-| 公司公告 | `data/filings.json` | SEC 最新申报。8-K、10-Q、10-K、S-3、424B、DEF 14A 会标出。Form 3/4/5 和 144 不在这里 |
-| 内部人交易 | `data/insiders.json` | 最近 Form 4：姓名、职务、交易代码、股数、价格、10b5-1 标记 |
-| 机构持仓 | `data/holders.json` | 已核对的 2026-06-30 13F 快照，以及 EDGAR 上的 13G/13D |
-| 做空数据 | `data/short.json` | Nasdaq 未平仓做空，以及 FINRA 约 20 个交易日的卖空成交比 |
-| 新闻 | `data/news.json` | 标题含 Opendoor 的约 15 条 Google News 结果 |
-| 数据状态 | `data/status.json` | 各来源这次是成功、沿用上次，还是没有数据 |
+| Daily briefing | `data/briefing.json` | English bullets generated from the other files, in importance order. Earlier days are in `data/briefings/` |
+| Price | `data/quote.json` | Last close, dollar and percent change, volume, and about six months of closes |
+| Opendoor Accountable | `data/accountable.json` | Weekly acquisition contracts (agreements, not completed purchases) and product, feature, and partnership launches |
+| Company filings | `data/filings.json` | Latest SEC filings. 8-K, 10-Q, 10-K, S-3, 424B, and DEF 14A are highlighted. Form 3/4/5 and 144 are not in this list |
+| Insider trades | `data/insiders.json` | Recent Form 4 filings: name, title, transaction code, shares, price, 10b5-1 flag |
+| Institutional holdings | `data/holders.json` | Checked 2026-06-30 13F snapshot, plus 13G/13D filings from EDGAR |
+| Short interest | `data/short.json` | Nasdaq short interest and about 20 trading days of FINRA short-volume ratios |
+| News | `data/news.json` | About 15 Google News headlines that mention Opendoor |
+| Data status | `data/status.json` | Whether each source succeeded, kept the last good file, or has no data |
 
-## 数据来源
+## Data sources
 
-抓取脚本是 `scripts/fetch.py`，只用 Python 标准库。SEC 请求使用 User-Agent：`opendoor-radar contact@example.com`。
+The fetch script is `scripts/fetch.py`. It uses only the Python standard library. SEC requests use the User-Agent `opendoor-radar contact@example.com`.
 
-- 股价：先请求 Yahoo 日线 `query1.finance.yahoo.com/v8/finance/chart/OPEN`。若失败，改用 Nasdaq 历史行情 `api.nasdaq.com/api/quote/OPEN/historical`。页面上的价格是最近一个已收盘交易日。
-- Accountable：<https://accountable.opendoor.com/> 页面里嵌入的每周收购合约和发布列表。合约按官网口径，是预期收购房产的协议（含 Cash Now, More Later），不扣除之后取消的合约。
-- 交叉验证：<https://opendoor.army/charts/weekly>。打不开时不改写官方数字。
-- 公告与内部人：<https://data.sec.gov/submissions/CIK0001801169.json>，Form 4 再读 EDGAR XML。
-- 13G/13D：同一份 EDGAR 列表里的 Schedule 13G / 13D，再读封面 XML。
-- 13F 快照写死在脚本里，不会被自动抓取覆盖：Morgan Stanley 115,205,390 股；Vanguard Portfolio Management 76,214,771 股；BlackRock 72,920,992 股。来源 <https://13fholding.com/stock/open-683712103>，截止日期 2026-06-30。13F 在季末之后最多滞后约 45 天。
-- 未平仓做空：<https://api.nasdaq.com/api/quote/OPEN/short-interest?assetclass=stocks>
-- 每日卖空量：<https://cdn.finra.org/equity/regsho/daily/CNMSshvolYYYYMMDD.txt> 里的 `OPEN` 行。比例是卖空量除以当日总量。
-- 新闻：<https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en>
+- Price: Yahoo daily bars at `query1.finance.yahoo.com/v8/finance/chart/OPEN` first. If that fails, Nasdaq history at `api.nasdaq.com/api/quote/OPEN/historical`. The price on the page is the last completed session.
+- Accountable: the weekly acquisition contracts and launch list embedded in <https://accountable.opendoor.com/>. Contracts are agreements under which Opendoor expects to buy a property, including Cash Now, More Later. Later cancellations are not removed.
+- Cross-check: <https://opendoor.army/charts/weekly>. If it cannot be opened, the official numbers are left unchanged.
+- Filings and insiders: <https://data.sec.gov/submissions/CIK0001801169.json>, then Form 4 XML from EDGAR.
+- 13G/13D: Schedule 13G and 13D filings from that same EDGAR list, then the cover-page XML.
+- The 13F snapshot is a constant in the script and is not replaced by an automatic scrape: Morgan Stanley 115,205,390 shares; Vanguard Portfolio Management 76,214,771; BlackRock 72,920,992. Source <https://13fholding.com/stock/open-683712103>, as of 2026-06-30. 13F filings can lag up to 45 days after quarter end.
+- Short interest: <https://api.nasdaq.com/api/quote/OPEN/short-interest?assetclass=stocks>
+- Daily short volume: the `OPEN` row in <https://cdn.finra.org/equity/regsho/daily/CNMSshvolYYYYMMDD.txt>. The ratio is short volume divided by that file's total volume.
+- News: <https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en>
 
-## 更新时间
+## Daily briefing
 
-GitHub Actions 工作流 `.github/workflows/update.yml`：
+Every fetch writes `data/briefing.json` in English from the files it just saved. Bullets stay in this order:
 
-| 触发 | UTC | MYT |
+1. Last close, dollar change, percent change, and volume. If the absolute move is over 10%, the bullet says so.
+2. SEC filings that were not in the previous briefing. 8-K, 10-Q, 10-K, S-3, 424B, 13D, and 13G are marked as highlighted.
+3. Form 4 trades that were not in the previous briefing: who, title, buy/sell/award (or the other filed code), shares, price, and the 10b5-1 flag.
+4. The latest Accountable week, the week-over-week change, and any launches that were not already recorded. On the first run, only launches from the past 14 days are listed.
+5. Exchange short interest when the settlement date is new, plus the latest FINRA short-volume ratio.
+6. Up to five news headlines that were not in the previous briefing.
+
+Each bullet links to its source. A category with nothing new says `No new updates`. A category with no file says `No data`. The script does not invent figures. The briefing date is the Malaysia calendar date.
+
+The previous day's briefing is copied to `data/briefings/YYYY-MM-DD.json`. `data/briefings/index.json` lists the latest seven dates, and the page shows the earlier ones under the current briefing.
+
+## Schedule
+
+GitHub Actions workflow `.github/workflows/update.yml`:
+
+| Trigger | UTC | MYT |
 | --- | --- | --- |
-| 每天 | 00:00 | 08:00 |
-| 每周三 | 00:00 | 08:00 |
-| 手动 | Actions 页面里的 Run workflow | 运行当时 |
+| Every day | 00:00 | 08:00 |
+| Every Wednesday | 00:00 | 08:00 |
+| Manual | Run workflow on the Actions page | The time the run starts |
 
-周三的定时和每天的 00:00 UTC 是同一时刻，用来盖住 Opendoor 在美国时间周二晚间更新 Accountable 之后的那一轮。工作流会在数据有变化时提交 `data/*.json`，然后用 Actions 部署到 GitHub Pages。只改 `data/` 的提交不会再次触发工作流，避免循环。
+The Wednesday schedule is the same clock time as the daily run, so it sits after Opendoor's Tuesday-evening US Accountable update. The workflow commits `data/` when it changes, then deploys to GitHub Pages. A commit that only changes `data/` does not start the workflow again.
 
-`data/briefing.json` 不由抓取脚本改写。换成正式简报时保持这个形状：
+## Update by hand
 
-```json
-{
-  "ok": true,
-  "placeholder": false,
-  "date": "2026-11-15",
-  "updated_at": "2026-11-15T00:00:00Z",
-  "source_label": "来源名称",
-  "source_url": "https://example.com",
-  "bullets": [
-    {"text": "一条说明", "href": "https://example.com/story"}
-  ]
-}
-```
-
-`updated_at` 用 UTC 时间，页面会换成 MYT 并加上 MYT 字样。
-
-## 手动更新
-
-在仓库根目录：
+From the repository root:
 
 ```bash
 python3 scripts/fetch.py
 ```
 
-需要发布时再提交 `data/` 并推到 `main`。也可以打开 GitHub 的 Actions，选 **Update data and deploy Pages**，点 **Run workflow**。
+Commit `data/` and push to `main` when you want it published. Or open Actions, choose **Update data and deploy Pages**, and click **Run workflow**.
 
-本地查看：
+Local preview:
 
 ```bash
 python3 -m http.server 8765
 ```
 
-浏览器打开 <http://127.0.0.1:8765/> 。不要用 `file://` 打开，浏览器会拦截对 JSON 的读取。
+Open <http://127.0.0.1:8765/>. Do not open the file directly; the browser will block the JSON reads.
 
 ## GitHub Pages
 
-工作流使用 `actions/configure-pages`（`enablement: true`）、`actions/upload-pages-artifact` 和 `actions/deploy-pages`。`GITHUB_TOKEN` 通常不能第一次打开 Pages。若部署失败，到仓库 **Settings → Pages → Source**，选择 **GitHub Actions**，再重新跑工作流。
+The workflow uses `actions/configure-pages` (`enablement: true`), `actions/upload-pages-artifact`, and `actions/deploy-pages`. `GITHUB_TOKEN` usually cannot enable Pages the first time. If the deploy fails, open **Settings → Pages → Source**, choose **GitHub Actions**, and rerun the workflow.

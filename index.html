@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#10232b">
-  <meta name="description" content="Opendoor Technologies（NASDAQ: OPEN）公开数据看板。仅汇总公开数据，不构成投资建议。">
+  <meta name="description" content="Public data dashboard for Opendoor Technologies (NASDAQ: OPEN). Public data summary only. Not investment advice.">
   <title>Opendoor Radar · OPEN</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310232b'/%3E%3Cpath d='M8 14.5 16 8l8 6.5V24H8z' fill='none' stroke='%237ee0d6' stroke-width='2'/%3E%3C/svg%3E">
@@ -14,28 +14,28 @@
     <header class="top">
       <p class="eyebrow">NASDAQ: OPEN</p>
       <h1>Opendoor Radar</h1>
-      <p class="sub">Opendoor Technologies 公开数据看板 · 时间均为马来西亚时间（MYT，UTC+8）</p>
-      <nav class="chips" aria-label="板块">
-        <a href="#briefing">简报</a>
-        <a href="#quote">股价</a>
-        <a href="#accountable">合约</a>
-        <a href="#filings">公告</a>
-        <a href="#insiders">内部人</a>
-        <a href="#holders">持仓</a>
-        <a href="#short">做空</a>
-        <a href="#news">新闻</a>
+      <p class="sub">Opendoor Technologies public data dashboard · Times shown in Malaysia time (MYT, UTC+8)</p>
+      <nav class="chips" aria-label="Sections">
+        <a href="#briefing">Briefing</a>
+        <a href="#quote">Price</a>
+        <a href="#accountable">Contracts</a>
+        <a href="#filings">Filings</a>
+        <a href="#insiders">Insiders</a>
+        <a href="#holders">Holders</a>
+        <a href="#short">Short</a>
+        <a href="#news">News</a>
       </nav>
     </header>
     <main id="content">
-      <p id="boot" class="boot">正在加载公开数据…</p>
+      <p id="boot" class="boot">Loading public data…</p>
       <div id="sections" hidden></div>
     </main>
     <footer class="site-footer">
-      <p>仅汇总公开数据，不构成投资建议。</p>
-      <p>时钟时间换算为马来西亚时间并标注 MYT。交易所交易日与 SEC 申报日按来源原文显示，不做时区改写。</p>
+      <p>Public data summary only. Not investment advice.</p>
+      <p>Clock times are converted to Malaysia time and labelled MYT. Exchange session dates and SEC filing dates are shown as published, with no timezone conversion.</p>
     </footer>
   </div>
-  <noscript><p class="boot">需要启用 JavaScript 才能读取 data/ 目录中的公开数据。</p></noscript>
+  <noscript><p class="boot">JavaScript is required to read the public data in the data/ directory.</p></noscript>
   <script src="app.js"></script>
 </body>
 </html>

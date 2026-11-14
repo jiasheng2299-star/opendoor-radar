@@ -1,7 +1,7 @@
 {
-  "fetch_attempted_at": "2026-11-14T12:12:20Z",
+  "fetch_attempted_at": "2026-11-14T12:46:27Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:12:20Z",
+  "fetched_at": "2026-11-14T12:46:27Z",
   "filings_13dg": [
     {
       "accession": "0000895421-26-000249",
@@ -245,9 +245,9 @@
     }
   ],
   "filings_13dg_error": null,
-  "filings_13dg_fetched_at": "2026-11-14T12:12:20Z",
+  "filings_13dg_fetched_at": "2026-11-14T12:46:27Z",
   "filings_13dg_stale": false,
-  "note_13f": "13F 在季度结束后最多滞后约 45 天才申报。上表是已核对的 2026-06-30 静态快照，自动任务不会用未核对的数字覆盖它。",
+  "note_13f": "13F filings can lag up to 45 days after quarter end. The table above is a checked static snapshot as of 2026-06-30. The automatic job does not replace it with unchecked figures.",
   "ok": true,
   "snapshot_13f": {
     "as_of": "2026-06-30",
@@ -265,12 +265,12 @@
         "shares": 72920992
       }
     ],
-    "quarter_label": "2026 年第二季度",
+    "quarter_label": "Q2 2026",
     "source_label": "13fholding.com",
     "source_url": "https://13fholding.com/stock/open-683712103",
     "static_seed": true
   },
-  "source_label": "SEC EDGAR 13G/13D 与已核对的 13F 快照",
+  "source_label": "SEC EDGAR 13G/13D and the checked 13F snapshot",
   "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
   "stale": false
 }
