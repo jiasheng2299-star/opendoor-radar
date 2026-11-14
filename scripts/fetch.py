@@ -1034,7 +1034,20 @@ def source_status(name: str, label: str, payload: dict, error: str | None, url: 
 
 
 BRIEFINGS = DATA / "briefings"
+SEEN_PATH = DATA / "seen.json"
 MYT = ZoneInfo("Asia/Kuala_Lumpur")
+ET = ZoneInfo("America/New_York")
+SEEN_KEYS = (
+    "filings",
+    "insiders",
+    "ownership",
+    "filings_13f",
+    "launches",
+    "contracts_weeks",
+    "short_settlements",
+    "finra_dates",
+    "news",
+)
 
 
 def myt_today() -> str:
@@ -1145,8 +1158,126 @@ def refresh_briefing_index(today: str) -> None:
     save_json(BRIEFINGS / "index.json", {"dates": dates[:7]})
 
 
-def bullet(category: str, text: str, href: str | None) -> dict:
-    return {"category": category, "text": text, "href": href}
+def bullet(category: str, text: str, href: str | None, muted: bool = False) -> dict:
+    item = {"category": category, "text": text, "href": href}
+    if muted:
+        item["muted"] = True
+    return item
+
+
+def no_new(category: str, href: str | None = None) -> dict:
+    return bullet(category, "No new updates", href, muted=True)
+
+
+def et_today() -> date:
+    return datetime.now(ET).date()
+
+
+def fallback_cutoff(today: date | None = None) -> date:
+    """How far back a first run may treat dated items as new.
+
+    Last 1 calendar day in ET. Saturday, Sunday, and Monday extend to the
+    prior weekday close so a weekend or Monday run still sees Friday.
+    """
+    current = today or et_today()
+    if current.weekday() in (0, 5, 6):
+        cursor = current - timedelta(days=1)
+        while cursor.weekday() >= 5:
+            cursor -= timedelta(days=1)
+        return cursor
+    return current - timedelta(days=1)
+
+
+def dated_on_or_after(value: str | None, cutoff: date) -> bool:
+    parsed = parse_any_date(value) if value else None
+    if not parsed:
+        return False
+    return date.fromisoformat(parsed) >= cutoff
+
+
+def load_seen() -> dict | None:
+    raw = load_json(SEEN_PATH)
+    if not raw:
+        return None
+    if not any(raw.get(key) for key in SEEN_KEYS):
+        return None
+    return {key: list(raw.get(key) or []) for key in SEEN_KEYS}
+
+
+def empty_seen() -> dict:
+    return {key: [] for key in SEEN_KEYS}
+
+
+def insider_key(filing: dict, tx: dict) -> str:
+    shares = "" if tx.get("shares") is None else str(tx.get("shares"))
+    return "|".join(
+        [
+            str(filing.get("accession") or ""),
+            str(tx.get("date") or filing.get("filing_date") or ""),
+            str(tx.get("code") or ""),
+            shares,
+            str(tx.get("security") or ""),
+        ]
+    )
+
+
+def index_current(quote, filings, insiders, accountable, holders, short, news) -> dict:
+    """Identifiers present in the files we already saved. Nothing here is invented."""
+    found = empty_seen()
+    for row in filings.get("filings") or []:
+        accession = row.get("accession")
+        if not accession:
+            continue
+        if is_13dg(row.get("form") or ""):
+            found["ownership"].append(accession)
+        else:
+            found["filings"].append(accession)
+    for row in holders.get("filings_13dg") or []:
+        if row.get("accession"):
+            found["ownership"].append(row["accession"])
+    as_of = ((holders.get("snapshot_13f") or {}).get("as_of"))
+    if as_of:
+        found["filings_13f"].append(as_of)
+    for filing in insiders.get("filings") or []:
+        for tx in filing.get("transactions") or []:
+            found["insiders"].append(insider_key(filing, tx))
+    for row in accountable.get("weeks") or []:
+        if row.get("week_ending"):
+            found["contracts_weeks"].append(row["week_ending"])
+    for item in accountable.get("launches") or []:
+        launch_id = item.get("id") or f"{item.get('date')}:{item.get('title')}"
+        found["launches"].append(str(launch_id))
+    latest_si = ((short or {}).get("short_interest") or {}).get("latest") or {}
+    if latest_si.get("settlement_date"):
+        found["short_settlements"].append(latest_si["settlement_date"])
+    for row in ((short or {}).get("finra") or {}).get("rows") or []:
+        if row.get("date"):
+            found["finra_dates"].append(row["date"])
+    for item in news.get("items") or []:
+        key = item.get("url") or item.get("title")
+        if key:
+            found["news"].append(key)
+    for key in SEEN_KEYS:
+        found[key] = sorted(set(found[key]))
+    return found
+
+
+def merge_seen(previous: dict | None, current: dict) -> dict:
+    base = empty_seen()
+    if previous:
+        for key in SEEN_KEYS:
+            base[key] = list(previous.get(key) or [])
+    for key in SEEN_KEYS:
+        base[key] = sorted(set(base[key]) | set(current.get(key) or []))
+    return base
+
+
+def is_fresh(bucket: str, key: str, item_date: str | None, seen: dict | None, cutoff: date) -> bool:
+    if not key:
+        return False
+    if seen is not None:
+        return key not in set(seen.get(bucket) or [])
+    return dated_on_or_after(item_date, cutoff)
 
 
 def news_title(item: dict) -> str:
@@ -1160,21 +1291,14 @@ def news_title(item: dict) -> str:
     return title
 
 
-def build_briefing(quote, filings, insiders, accountable, holders, short, news) -> dict:
+def build_briefing(quote, filings, insiders, accountable, holders, short, news, seen: dict | None) -> dict:
     today = myt_today()
     now = utcnow()
     previous = prior_briefing(today)
     archive_previous(previous, today)
-    seen_prev = (previous or {}).get("seen") or {}
+    cutoff = fallback_cutoff()
     bullets = []
-    seen = {
-        "filings": [],
-        "insiders": [],
-        "launches": [],
-        "news": [],
-        "contracts_week": None,
-        "short_settlement": None,
-    }
+    current = index_current(quote, filings, insiders, accountable, holders, short, news)
 
     if quote.get("ok") and quote.get("last_close") is not None:
         close = fmt_price(quote.get("last_close")) or "No data"
@@ -1194,11 +1318,17 @@ def build_briefing(quote, filings, insiders, accountable, holders, short, news) 
     else:
         bullets.append(bullet("price", "No data", quote.get("source_url")))
 
-    filing_rows = list(filings.get("filings") or [])
-    known = {row.get("accession") for row in filing_rows}
+    company_rows = []
+    ownership_rows = []
+    for row in filings.get("filings") or []:
+        if is_13dg(row.get("form") or ""):
+            ownership_rows.append(row)
+        else:
+            company_rows.append(row)
+    known_ownership = {row.get("accession") for row in ownership_rows}
     for row in holders.get("filings_13dg") or []:
-        if row.get("accession") not in known:
-            filing_rows.append(
+        if row.get("accession") and row.get("accession") not in known_ownership:
+            ownership_rows.append(
                 {
                     "form": row.get("form"),
                     "filing_date": row.get("filing_date"),
@@ -1207,19 +1337,16 @@ def build_briefing(quote, filings, insiders, accountable, holders, short, news) 
                     "url": row.get("url"),
                 }
             )
-            known.add(row.get("accession"))
-    prev_filings = set(seen_prev.get("filings") or [])
-    new_filings = []
-    for row in filing_rows:
-        accession = row.get("accession")
-        if accession:
-            seen["filings"].append(accession)
-        if accession and accession not in prev_filings:
-            new_filings.append(row)
-    if not filing_rows and not filings.get("ok"):
+            known_ownership.add(row.get("accession"))
+
+    new_filings = [
+        row for row in company_rows
+        if is_fresh("filings", row.get("accession") or "", row.get("filing_date"), seen, cutoff)
+    ]
+    if not company_rows and not filings.get("ok"):
         bullets.append(bullet("filings", "No data", filings.get("source_url") or EDGAR_BROWSE))
     elif not new_filings:
-        bullets.append(bullet("filings", "No new updates", filings.get("source_url") or EDGAR_BROWSE))
+        bullets.append(no_new("filings"))
     else:
         for row in new_filings:
             form = row.get("form") or "Filing"
@@ -1229,149 +1356,153 @@ def build_briefing(quote, filings, insiders, accountable, holders, short, news) 
             kind = "Highlighted new SEC filing" if briefing_highlight(form) else "New SEC filing"
             bullets.append(bullet("filings", f"{kind} {detail}, filed {filed}.", row.get("url")))
 
-    prev_tx = set(seen_prev.get("insiders") or [])
     new_trades = []
     for filing in insiders.get("filings") or []:
-        for index, tx in enumerate(filing.get("transactions") or []):
-            key = "|".join(
-                [
-                    str(filing.get("accession") or ""),
-                    str(tx.get("date") or ""),
-                    str(tx.get("code") or ""),
-                    str(tx.get("shares") if tx.get("shares") is not None else ""),
-                    str(tx.get("security") or ""),
-                    str(index),
-                ]
-            )
-            seen["insiders"].append(key)
-            if key in prev_tx:
+        for tx in filing.get("transactions") or []:
+            key = insider_key(filing, tx)
+            when = tx.get("date") or filing.get("filing_date")
+            if not is_fresh("insiders", key, when, seen, cutoff):
                 continue
             who = filing.get("owner_name") or "No data"
             title = filing.get("owner_title") or "No data"
             shares = fmt_count(tx.get("shares")) or "No data"
             security = f" of {tx['security']}" if tx.get("security") else ""
             price = fmt_price(tx.get("price")) if tx.get("price") is not None else "No data"
-            when = tx.get("date") or filing.get("filing_date") or "No data"
             text = (
                 f"{who} ({title}) {tx_action(tx.get('code'))}: {shares} shares{security} "
-                f"at {price} on {when}. {plan_phrase(tx.get('plan_10b5_1'))}."
+                f"at {price} on {when or 'No data'}. {plan_phrase(tx.get('plan_10b5_1'))}."
             )
             new_trades.append(bullet("insiders", text, filing.get("url")))
     if not (insiders.get("filings") or []) and not insiders.get("ok"):
         bullets.append(bullet("insiders", "No data", insiders.get("source_url") or EDGAR_BROWSE))
     elif not new_trades:
-        bullets.append(bullet("insiders", "No new updates", insiders.get("source_url") or EDGAR_BROWSE))
+        bullets.append(no_new("insiders"))
     else:
         bullets.extend(new_trades)
 
-    weeks = accountable.get("weeks") or []
-    if not weeks or not accountable.get("ok") and not weeks:
-        bullets.append(bullet("accountable", "No data", accountable.get("source_url") or ACCOUNTABLE_URL))
-    else:
-        latest = weeks[-1]
-        seen["contracts_week"] = latest.get("week_ending")
-        wow = latest.get("wow")
-        wow_text = "no prior published week to compare" if wow is None else f"{int(wow):+,} versus the prior week"
-        bullets.append(
+    snap = holders.get("snapshot_13f") or {}
+    new_ownership = []
+    as_of = snap.get("as_of")
+    if as_of and is_fresh("filings_13f", as_of, as_of, seen, cutoff) and snap.get("holders"):
+        parts = [
+            f"{holder.get('name') or 'No data'} {fmt_count(holder.get('shares')) or 'No data'} shares"
+            for holder in snap.get("holders") or []
+        ]
+        new_ownership.append(
             bullet(
-                "accountable",
-                (
-                    f"Latest weekly acquisition contracts: {int(latest['contracts']):,} "
-                    f"for the week ending {latest.get('week_ending')} ({wow_text}). "
-                    "These are agreements to buy, not completed purchases."
-                ),
-                accountable.get("source_url"),
+                "ownership",
+                f"13F snapshot as of {as_of}: " + "; ".join(parts) + ".",
+                snap.get("source_url"),
             )
         )
-        prev_launches = set(seen_prev.get("launches") or [])
-        cutoff = None
-        if not prev_launches:
-            cutoff = (datetime.now(MYT).date() - timedelta(days=14)).isoformat()
-        new_launches = []
+    for row in ownership_rows:
+        if not is_fresh("ownership", row.get("accession") or "", row.get("filing_date"), seen, cutoff):
+            continue
+        form = row.get("form") or "13D/G"
+        filed = row.get("filing_date") or "No data"
+        new_ownership.append(bullet("ownership", f"New {form}, filed {filed}.", row.get("url")))
+    if not ownership_rows and not snap.get("holders") and not holders.get("ok"):
+        bullets.append(bullet("ownership", "No data", holders.get("source_url") or EDGAR_BROWSE))
+    elif not new_ownership:
+        bullets.append(no_new("ownership"))
+    else:
+        bullets.extend(new_ownership)
+
+    weeks = accountable.get("weeks") or []
+    accountable_new = []
+    if weeks:
+        latest = weeks[-1]
+        if is_fresh("contracts_weeks", latest.get("week_ending") or "", latest.get("week_ending"), seen, cutoff):
+            wow = latest.get("wow")
+            wow_text = "no prior published week to compare" if wow is None else f"{int(wow):+,} versus the prior week"
+            accountable_new.append(
+                bullet(
+                    "accountable",
+                    (
+                        f"Latest weekly acquisition contracts: {int(latest['contracts']):,} "
+                        f"for the week ending {latest.get('week_ending')} ({wow_text}). "
+                        "These are agreements to buy, not completed purchases."
+                    ),
+                    accountable.get("source_url"),
+                )
+            )
         for item in accountable.get("launches") or []:
-            launch_id = item.get("id") or f"{item.get('date')}:{item.get('title')}"
-            seen["launches"].append(str(launch_id))
-            if str(launch_id) in prev_launches:
+            launch_id = str(item.get("id") or f"{item.get('date')}:{item.get('title')}")
+            if not is_fresh("launches", launch_id, item.get("date"), seen, cutoff):
                 continue
-            if cutoff and (item.get("date") or "") < cutoff:
-                continue
-            new_launches.append(item)
-        for item in new_launches:
             when = item.get("date") or item.get("date_raw") or "No data"
             title = item.get("title") or "No data"
             tag = f" [{item['tag']}]" if item.get("tag") else ""
-            bullets.append(
-                bullet(
-                    "accountable",
-                    f"New launch{tag} on {when}: {title}.",
-                    accountable.get("source_url"),
+            accountable_new.append(
+                bullet("accountable", f"New launch{tag} on {when}: {title}.", accountable.get("source_url"))
             )
-        )
+    if not weeks and not accountable.get("ok"):
+        bullets.append(bullet("accountable", "No data", accountable.get("source_url") or ACCOUNTABLE_URL))
+    elif not accountable_new:
+        bullets.append(no_new("accountable"))
+    else:
+        bullets.extend(accountable_new)
 
     si = (short or {}).get("short_interest") or {}
     finra = (short or {}).get("finra") or {}
-    latest_si = si.get("latest")
-    prev_settlement = seen_prev.get("short_settlement")
-    if latest_si and latest_si.get("settlement_date"):
-        seen["short_settlement"] = latest_si.get("settlement_date")
-        if not prev_settlement or prev_settlement != latest_si.get("settlement_date"):
-            days = latest_si.get("days_to_cover")
-            days_text = "No data" if days is None else f"{float(days):.2f}"
-            bullets.append(
-                bullet(
-                    "short",
-                    (
-                        f"Exchange short interest {fmt_count(latest_si.get('shares_short')) or 'No data'} shares, "
-                        f"settlement date {latest_si.get('settlement_date')}, "
-                        f"average daily volume {fmt_count(latest_si.get('avg_daily_volume')) or 'No data'}, "
-                        f"days to cover {days_text}."
-                    ),
-                    si.get("source_url") or NASDAQ_SI_PAGE,
-                )
-            )
-        else:
-            bullets.append(bullet("short", "No new updates", si.get("source_url") or NASDAQ_SI_PAGE))
-    else:
-        bullets.append(bullet("short", "No data", si.get("source_url") or NASDAQ_SI_PAGE))
-    finra_rows = finra.get("rows") or []
-    if finra_rows:
-        last = finra_rows[-1]
-        ratio = last.get("short_ratio")
-        ratio_text = "No data" if ratio is None else f"{float(ratio) * 100:.1f}%"
-        bullets.append(
+    latest_si = si.get("latest") or {}
+    short_new = []
+    if latest_si.get("settlement_date") and is_fresh(
+        "short_settlements", latest_si.get("settlement_date"), latest_si.get("settlement_date"), seen, cutoff
+    ):
+        days = latest_si.get("days_to_cover")
+        days_text = "No data" if days is None else f"{float(days):.2f}"
+        short_new.append(
             bullet(
                 "short",
                 (
-                    f"Latest FINRA short-volume ratio {ratio_text} on {last.get('date') or 'No data'} "
+                    f"Exchange short interest {fmt_count(latest_si.get('shares_short')) or 'No data'} shares, "
+                    f"settlement date {latest_si.get('settlement_date')}, "
+                    f"average daily volume {fmt_count(latest_si.get('avg_daily_volume')) or 'No data'}, "
+                    f"days to cover {days_text}."
+                ),
+                si.get("source_url") or NASDAQ_SI_PAGE,
+            )
+        )
+    fresh_finra = [
+        row for row in (finra.get("rows") or [])
+        if is_fresh("finra_dates", row.get("date") or "", row.get("date"), seen, cutoff)
+    ]
+    if fresh_finra:
+        last = fresh_finra[-1]
+        ratio = last.get("short_ratio")
+        ratio_text = "No data" if ratio is None else f"{float(ratio) * 100:.1f}%"
+        short_new.append(
+            bullet(
+                "short",
+                (
+                    f"FINRA short-volume ratio {ratio_text} on {last.get('date') or 'No data'} "
                     f"(short volume {fmt_count(last.get('short_volume')) or 'No data'}, "
                     f"total volume {fmt_count(last.get('total_volume')) or 'No data'})."
                 ),
                 last.get("source_url") or finra.get("source_url"),
             )
         )
-    elif not latest_si:
-        pass
+    if not latest_si and not (finra.get("rows") or []) and not short.get("ok"):
+        bullets.append(bullet("short", "No data", NASDAQ_SI_PAGE))
+    elif not short_new:
+        bullets.append(no_new("short"))
     else:
-        bullets.append(bullet("short", "No data", finra.get("source_url")))
+        bullets.extend(short_new)
 
-    prev_news = set(seen_prev.get("news") or [])
     fresh_news = []
     for item in news.get("items") or []:
         key = item.get("url") or item.get("title")
-        if key:
-            seen["news"].append(key)
-        if key and key not in prev_news:
+        if key and is_fresh("news", key, (item.get("published_at") or "")[:10], seen, cutoff):
             fresh_news.append(item)
     if not (news.get("items") or []) and not news.get("ok"):
         bullets.append(bullet("news", "No data", news.get("source_url") or NEWS_RSS))
     elif not fresh_news:
-        bullets.append(bullet("news", "No new updates", news.get("source_url") or NEWS_RSS))
+        bullets.append(no_new("news"))
     else:
         for item in fresh_news[:5]:
             bullets.append(bullet("news", news_title(item), item.get("url")))
 
-    for key in ("filings", "insiders", "launches", "news"):
-        seen[key] = sorted(set(seen[key]))
     return {
         "ok": True,
         "placeholder": False,
@@ -1383,17 +1514,20 @@ def build_briefing(quote, filings, insiders, accountable, holders, short, news) 
         "source_label": "This site's fetch",
         "source_url": None,
         "bullets": bullets,
-        "seen": seen,
+        "seen": merge_seen(seen, current),
     }
 
 
 def write_briefing(quote, filings, insiders, accountable, holders, short, news) -> dict:
-    payload = build_briefing(quote, filings, insiders, accountable, holders, short, news)
+    seen = load_seen()
+    payload = build_briefing(quote, filings, insiders, accountable, holders, short, news, seen)
+    current = index_current(quote, filings, insiders, accountable, holders, short, news)
+    save_json(SEEN_PATH, merge_seen(seen, current))
     save_json(DATA / "briefing.json", payload)
     BRIEFINGS.mkdir(parents=True, exist_ok=True)
     save_json(BRIEFINGS / f"{payload['date']}.json", payload)
     refresh_briefing_index(payload["date"])
-    print(f"briefing {payload['date']} bullets={len(payload['bullets'])}")
+    print(f"briefing {payload['date']} bullets={len(payload['bullets'])} baseline={'seen.json' if seen else 'date window'}")
     return payload
 
 

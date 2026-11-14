@@ -57,10 +57,12 @@ jobs:
       - name: Stage site
         run: |
           rm -rf _site
-          mkdir -p _site/data
+          mkdir -p _site/data/briefings _site/assets
           cp index.html styles.css app.js _site/
           cp .nojekyll _site/.nojekyll
+          cp -a assets/. _site/assets/
           cp data/*.json _site/data/
+          cp data/briefings/*.json _site/data/briefings/
 
       - name: Try to enable GitHub Pages
         id: pages_enable

@@ -49,6 +49,8 @@ Every fetch writes `data/briefing.json` in English from the files it just saved.
 
 Each bullet links to its source. A category with nothing new says `No new updates`. A category with no file says `No data`. The script does not invent figures. The file's briefing date is still the calendar date the fetch writes; the page shows that instant in ET.
 
+What counts as new is stored in `data/seen.json` (accession numbers, Form 4 trade keys, 13F snapshot date, Accountable weeks and launch ids, short-interest settlement dates, FINRA dates, and news URLs). The next run only reports identifiers that are not already in that file. If `seen.json` is missing, the fallback is items dated within the last calendar day in US Eastern time; a Saturday, Sunday, or Monday run looks back to the prior weekday. The price line is always included.
+
 The previous day's briefing is copied to `data/briefings/YYYY-MM-DD.json`. `data/briefings/index.json` lists the latest seven dates, and the page shows the earlier ones under the current briefing.
 
 ## Schedule

@@ -23,9 +23,16 @@ const CATEGORY_LABELS = {
   price: "Price",
   filings: "SEC filings",
   insiders: "Insider trades",
+  ownership: "13F / 13D / 13G",
   accountable: "Accountable",
   short: "Short interest",
   news: "News",
+};
+
+const ACCENTS = {
+  accountable: { src: "assets/img/house-exterior.webp", alt: "Suburban house exterior" },
+  filings: { src: "assets/img/keys-handover.webp", alt: "House keys being handed over" },
+  insiders: { src: "assets/img/moving-boxes.webp", alt: "Cardboard boxes packed for a move" },
 };
 
 function el(tag, className, text) {
@@ -157,6 +164,15 @@ function metaRow(url, label, fetchedAt) {
 function section(id, title, kicker) {
   const card = el("section", "card");
   card.id = id;
+  const accent = ACCENTS[id];
+  if (accent) {
+    const img = el("img", "section-accent");
+    img.src = accent.src;
+    img.alt = accent.alt;
+    img.loading = "lazy";
+    img.decoding = "async";
+    card.append(img);
+  }
   card.append(el("h2", null, title));
   if (kicker) card.append(el("p", "kicker", kicker));
   return card;
@@ -265,7 +281,7 @@ function renderBulletGroups(bullets) {
       if (CATEGORY_LABELS[category]) group.append(el("h3", null, CATEGORY_LABELS[category]));
       wrap.append(group);
     }
-    const line = el("p", "brief-item");
+    const line = el("p", item.muted || item.text === "No new updates" ? "brief-item muted" : "brief-item");
     line.append(document.createTextNode(item.text || "No data"));
     const src = sourceLink(item.href);
     if (src) line.append(src);
