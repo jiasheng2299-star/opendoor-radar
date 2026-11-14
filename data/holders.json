@@ -1,7 +1,7 @@
 {
-  "fetch_attempted_at": "2026-11-14T12:46:27Z",
+  "fetch_attempted_at": "2026-11-14T12:48:10Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T12:46:27Z",
+  "fetched_at": "2026-11-14T12:48:10Z",
   "filings_13dg": [
     {
       "accession": "0000895421-26-000249",
@@ -245,7 +245,7 @@
     }
   ],
   "filings_13dg_error": null,
-  "filings_13dg_fetched_at": "2026-11-14T12:46:27Z",
+  "filings_13dg_fetched_at": "2026-11-14T12:48:10Z",
   "filings_13dg_stale": false,
   "note_13f": "13F filings can lag up to 45 days after quarter end. The table above is a checked static snapshot as of 2026-06-30. The automatic job does not replace it with unchecked figures.",
   "ok": true,
