@@ -1,6 +1,6 @@
 # Opendoor Radar
 
-Public data dashboard for Opendoor Technologies (NASDAQ: OPEN). The page is in English. Clock times use Malaysia time (MYT, UTC+8).
+Public data dashboard for Opendoor Technologies (NASDAQ: OPEN). The page is in English. Clock times use US Eastern time (America/New_York, labelled ET), including daylight saving.
 
 The site only reads JSON from `data/`. It does not call brokers or the SEC from the browser. Figures, source links, and update times come from those files. If a fetch fails, the script keeps the last successful file and the page shows "No data" together with that file's time.
 
@@ -47,7 +47,7 @@ Every fetch writes `data/briefing.json` in English from the files it just saved.
 5. Exchange short interest when the settlement date is new, plus the latest FINRA short-volume ratio.
 6. Up to five news headlines that were not in the previous briefing.
 
-Each bullet links to its source. A category with nothing new says `No new updates`. A category with no file says `No data`. The script does not invent figures. The briefing date is the Malaysia calendar date.
+Each bullet links to its source. A category with nothing new says `No new updates`. A category with no file says `No data`. The script does not invent figures. The file's briefing date is still the calendar date the fetch writes; the page shows that instant in ET.
 
 The previous day's briefing is copied to `data/briefings/YYYY-MM-DD.json`. `data/briefings/index.json` lists the latest seven dates, and the page shows the earlier ones under the current briefing.
 
@@ -55,10 +55,10 @@ The previous day's briefing is copied to `data/briefings/YYYY-MM-DD.json`. `data
 
 GitHub Actions workflow `.github/workflows/update.yml`:
 
-| Trigger | UTC | MYT |
+| Trigger | UTC | ET |
 | --- | --- | --- |
-| Every day | 00:00 | 08:00 |
-| Every Wednesday | 00:00 | 08:00 |
+| Every day | 00:00 | 19:00 previous evening (EST) or 20:00 (EDT) |
+| Every Wednesday | 00:00 | Same clock time as the daily run |
 | Manual | Run workflow on the Actions page | The time the run starts |
 
 The Wednesday schedule is the same clock time as the daily run, so it sits after Opendoor's Tuesday-evening US Accountable update. The workflow commits `data/` when it changes, then deploys to GitHub Pages. A commit that only changes `data/` does not start the workflow again.

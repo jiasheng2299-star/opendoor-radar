@@ -51,12 +51,13 @@ function link(url, label, className) {
   return a;
 }
 
-function formatMYT(iso) {
+function formatET(iso) {
   if (!iso) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return `${iso} ET`;
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return null;
   const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Kuala_Lumpur",
+    timeZone: "America/New_York",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -65,7 +66,29 @@ function formatMYT(iso) {
     hourCycle: "h23",
   }).formatToParts(date);
   const get = (type) => parts.find((part) => part.type === type).value;
-  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")} MYT`;
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")} ET`;
+}
+
+function formatETDate(iso) {
+  const full = formatET(iso);
+  if (!full) return null;
+  return full.slice(0, 10) + " ET";
+}
+
+function sourceLink(url) {
+  const href = safeUrl(url);
+  if (!href) return null;
+  const a = el("a", "source-link", "Source ↗");
+  a.href = href;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  return a;
+}
+
+function moveNode(value, text) {
+  const dir = direction(value);
+  const mark = dir === "up" ? "▲ " : dir === "down" ? "▼ " : "";
+  return el("span", `chg ${dir}`, `${mark}${text}`);
 }
 
 function num(value, digits) {
@@ -114,8 +137,8 @@ function addBanner(parent, data) {
 
 function staleBanner(data, noun) {
   if (!data || !data.stale) return null;
-  const when = formatMYT(data.fetched_at);
-  const tried = formatMYT(data.fetch_attempted_at);
+  const when = formatET(data.fetched_at);
+  const tried = formatET(data.fetch_attempted_at);
   const banner = el("p", "banner");
   banner.textContent = `No data (this update failed${tried ? ", tried " + tried : ""}). Showing the last successful values${when ? ", updated " + when : ""}.`;
   if (noun) banner.dataset.section = noun;
@@ -126,7 +149,7 @@ function metaRow(url, label, fetchedAt) {
   const p = el("p", "meta");
   p.append("Source: ");
   p.append(link(url, label || "link"));
-  const when = formatMYT(fetchedAt);
+  const when = formatET(fetchedAt);
   p.append(` · Updated ${when || "No data"}`);
   return p;
 }
@@ -243,9 +266,9 @@ function renderBulletGroups(bullets) {
       wrap.append(group);
     }
     const line = el("p", "brief-item");
-    const href = safeUrl(item.href);
-    if (href) line.append(link(href, item.text || href));
-    else line.textContent = item.text || "No data";
+    line.append(document.createTextNode(item.text || "No data"));
+    const src = sourceLink(item.href);
+    if (src) line.append(src);
     group.append(line);
   });
   return wrap;
@@ -262,15 +285,17 @@ async function loadJson(url) {
 }
 
 async function renderBriefing(data) {
-  const card = section("briefing", "Daily briefing", "Built automatically at each 08:00 MYT update from the public files");
+  const card = section("briefing", "Daily briefing", "Built automatically after each scheduled fetch. Times are US Eastern (ET).");
   if (!data) return card.append(emptyNote()), card;
   if (data.placeholder) {
     card.append(el("p", null, (data.bullets && data.bullets[0] && data.bullets[0].text) || "No data"));
-    card.append(el("p", "meta", "Source: site placeholder · Updated not generated yet (next 08:00 MYT)"));
+    card.append(el("p", "meta", "Source: site placeholder · Updated not generated yet"));
     return card;
   }
   addBanner(card, data);
-  if (data.date) card.append(el("p", "kicker", `Briefing date ${data.date}`));
+  const briefingWhen = formatET(data.updated_at || data.fetched_at);
+  if (briefingWhen) card.append(el("p", "kicker", `Briefing date ${formatETDate(data.updated_at || data.fetched_at)}`));
+  else if (data.date) card.append(el("p", "kicker", `Briefing date ${data.date} ET`));
   if (!data.bullets || !data.bullets.length) card.append(emptyNote());
   else card.append(renderBulletGroups(data.bullets));
   card.append(metaRow(data.source_url, data.source_label || "This site's fetch", data.updated_at || data.fetched_at));
@@ -288,7 +313,8 @@ async function renderBriefing(data) {
   } else {
     older.forEach((row) => {
       const details = el("details", "more");
-      details.append(el("summary", null, row.date));
+      const label = formatET(row.data.updated_at || row.data.fetched_at) || `${row.date} ET`;
+      details.append(el("summary", null, label));
       details.append(renderBulletGroups(row.data.bullets || []));
       card.append(details);
     });
@@ -302,12 +328,12 @@ function renderQuote(data) {
   addBanner(card, data);
   card.append(el("p", "price", price(data.last_close)));
   const row = el("div", "row");
-  const change = el("span", `chg ${direction(data.change)}`, `${signed(data.change, 3)} (${signed(data.change_pct, 2)}%)`);
-  row.append(change);
+  row.append(moveNode(data.change, data.change == null ? "No data" : `$${signed(data.change, 3).replace(/^[+-]/, "")}`));
+  row.append(moveNode(data.change_pct, data.change_pct == null ? "No data" : `${signed(data.change_pct, 2).replace(/^[+-]/, "")}%`));
   card.append(row);
   const stats = el("div", "stats");
   const cells = [
-    ["Session date", data.session_date || "No data"],
+    ["Session date", data.session_date ? `${data.session_date} ET` : "No data"],
     ["Prior close", price(data.previous_close)],
     ["Volume", data.volume == null ? "No data" : num(data.volume, 0)],
     ["Currency", data.currency || "USD"],
@@ -340,12 +366,19 @@ function renderAccountable(data) {
   const latest = weeks[weeks.length - 1];
   if (latest) {
     const stats = el("div", "stats");
-    [["Latest week", latest.week_ending], ["Contracts", num(latest.contracts, 0)], ["Vs prior week", latest.wow == null ? "—" : signed(latest.wow, 0)], ["Prior year", latest.prior_year == null ? "No data" : num(latest.prior_year, 0)]]
-      .forEach(([label, value]) => {
-        const box = el("div", "stat");
-        box.append(el("span", null, label), el("strong", null, String(value)));
-        stats.append(box);
-      });
+    [
+      ["Latest week", `${latest.week_ending} ET`],
+      ["Contracts", num(latest.contracts, 0)],
+      ["Prior year", latest.prior_year == null ? "No data" : num(latest.prior_year, 0)],
+    ].forEach(([label, value]) => {
+      const box = el("div", "stat");
+      box.append(el("span", null, label), el("strong", null, String(value)));
+      stats.append(box);
+    });
+    const wowBox = el("div", "stat");
+    wowBox.append(el("span", null, "Vs prior week"));
+    wowBox.append(moveNode(latest.wow, latest.wow == null ? "—" : signed(latest.wow, 0).replace(/^[+-]/, "")));
+    stats.append(wowBox);
     card.append(stats);
   }
   const chart = el("div", "chart");
@@ -364,7 +397,8 @@ function renderAccountable(data) {
     const tr = el("tr");
     tr.append(el("td", null, row.week_ending));
     tr.append(el("td", null, num(row.contracts, 0)));
-    const wow = el("td", direction(row.wow), row.wow == null ? "—" : signed(row.wow, 0));
+    const wow = el("td");
+    wow.append(moveNode(row.wow, row.wow == null ? "—" : signed(row.wow, 0).replace(/^[+-]/, "")));
     tr.append(wow);
     tr.append(el("td", null, row.prior_year == null ? "—" : num(row.prior_year, 0)));
     table.append(tr);
@@ -426,16 +460,23 @@ function renderFilings(data) {
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   (data.filings || []).forEach((row) => {
-    const block = el("article", "filing");
-    const title = el("h3");
-    if (row.highlight) title.append(el("span", "pill hot", row.form || "Form"));
-    else title.append(el("span", "pill flat", row.form || "Form"));
-    title.append(" ");
+    const href = safeUrl(row.url);
+    const block = href ? document.createElement("a") : el("article");
+    block.className = "row-link";
+    if (href) {
+      block.href = href;
+      block.target = "_blank";
+      block.rel = "noopener noreferrer";
+    }
+    if (row.highlight) block.append(el("span", "pill hot", row.form || "Form"));
+    else block.append(el("span", "pill flat", row.form || "Form"));
+    const body = el("span");
     let desc = row.description || row.form || "Filing";
     if (FORM_GLOSS[row.form] && (desc === row.form || desc === "")) desc = FORM_GLOSS[row.form];
-    title.append(link(row.url, desc));
-    block.append(title);
-    block.append(el("p", "subline", `Filed ${row.filing_date || "No data"}${row.report_date ? " · Period " + row.report_date : ""}`));
+    body.append(el("span", "row-main", desc));
+    body.append(el("span", "row-meta", `Filed ${row.filing_date ? row.filing_date + " ET" : "No data"}${row.report_date ? " · Period " + row.report_date : ""}`));
+    block.append(body);
+    block.append(el("span", "ext", "↗"));
     card.append(block);
   });
   if (!data.filings || !data.filings.length) card.append(emptyNote());
@@ -444,49 +485,74 @@ function renderFilings(data) {
   return card;
 }
 
-function planLabel(flag) {
-  if (flag === "yes") return "10b5-1: yes (box checked)";
-  if (flag === "footnote") return "10b5-1: mentioned in a footnote";
-  if (flag === "no") return "10b5-1: no (box not checked)";
-  return "10b5-1: No data";
+function tradeSide(code) {
+  if (code === "P") return { dir: "up", label: "Buy" };
+  if (code === "S") return { dir: "down", label: "Sell" };
+  return { dir: "flat", label: FORM4_CODES[code] || code || "—" };
 }
 
 function renderInsiders(data) {
-  const card = section("insiders", "Insider trades", "Recent Form 4 filings. Names and titles are shown as filed.");
+  const card = section("insiders", "Insider trades", "Recent Form 4 filings. A row opens the SEC filing. Names and titles are shown as filed.");
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
-  let shown = 0;
+  const rows = [];
   (data.filings || []).forEach((filing) => {
-    (filing.transactions || []).forEach((tx) => {
-      shown += 1;
-      const block = el("article", "filing");
-      const title = el("h3", null, filing.owner_name || "No data");
-      block.append(title);
-      const code = tx.code || "—";
-      const meaning = FORM4_CODES[code] ? `${code} ${FORM4_CODES[code]}` : code;
-      block.append(el("p", "subline", `${filing.owner_title || "No data"} · ${tx.date || filing.filing_date || "No data"}`));
-      block.append(el("p", null, `${tx.security || "No data"}${tx.derivative ? " (derivative)" : ""}`));
-      const shares = tx.shares == null ? "No data" : `${num(tx.shares, 0)} shares`;
-      const px = tx.price == null ? "No data" : price(tx.price);
-      block.append(el("p", null, `${meaning} · ${shares} · ${px}${tx.acquired_disposed ? " · A/D " + tx.acquired_disposed : ""}`));
-      block.append(el("p", "subline", planLabel(tx.plan_10b5_1)));
-      block.append(link(filing.url, `${filing.form || "Form 4"} · Filed ${filing.filing_date || "No data"}`));
-      card.append(block);
-    });
-    if ((!filing.transactions || !filing.transactions.length) && filing.parse_error) {
-      const block = el("article", "filing");
-      block.append(el("h3", null, filing.owner_name || "No data"));
-      block.append(el("p", "subline", `${filing.form} · Filed ${filing.filing_date || "No data"} · The XML could not be parsed this time`));
-      block.append(link(filing.url, "Open filing"));
-      card.append(block);
-    }
+    (filing.transactions || []).forEach((tx) => rows.push({ filing, tx }));
+    if ((!filing.transactions || !filing.transactions.length) && filing.parse_error) rows.push({ filing, tx: null });
   });
-  if (!shown) card.append(emptyNote());
+  if (!rows.length) card.append(emptyNote());
+  else {
+    const wrap = el("div", "scroll");
+    const table = el("table", "insider-table");
+    const head = el("tr");
+    ["Date", "Insider", "Role", "Buy / sell", "Shares", "Price", "10b5-1", ""].forEach((label) => head.append(el("th", null, label)));
+    table.append(head);
+    rows.forEach(({ filing, tx }) => {
+      const href = safeUrl(filing.url);
+      const tr = el("tr", "click-row");
+      if (href) {
+        tr.tabIndex = 0;
+        tr.addEventListener("click", () => window.open(href, "_blank", "noopener"));
+        tr.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") window.open(href, "_blank", "noopener");
+        });
+      }
+      if (!tx) {
+        tr.append(el("td", null, filing.filing_date ? `${filing.filing_date} ET` : "No data"));
+        tr.append(el("td", null, filing.owner_name || "No data"));
+        ["No data", "No data", "No data", "No data", "No data"].forEach((text) => tr.append(el("td", null, text)));
+      } else {
+        const side = tradeSide(tx.code);
+        tr.append(el("td", null, tx.date || filing.filing_date ? `${tx.date || filing.filing_date} ET` : "No data"));
+        tr.append(el("td", null, filing.owner_name || "No data"));
+        tr.append(el("td", null, filing.owner_title || "No data"));
+        const action = el("td");
+        action.append(el("span", `chg ${side.dir}`, `${side.dir === "up" ? "▲ " : side.dir === "down" ? "▼ " : ""}${side.label}`));
+        tr.append(action);
+        tr.append(el("td", null, tx.shares == null ? "No data" : num(tx.shares, 0)));
+        tr.append(el("td", null, tx.price == null ? "No data" : price(tx.price)));
+        tr.append(el("td", null, planShort(tx.plan_10b5_1)));
+      }
+      const icon = el("td");
+      icon.append(el("span", "ext", "↗"));
+      tr.append(icon);
+      table.append(tr);
+    });
+    wrap.append(table);
+    card.append(wrap);
+  }
   const gloss = el("p", "glossary");
-  gloss.textContent = "Code key (SEC Form 4, not a recommendation): P open-market buy, S open-market sell, A grant or award, M/X exercise or conversion, F tax withholding. In A/D, A means acquired and D means disposed.";
+  gloss.textContent = "Buy is green and sell is red. Other Form 4 codes stay neutral. This is the filed code, not a recommendation. 10b5-1: Yes means the box was checked, Note means a footnote mentions it.";
   card.append(gloss);
   card.append(metaRow(data.source_url, data.source_label, data.fetched_at));
   return card;
+}
+
+function planShort(flag) {
+  if (flag === "yes") return "Yes";
+  if (flag === "footnote") return "Note";
+  if (flag === "no") return "No";
+  return "—";
 }
 
 function renderHolders(data) {
@@ -509,6 +575,7 @@ function renderHolders(data) {
       table.append(tr);
     });
     card.append(table);
+    card.append(el("p", "meta", "Only one 13F quarter is stored, so increases and decreases are not shown."));
     const snapMeta = el("p", "meta");
     snapMeta.append("Source: ");
     snapMeta.append(link(snap.source_url, snap.source_label || "13F source"));
@@ -519,29 +586,31 @@ function renderHolders(data) {
   card.append(el("p", "kicker", "Share counts and percentages come from the cover-page reporting persons. They are not the same measure as the 13F holdings above."));
   if (data.filings_13dg_stale) {
     const banner = el("p", "banner");
-    const when = formatMYT(data.filings_13dg_fetched_at);
+    const when = formatET(data.filings_13dg_fetched_at);
     banner.textContent = `No data (the 13G/13D update failed). Showing the last successful parse${when ? ", updated " + when : ""}.`;
     card.append(banner);
   }
   const filings = data.filings_13dg || [];
   if (!filings.length) card.append(emptyNote());
   filings.forEach((filing) => {
-    const block = el("article", "filing");
-    const title = el("h3");
-    title.append(el("span", filing.kind === "13D" ? "pill d13" : "pill g13", filing.form || filing.kind || "13G"));
-    title.append(" ");
-    title.append(link(filing.url, "Open filing"));
-    block.append(title);
-    block.append(el("p", "subline", `Filed ${filing.filing_date || "No data"}${filing.event_date ? " · Event date " + filing.event_date : ""}`));
-    if (!filing.reporting_persons || !filing.reporting_persons.length) block.append(emptyNote());
-    (filing.reporting_persons || []).forEach((person) => {
-      const line = el("p", "person");
-      const shares = person.shares == null ? "No data" : `${num(person.shares, 0)} shares`;
-      const pct = fmtPct(person.percent);
-      line.append(el("strong", null, person.name || "No data"));
-      line.append(el("span", "subline", ` ${shares} · ${pct}`));
-      block.append(line);
-    });
+    const href = safeUrl(filing.url);
+    const block = href ? document.createElement("a") : el("article");
+    block.className = "row-link";
+    if (href) {
+      block.href = href;
+      block.target = "_blank";
+      block.rel = "noopener noreferrer";
+    }
+    block.append(el("span", filing.kind === "13D" ? "pill d13" : "pill g13", filing.form || filing.kind || "13G"));
+    const body = el("span");
+    const people = filing.reporting_persons || [];
+    const summary = people.length
+      ? people.map((person) => `${person.name || "No data"} · ${person.shares == null ? "No data" : num(person.shares, 0) + " shares"} · ${fmtPct(person.percent)}`).join("; ")
+      : "No data";
+    body.append(el("span", "row-main", summary));
+    body.append(el("span", "row-meta", `Filed ${filing.filing_date ? filing.filing_date + " ET" : "No data"}${filing.event_date ? " · Event " + filing.event_date + " ET" : ""}`));
+    block.append(body);
+    block.append(el("span", "ext", "↗"));
     card.append(block);
   });
   card.append(metaRow(data.source_url, "SEC EDGAR", data.filings_13dg_fetched_at || data.fetched_at));
@@ -556,16 +625,27 @@ function renderShort(data) {
   card.append(el("h3", null, "Exchange short interest"));
   if (si.stale) {
     const banner = el("p", "banner");
-    banner.textContent = `No data (this update failed). Showing the last successful values${formatMYT(si.fetched_at) ? ", updated " + formatMYT(si.fetched_at) : ""}.`;
+    banner.textContent = `No data (this update failed). Showing the last successful values${formatET(si.fetched_at) ? ", updated " + formatET(si.fetched_at) : ""}.`;
     card.append(banner);
   }
   const latest = si.latest;
   if (!si.ok && !latest) card.append(emptyNote());
   else if (latest) {
+    const prior = si.history && si.history.length > 1 ? si.history[1] : null;
+    const shortChange = prior && latest.shares_short != null && prior.shares_short != null
+      ? latest.shares_short - prior.shares_short
+      : null;
     const stats = el("div", "stats");
+    const sharesBox = el("div", "stat");
+    sharesBox.append(el("span", null, "Shares short"));
+    sharesBox.append(el("strong", null, num(latest.shares_short, 0) || "No data"));
+    stats.append(sharesBox);
+    const changeBox = el("div", "stat");
+    changeBox.append(el("span", null, "Vs prior settlement"));
+    changeBox.append(shortChange == null ? el("strong", null, "—") : moveNode(shortChange, num(Math.abs(shortChange), 0)));
+    stats.append(changeBox);
     [
-      ["Shares short", num(latest.shares_short, 0) || "No data"],
-      ["Settlement date", latest.settlement_date || "No data"],
+      ["Settlement date", latest.settlement_date ? `${latest.settlement_date} ET` : "No data"],
       ["Avg. daily volume", latest.avg_daily_volume == null ? "No data" : num(latest.avg_daily_volume, 0)],
       ["Days to cover", latest.days_to_cover == null ? "No data" : num(latest.days_to_cover, 2)],
     ].forEach(([label, value]) => {
@@ -577,12 +657,19 @@ function renderShort(data) {
     if (si.history && si.history.length) {
       const table = el("table");
       const head = el("tr");
-      ["Settlement", "Shares short", "Days to cover"].forEach((label) => head.append(el("th", null, label)));
+      ["Settlement", "Shares short", "Change", "Days to cover"].forEach((label) => head.append(el("th", null, label)));
       table.append(head);
-      si.history.forEach((row) => {
+      si.history.forEach((row, index) => {
+        const older = si.history[index + 1];
+        const delta = older && row.shares_short != null && older.shares_short != null
+          ? row.shares_short - older.shares_short
+          : null;
         const tr = el("tr");
-        tr.append(el("td", null, row.settlement_date));
+        tr.append(el("td", null, row.settlement_date ? `${row.settlement_date} ET` : "No data"));
         tr.append(el("td", null, num(row.shares_short, 0) || "No data"));
+        const deltaCell = el("td");
+        deltaCell.append(delta == null ? el("span", null, "—") : moveNode(delta, num(Math.abs(delta), 0)));
+        tr.append(deltaCell);
         tr.append(el("td", null, row.days_to_cover == null ? "No data" : num(row.days_to_cover, 2)));
         table.append(tr);
       });
@@ -595,14 +682,19 @@ function renderShort(data) {
   card.append(el("p", "kicker", "FINRA Reg SHO: short volume divided by that file's total volume. That total is not Nasdaq's full-day volume, and it is not the short interest above."));
   if (finra.stale) {
     const banner = el("p", "banner");
-    banner.textContent = `No data (this update failed). Showing the last successful values${formatMYT(finra.fetched_at) ? ", updated " + formatMYT(finra.fetched_at) : ""}.`;
+    banner.textContent = `No data (this update failed). Showing the last successful values${formatET(finra.fetched_at) ? ", updated " + formatET(finra.fetched_at) : ""}.`;
     card.append(banner);
   }
   const rows = finra.rows || [];
   if (!rows.length) card.append(emptyNote());
   else {
     const last = rows[rows.length - 1];
-    card.append(el("p", null, `Latest session ${last.date} · ratio ${last.short_ratio == null ? "No data" : num(last.short_ratio * 100, 1) + "%"}`));
+    const priorRatio = rows.length > 1 ? rows[rows.length - 2].short_ratio : null;
+    const ratioDelta = last.short_ratio != null && priorRatio != null ? (last.short_ratio - priorRatio) * 100 : null;
+    const ratioLine = el("p", "row");
+    ratioLine.append(document.createTextNode(`Latest session ${last.date} ET · ratio ${last.short_ratio == null ? "No data" : num(last.short_ratio * 100, 1) + "%"} `));
+    if (ratioDelta != null) ratioLine.append(moveNode(ratioDelta, `${num(Math.abs(ratioDelta), 1)} pt`));
+    card.append(ratioLine);
     const chart = el("div", "chart");
     chart.dataset.label = "Daily short-volume ratio";
     drawChart(chart, [{
@@ -637,22 +729,24 @@ function renderNews(data) {
   if (!data || !data.ok) return card.append(emptyNote()), card;
   addBanner(card, data);
   (data.items || []).forEach((item) => {
-    const block = el("article", "news-item");
-    const title = el("h3");
+    const href = safeUrl(item.url);
+    const block = href ? document.createElement("a") : el("article");
+    block.className = "row-link";
+    if (href) {
+      block.href = href;
+      block.target = "_blank";
+      block.rel = "noopener noreferrer";
+    }
     let headline = item.title || "No data";
     if (item.source && headline.endsWith(` - ${item.source}`)) {
       headline = headline.slice(0, -(` - ${item.source}`).length);
     }
-    title.append(link(item.url, headline));
-    block.append(title);
-    const when = formatMYT(item.published_at);
-    const line = el("p", "subline");
-    if (item.source) {
-      line.append(link(item.source_home, item.source));
-      line.append(" · ");
-    } else line.append("No data · ");
-    line.append(when || "No data");
-    block.append(line);
+    const body = el("span");
+    body.append(el("span", "row-main", headline));
+    const when = formatET(item.published_at);
+    body.append(el("span", "row-meta", `${item.source || "No data"} · ${when || "No data"}`));
+    block.append(body);
+    block.append(el("span", "ext", "↗"));
     card.append(block);
   });
   if (!data.items || !data.items.length) card.append(emptyNote());
