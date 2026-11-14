@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-11-14T13:51:03Z",
+  "fetched_at": "2026-11-14T13:57:59Z",
   "ok": true,
   "sources": [
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:50:43Z",
-      "fetched_at": "2026-11-14T13:50:43Z",
+      "fetch_attempted_at": "2026-11-14T13:57:35Z",
+      "fetched_at": "2026-11-14T13:57:35Z",
       "id": "quote",
       "label": "Price",
       "ok": true,
@@ -15,8 +15,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:50:44Z",
-      "fetched_at": "2026-11-14T13:50:44Z",
+      "fetch_attempted_at": "2026-11-14T13:57:36Z",
+      "fetched_at": "2026-11-14T13:57:36Z",
       "id": "accountable",
       "label": "Opendoor Accountable",
       "ok": true,
@@ -26,8 +26,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:50:44Z",
-      "fetched_at": "2026-11-14T13:50:44Z",
+      "fetch_attempted_at": "2026-11-14T13:57:36Z",
+      "fetched_at": "2026-11-14T13:57:36Z",
       "id": "filings",
       "label": "Company filings",
       "ok": true,
@@ -37,8 +37,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:50:48Z",
-      "fetched_at": "2026-11-14T13:50:48Z",
+      "fetch_attempted_at": "2026-11-14T13:57:40Z",
+      "fetched_at": "2026-11-14T13:57:40Z",
       "id": "insiders",
       "label": "Insider trades",
       "ok": true,
@@ -48,8 +48,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:50:54Z",
-      "fetched_at": "2026-11-14T13:50:54Z",
+      "fetch_attempted_at": "2026-11-14T13:57:45Z",
+      "fetched_at": "2026-11-14T13:57:45Z",
       "id": "holders",
       "label": "Institutional holdings",
       "ok": true,
@@ -59,8 +59,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:51:03Z",
-      "fetched_at": "2026-11-14T13:51:03Z",
+      "fetch_attempted_at": "2026-11-14T13:57:59Z",
+      "fetched_at": "2026-11-14T13:57:59Z",
       "id": "short",
       "label": "Short interest",
       "ok": true,
@@ -70,8 +70,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:51:03Z",
-      "fetched_at": "2026-11-14T13:51:03Z",
+      "fetch_attempted_at": "2026-11-14T13:57:59Z",
+      "fetched_at": "2026-11-14T13:57:59Z",
       "id": "news",
       "label": "News",
       "ok": true,
@@ -82,7 +82,7 @@
     {
       "error": null,
       "fetch_attempted_at": null,
-      "fetched_at": "2026-11-14T13:51:03Z",
+      "fetched_at": "2026-11-14T13:57:59Z",
       "id": "briefing",
       "label": "Daily briefing",
       "ok": true,
