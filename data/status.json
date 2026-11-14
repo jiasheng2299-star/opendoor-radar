@@ -1,0 +1,86 @@
+{
+  "fetched_at": "2026-11-14T11:57:43Z",
+  "ok": true,
+  "sources": [
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:56:58Z",
+      "fetched_at": "2026-11-14T11:56:58Z",
+      "id": "quote",
+      "label": "股价",
+      "ok": true,
+      "source_url": "https://www.nasdaq.com/market-activity/stocks/open",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:56:58Z",
+      "fetched_at": "2026-11-14T11:56:58Z",
+      "id": "accountable",
+      "label": "Opendoor Accountable",
+      "ok": true,
+      "source_url": "https://accountable.opendoor.com/",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:56:58Z",
+      "fetched_at": "2026-11-14T11:56:58Z",
+      "id": "filings",
+      "label": "公司公告",
+      "ok": true,
+      "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:57:04Z",
+      "fetched_at": "2026-11-14T11:57:04Z",
+      "id": "insiders",
+      "label": "内部人交易",
+      "ok": true,
+      "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:57:24Z",
+      "fetched_at": "2026-11-14T11:57:24Z",
+      "id": "holders",
+      "label": "机构持仓",
+      "ok": true,
+      "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:57:43Z",
+      "fetched_at": "2026-11-14T11:57:43Z",
+      "id": "short",
+      "label": "做空数据",
+      "ok": true,
+      "source_url": "https://www.nasdaq.com/market-activity/stocks/open/short-interest",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": "2026-11-14T11:57:43Z",
+      "fetched_at": "2026-11-14T11:57:43Z",
+      "id": "news",
+      "label": "新闻",
+      "ok": true,
+      "source_url": "https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en",
+      "stale": false
+    },
+    {
+      "error": null,
+      "fetch_attempted_at": null,
+      "fetched_at": null,
+      "id": "briefing",
+      "label": "每日简报",
+      "ok": true,
+      "source_url": null,
+      "stale": false
+    }
+  ]
+}

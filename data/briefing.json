@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "placeholder": true,
+  "stale": false,
+  "date": null,
+  "updated_at": null,
+  "fetched_at": null,
+  "source_label": "本站占位",
+  "source_url": null,
+  "bullets": [
+    {
+      "text": "首份每日简报将在下一次 08:00 MYT 自动更新时生成。此文件是占位，之后可整体替换 data/briefing.json。",
+      "href": null
+    }
+  ]
+}

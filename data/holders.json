@@ -1,0 +1,276 @@
+{
+  "fetch_attempted_at": "2026-11-14T11:57:24Z",
+  "fetch_error": null,
+  "fetched_at": "2026-11-14T11:57:24Z",
+  "filings_13dg": [
+    {
+      "accession": "0000895421-26-000249",
+      "event_date": "2026-06-30",
+      "filing_date": "2026-08-13",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "Morgan Stanley",
+          "percent": 11.5,
+          "shares": 111627421
+        },
+        {
+          "name": "Morgan Stanley Investment Management Inc.",
+          "percent": 11.5,
+          "shares": 111150363
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000249/0000895421-26-000249-index.html"
+    },
+    {
+      "accession": "0002012383-26-002919",
+      "event_date": "2026-06-30",
+      "filing_date": "2026-07-29",
+      "form": "SCHEDULE 13G",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "BlackRock, Inc.",
+          "percent": 7.1,
+          "shares": 68482376
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2012383/000201238326002919/0002012383-26-002919-index.html"
+    },
+    {
+      "accession": "0002100121-26-000594",
+      "event_date": "2026-03-31",
+      "filing_date": "2026-04-29",
+      "form": "SCHEDULE 13G",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "Vanguard Portfolio Management",
+          "percent": 7.31,
+          "shares": 70068568
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2100121/000210012126000594/0002100121-26-000594-index.html"
+    },
+    {
+      "accession": "0000895421-26-000103",
+      "event_date": "2026-03-31",
+      "filing_date": "2026-04-08",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "Morgan Stanley",
+          "percent": 10.2,
+          "shares": 97870639
+        },
+        {
+          "name": "Morgan Stanley Investment Management Inc.",
+          "percent": 10.2,
+          "shares": 97656149
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000103/0000895421-26-000103-index.html"
+    },
+    {
+      "accession": "0000102909-26-001916",
+      "event_date": "2026-03-13",
+      "filing_date": "2026-03-27",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "The Vanguard Group",
+          "percent": 0.0,
+          "shares": 0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/102909/000010290926001916/0000102909-26-001916-index.html"
+    },
+    {
+      "accession": "0001104659-26-016393",
+      "event_date": null,
+      "filing_date": "2026-02-17",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": "13D/G document HTTP 503",
+      "reporting_persons": [],
+      "url": "https://www.sec.gov/Archives/edgar/data/1104659/000110465926016393/0001104659-26-016393-index.html"
+    },
+    {
+      "accession": "0000895421-26-000055",
+      "event_date": "2025-12-31",
+      "filing_date": "2026-02-12",
+      "form": "SCHEDULE 13G",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "Morgan Stanley",
+          "percent": 5.3,
+          "shares": 50555152
+        },
+        {
+          "name": "Morgan Stanley Investment Management Inc.",
+          "percent": 5.3,
+          "shares": 50364861
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000055/0000895421-26-000055-index.html"
+    },
+    {
+      "accession": "0001595888-26-000010",
+      "event_date": "2025-12-31",
+      "filing_date": "2026-02-04",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "JANE STREET GROUP, LLC",
+          "percent": 3.0,
+          "shares": 28652374
+        },
+        {
+          "name": "Jane Street Capital, LLC",
+          "percent": 0.3,
+          "shares": 3159644
+        },
+        {
+          "name": "Jane Street Options, LLC",
+          "percent": 1.3,
+          "shares": 12774012
+        },
+        {
+          "name": "Jane Street Global Trading, LLC",
+          "percent": 1.3,
+          "shares": 12718718
+        },
+        {
+          "name": "Jane Street Singapore Pte. Ltd",
+          "percent": 0.0,
+          "shares": 0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1595888/000159588826000010/0001595888-26-000010-index.html"
+    },
+    {
+      "accession": "0000886982-26-000015",
+      "event_date": "2025-12-31",
+      "filing_date": "2026-01-30",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "THE GOLDMAN SACHS GROUP, INC.",
+          "percent": 0.3,
+          "shares": 2635528
+        },
+        {
+          "name": "GOLDMAN SACHS & CO. LLC",
+          "percent": 0.3,
+          "shares": 2635528
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/886982/000088698226000015/0000886982-26-000015-index.html"
+    },
+    {
+      "accession": "0000102909-26-000015",
+      "event_date": "2025-12-31",
+      "filing_date": "2026-01-07",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "The Vanguard Group",
+          "percent": 11.62,
+          "shares": 110924631
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/102909/000010290926000015/0000102909-26-000015-index.html"
+    },
+    {
+      "accession": "0001104659-25-114605",
+      "event_date": null,
+      "filing_date": "2025-11-20",
+      "form": "SCHEDULE 13G",
+      "kind": "13G",
+      "parse_error": "13D/G document HTTP 503",
+      "reporting_persons": [],
+      "url": "https://www.sec.gov/Archives/edgar/data/1104659/000110465925114605/0001104659-25-114605-index.html"
+    },
+    {
+      "accession": "0001595888-25-000147",
+      "event_date": "2025-09-30",
+      "filing_date": "2025-11-13",
+      "form": "SCHEDULE 13G/A",
+      "kind": "13G",
+      "parse_error": null,
+      "reporting_persons": [
+        {
+          "name": "JANE STREET GROUP, LLC",
+          "percent": 5.5,
+          "shares": 43104961
+        },
+        {
+          "name": "Jane Street Capital, LLC",
+          "percent": 0.5,
+          "shares": 3700444
+        },
+        {
+          "name": "Jane Street Options, LLC",
+          "percent": 3.1,
+          "shares": 24048940
+        },
+        {
+          "name": "Jane Street Global Trading, LLC",
+          "percent": 2.0,
+          "shares": 15354312
+        },
+        {
+          "name": "Jane Street Singapore Pte. Ltd",
+          "percent": 0.0,
+          "shares": 1266
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1595888/000159588825000147/0001595888-25-000147-index.html"
+    }
+  ],
+  "filings_13dg_error": null,
+  "filings_13dg_fetched_at": "2026-11-14T11:57:24Z",
+  "filings_13dg_stale": false,
+  "note_13f": "13F 在季度结束后最多滞后约 45 天才申报。上表是已核对的 2026-06-30 静态快照，自动任务不会用未核对的数字覆盖它。",
+  "ok": true,
+  "snapshot_13f": {
+    "as_of": "2026-06-30",
+    "holders": [
+      {
+        "name": "Morgan Stanley",
+        "shares": 115205390
+      },
+      {
+        "name": "Vanguard Portfolio Management",
+        "shares": 76214771
+      },
+      {
+        "name": "BlackRock",
+        "shares": 72920992
+      }
+    ],
+    "quarter_label": "2026 年第二季度",
+    "source_label": "13fholding.com",
+    "source_url": "https://13fholding.com/stock/open-683712103",
+    "static_seed": true
+  },
+  "source_label": "SEC EDGAR 13G/13D 与已核对的 13F 快照",
+  "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+  "stale": false
+}

@@ -1,0 +1,266 @@
+{
+  "fetch_attempted_at": "2026-11-14T11:57:43Z",
+  "fetch_error": null,
+  "fetched_at": "2026-11-14T11:57:43Z",
+  "finra": {
+    "directory_url": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files",
+    "fetch_error": null,
+    "fetched_at": "2026-11-14T11:57:43Z",
+    "ok": true,
+    "rows": [
+      {
+        "date": "2026-10-19",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 474320.004924,
+        "short_ratio": 0.47795116787365777,
+        "short_volume": 5072024.745936,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261019.txt",
+        "total_volume": 10612014.546383
+      },
+      {
+        "date": "2026-10-20",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 15291.0,
+        "short_ratio": 0.3692544643947938,
+        "short_volume": 4454776.90671,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261020.txt",
+        "total_volume": 12064246.57319
+      },
+      {
+        "date": "2026-10-21",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 7451.0,
+        "short_ratio": 0.3876685919011778,
+        "short_volume": 6454657.405203,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261021.txt",
+        "total_volume": 16649936.414886
+      },
+      {
+        "date": "2026-10-22",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 13420.0,
+        "short_ratio": 0.39207456357379517,
+        "short_volume": 7581043.107851,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261022.txt",
+        "total_volume": 19335717.774571
+      },
+      {
+        "date": "2026-10-23",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 32433.0,
+        "short_ratio": 0.4596109122998847,
+        "short_volume": 5665406.51,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261023.txt",
+        "total_volume": 12326527.413482
+      },
+      {
+        "date": "2026-10-26",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 27425.0,
+        "short_ratio": 0.5442142295774066,
+        "short_volume": 11976787.855185,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261026.txt",
+        "total_volume": 22007487.500805
+      },
+      {
+        "date": "2026-10-27",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 51858.0,
+        "short_ratio": 0.48085441937397544,
+        "short_volume": 8039497.924631,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261027.txt",
+        "total_volume": 16719193.170976
+      },
+      {
+        "date": "2026-10-28",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 11472.0,
+        "short_ratio": 0.5003666921573423,
+        "short_volume": 6746624.240834,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261028.txt",
+        "total_volume": 13483359.996937
+      },
+      {
+        "date": "2026-10-29",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 11803.0,
+        "short_ratio": 0.5226819023243503,
+        "short_volume": 9108222.045055,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261029.txt",
+        "total_volume": 17425937.275714
+      },
+      {
+        "date": "2026-10-30",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 38670.0,
+        "short_ratio": 0.4992134130249118,
+        "short_volume": 8815140.017727,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261030.txt",
+        "total_volume": 17658059.234252
+      },
+      {
+        "date": "2026-11-02",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 44421.0,
+        "short_ratio": 0.5309596744965148,
+        "short_volume": 8555626.317894,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261102.txt",
+        "total_volume": 16113514.319156
+      },
+      {
+        "date": "2026-11-03",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 16801.0,
+        "short_ratio": 0.5508316908084911,
+        "short_volume": 8744177.286774,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261103.txt",
+        "total_volume": 15874499.293858
+      },
+      {
+        "date": "2026-11-04",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 57483.0,
+        "short_ratio": 0.38044055007048067,
+        "short_volume": 10304733.923965,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261104.txt",
+        "total_volume": 27086318.537958
+      },
+      {
+        "date": "2026-11-05",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 1491096.080275,
+        "short_ratio": 0.5154025745939103,
+        "short_volume": 11823674.325681,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261105.txt",
+        "total_volume": 22940658.251459
+      },
+      {
+        "date": "2026-11-06",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 3611924.535253,
+        "short_ratio": 0.5036615836857177,
+        "short_volume": 20857879.436145,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261106.txt",
+        "total_volume": 41412488.28928
+      },
+      {
+        "date": "2026-11-09",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 2489422.710665,
+        "short_ratio": 0.4273217319001891,
+        "short_volume": 10762480.253231,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261109.txt",
+        "total_volume": 25185894.958754
+      },
+      {
+        "date": "2026-11-10",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 508388.369236,
+        "short_ratio": 0.5255526570113097,
+        "short_volume": 15328683.997159,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261110.txt",
+        "total_volume": 29166790.030764
+      },
+      {
+        "date": "2026-11-11",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 939454.636935,
+        "short_ratio": 0.7391053386924242,
+        "short_volume": 16228600.693194,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261111.txt",
+        "total_volume": 21957087.635038
+      },
+      {
+        "date": "2026-11-12",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 1245937.024285,
+        "short_ratio": 0.44773019111007767,
+        "short_volume": 5777173.243739,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261112.txt",
+        "total_volume": 12903246.996624
+      },
+      {
+        "date": "2026-11-13",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 1446444.370281,
+        "short_ratio": 0.6838323964842374,
+        "short_volume": 12130534.639577,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261113.txt",
+        "total_volume": 17739046.441706
+      }
+    ],
+    "source_label": "FINRA Reg SHO CNMS",
+    "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261113.txt",
+    "stale": false
+  },
+  "note": "未平仓做空来自交易所结算数据，大约每两周一次。每日比例是 FINRA Reg SHO 卖空成交量除以当日总成交量，两者不是同一指标。",
+  "ok": true,
+  "short_interest": {
+    "fetch_error": null,
+    "fetched_at": "2026-11-14T11:57:27Z",
+    "history": [
+      {
+        "avg_daily_volume": 32715850,
+        "days_to_cover": 6.971956,
+        "settlement_date": "2026-10-30",
+        "shares_short": 228093454
+      },
+      {
+        "avg_daily_volume": 36015405,
+        "days_to_cover": 6.276492,
+        "settlement_date": "2026-10-15",
+        "shares_short": 226050399
+      },
+      {
+        "avg_daily_volume": 30715863,
+        "days_to_cover": 7.503696,
+        "settlement_date": "2026-09-30",
+        "shares_short": 230482512
+      },
+      {
+        "avg_daily_volume": 30123938,
+        "days_to_cover": 7.100548,
+        "settlement_date": "2026-09-15",
+        "shares_short": 213896467
+      },
+      {
+        "avg_daily_volume": 31157413,
+        "days_to_cover": 6.679628,
+        "settlement_date": "2026-08-31",
+        "shares_short": 208119929
+      },
+      {
+        "avg_daily_volume": 52127551,
+        "days_to_cover": 3.371528,
+        "settlement_date": "2026-08-14",
+        "shares_short": 175749515
+      },
+      {
+        "avg_daily_volume": 65830608,
+        "days_to_cover": 2.500394,
+        "settlement_date": "2026-07-31",
+        "shares_short": 164602470
+      },
+      {
+        "avg_daily_volume": 92218828,
+        "days_to_cover": 1.821341,
+        "settlement_date": "2026-07-15",
+        "shares_short": 167961940
+      }
+    ],
+    "latest": {
+      "avg_daily_volume": 32715850,
+      "days_to_cover": 6.971956,
+      "settlement_date": "2026-10-30",
+      "shares_short": 228093454
+    },
+    "ok": true,
+    "source_api": "https://api.nasdaq.com/api/quote/OPEN/short-interest?assetclass=stocks",
+    "source_label": "Nasdaq",
+    "source_url": "https://www.nasdaq.com/market-activity/stocks/open/short-interest",
+    "stale": false
+  },
+  "source_label": "Nasdaq 未平仓做空 与 FINRA 每日卖空量",
+  "source_url": "https://www.nasdaq.com/market-activity/stocks/open/short-interest",
+  "stale": false
+}

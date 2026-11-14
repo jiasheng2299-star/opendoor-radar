@@ -1,0 +1,264 @@
+{
+  "fetch_attempted_at": "2026-11-14T11:57:04Z",
+  "fetch_error": null,
+  "fetched_at": "2026-11-14T11:57:04Z",
+  "filings": [
+    {
+      "accession": "0001816739-26-000008",
+      "filing_date": "2026-11-02",
+      "form": "4",
+      "owner_name": "ALFRED MICHAEL",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-10-29",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-10-29",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 45268.0
+        },
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-10-30",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 12566.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1816739/000181673926000008/0001816739-26-000008-index.html"
+    },
+    {
+      "accession": "0002096999-26-000013",
+      "filing_date": "2026-10-16",
+      "form": "4",
+      "owner_name": "Nguyen Giang",
+      "owner_title": "Chief Operating Officer",
+      "parse_error": null,
+      "period_of_report": "2026-10-15",
+      "transactions": [
+        {
+          "acquired_disposed": "D",
+          "code": "S",
+          "date": "2026-10-15",
+          "derivative": false,
+          "plan_10b5_1": "yes",
+          "price": 1.974,
+          "security": "Common Stock",
+          "shares": 10393.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2096999/000209699926000013/0002096999-26-000013-index.html"
+    },
+    {
+      "accession": "0001957238-26-000016",
+      "filing_date": "2026-09-16",
+      "form": "4",
+      "owner_name": "Schwartz Christina",
+      "owner_title": "Chief Financial Officer",
+      "parse_error": null,
+      "period_of_report": "2026-09-15",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "M",
+          "date": "2026-09-15",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.97,
+          "security": "Common Stock",
+          "shares": 59658.0
+        },
+        {
+          "acquired_disposed": "D",
+          "code": "F",
+          "date": "2026-09-15",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 2.65,
+          "security": "Common Stock",
+          "shares": 42242.0
+        },
+        {
+          "acquired_disposed": "D",
+          "code": "M",
+          "date": "2026-09-15",
+          "derivative": true,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Employee Stock Option",
+          "shares": 59658.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1957238/000195723826000016/0001957238-26-000016-index.html"
+    },
+    {
+      "accession": "0001962729-26-000004",
+      "filing_date": "2026-08-14",
+      "form": "4",
+      "owner_name": "Nejatian Kasra",
+      "owner_title": "Chief Executive Officer · 董事",
+      "parse_error": null,
+      "period_of_report": "2026-08-14",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "P",
+          "date": "2026-08-14",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 3.62,
+          "security": "Common Stock",
+          "shares": 27625.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1962729/000196272926000004/0001962729-26-000004-index.html"
+    },
+    {
+      "accession": "0002096999-26-000009",
+      "filing_date": "2026-07-17",
+      "form": "4",
+      "owner_name": "Nguyen Giang",
+      "owner_title": "Chief Operating Officer",
+      "parse_error": null,
+      "period_of_report": "2026-07-15",
+      "transactions": [
+        {
+          "acquired_disposed": "D",
+          "code": "S",
+          "date": "2026-07-15",
+          "derivative": false,
+          "plan_10b5_1": "yes",
+          "price": 4.6849,
+          "security": "Common Stock",
+          "shares": 3591.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2096999/000209699926000009/0002096999-26-000009-index.html"
+    },
+    {
+      "accession": "0001444618-26-000008",
+      "filing_date": "2026-06-16",
+      "form": "4",
+      "owner_name": "Benson David C",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-06-16",
+      "transactions": [
+        {
+          "acquired_disposed": "D",
+          "code": "S",
+          "date": "2026-06-16",
+          "derivative": false,
+          "plan_10b5_1": "yes",
+          "price": 4.8341,
+          "security": "Common Stock",
+          "shares": 40000.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1444618/000144461826000008/0001444618-26-000008-index.html"
+    },
+    {
+      "accession": "0001836811-26-000002",
+      "filing_date": "2026-06-15",
+      "form": "4",
+      "owner_name": "Wu Eric Chung-Wei",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-06-11",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-06-11",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 41667.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1836811/000183681126000002/0001836811-26-000002-index.html"
+    },
+    {
+      "accession": "0001539865-26-000005",
+      "filing_date": "2026-06-15",
+      "form": "4",
+      "owner_name": "Rabois Keith",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-06-11",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-06-11",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 41667.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1539865/000153986526000005/0001539865-26-000005-index.html"
+    },
+    {
+      "accession": "0001856067-26-000006",
+      "filing_date": "2026-06-15",
+      "form": "4",
+      "owner_name": "Feder Eric",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-06-11",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-06-11",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 41667.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1856067/000185606726000006/0001856067-26-000006-index.html"
+    },
+    {
+      "accession": "0001195975-26-000002",
+      "filing_date": "2026-06-15",
+      "form": "4",
+      "owner_name": "HAMILTON DANA",
+      "owner_title": "董事",
+      "parse_error": null,
+      "period_of_report": "2026-06-11",
+      "transactions": [
+        {
+          "acquired_disposed": "A",
+          "code": "A",
+          "date": "2026-06-11",
+          "derivative": false,
+          "plan_10b5_1": "no",
+          "price": 0.0,
+          "security": "Common Stock",
+          "shares": 41667.0
+        }
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/1195975/000119597526000002/0001195975-26-000002-index.html"
+    }
+  ],
+  "note": "交易代码与 10b5-1 标记均来自申报原文。代码只说明表格里填写的类型，不是买卖建议。",
+  "ok": true,
+  "parse_errors": [],
+  "source_api": "https://data.sec.gov/submissions/CIK0001801169.json",
+  "source_label": "SEC EDGAR Form 4 XML",
+  "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+  "stale": false
+}

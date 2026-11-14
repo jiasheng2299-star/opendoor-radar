@@ -1,0 +1,215 @@
+{
+  "cik": "0001801169",
+  "company": "Opendoor Technologies Inc.",
+  "fetch_attempted_at": "2026-11-14T11:56:58Z",
+  "fetch_error": null,
+  "fetched_at": "2026-11-14T11:56:58Z",
+  "filings": [
+    {
+      "accession": "0001801169-26-000028",
+      "description": "10-Q",
+      "filing_date": "2026-11-05",
+      "form": "10-Q",
+      "highlight": true,
+      "items": null,
+      "report_date": "2026-09-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000028/0001801169-26-000028-index.html"
+    },
+    {
+      "accession": "0001801169-26-000027",
+      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "filing_date": "2026-11-05",
+      "form": "8-K",
+      "highlight": true,
+      "items": "2.02,7.01,9.01",
+      "report_date": "2026-11-05",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000027/0001801169-26-000027-index.html"
+    },
+    {
+      "accession": "0001140361-26-041579",
+      "description": "事项 5.02 董事或高管变动",
+      "filing_date": "2026-11-02",
+      "form": "8-K/A",
+      "highlight": true,
+      "items": "5.02",
+      "report_date": "2026-10-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126041579/0001140361-26-041579-index.html"
+    },
+    {
+      "accession": "0001140361-26-041096",
+      "description": "事项 5.02 董事或高管变动；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "filing_date": "2026-10-29",
+      "form": "8-K",
+      "highlight": true,
+      "items": "5.02,7.01,9.01",
+      "report_date": "2026-10-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126041096/0001140361-26-041096-index.html"
+    },
+    {
+      "accession": "0001140361-26-040415",
+      "description": "事项 5.02 董事或高管变动",
+      "filing_date": "2026-10-21",
+      "form": "8-K",
+      "highlight": true,
+      "items": "5.02",
+      "report_date": "2026-10-21",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126040415/0001140361-26-040415-index.html"
+    },
+    {
+      "accession": "0001140361-26-033739",
+      "description": "事项 1.01 重大协议；2.03 产生直接财务义务；3.02 未注册股权出售；8.01 其他事项；9.01 财务报表与附件",
+      "filing_date": "2026-08-19",
+      "form": "8-K",
+      "highlight": true,
+      "items": "1.01,2.03,3.02,8.01,9.01",
+      "report_date": "2026-08-17",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126033739/0001140361-26-033739-index.html"
+    },
+    {
+      "accession": "0000895421-26-000249",
+      "description": "SCHEDULE 13G/A",
+      "filing_date": "2026-08-13",
+      "form": "SCHEDULE 13G/A",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000249/0000895421-26-000249-index.html"
+    },
+    {
+      "accession": "0001140361-26-032600",
+      "description": "事项 1.01 重大协议；3.02 未注册股权出售；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "filing_date": "2026-08-13",
+      "form": "8-K",
+      "highlight": true,
+      "items": "1.01,3.02,7.01,9.01",
+      "report_date": "2026-08-12",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126032600/0001140361-26-032600-index.html"
+    },
+    {
+      "accession": "0001801169-26-000021",
+      "description": "10-Q",
+      "filing_date": "2026-08-04",
+      "form": "10-Q",
+      "highlight": true,
+      "items": null,
+      "report_date": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000021/0001801169-26-000021-index.html"
+    },
+    {
+      "accession": "0001801169-26-000019",
+      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "filing_date": "2026-08-04",
+      "form": "8-K",
+      "highlight": true,
+      "items": "2.02,7.01,9.01",
+      "report_date": "2026-08-04",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000019/0001801169-26-000019-index.html"
+    },
+    {
+      "accession": "0002012383-26-002919",
+      "description": "SCHEDULE 13G",
+      "filing_date": "2026-07-29",
+      "form": "SCHEDULE 13G",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/2012383/000201238326002919/0002012383-26-002919-index.html"
+    },
+    {
+      "accession": "0001801169-26-000016",
+      "description": "事项 5.07 提交股东表决的事项",
+      "filing_date": "2026-06-12",
+      "form": "8-K",
+      "highlight": true,
+      "items": "5.07",
+      "report_date": "2026-06-11",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000016/0001801169-26-000016-index.html"
+    },
+    {
+      "accession": "0001140361-26-023784",
+      "description": "DEFA14A",
+      "filing_date": "2026-06-02",
+      "form": "DEFA14A",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126023784/0001140361-26-023784-index.html"
+    },
+    {
+      "accession": "0001801169-26-000014",
+      "description": "10-Q",
+      "filing_date": "2026-05-07",
+      "form": "10-Q",
+      "highlight": true,
+      "items": null,
+      "report_date": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000014/0001801169-26-000014-index.html"
+    },
+    {
+      "accession": "0001801169-26-000013",
+      "description": "事项 2.02 经营业绩与财务状况；7.01 Regulation FD 披露；9.01 财务报表与附件",
+      "filing_date": "2026-05-07",
+      "form": "8-K",
+      "highlight": true,
+      "items": "2.02,7.01,9.01",
+      "report_date": "2026-05-07",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801169/000180116926000013/0001801169-26-000013-index.html"
+    },
+    {
+      "accession": "0002100121-26-000594",
+      "description": "SCHEDULE 13G",
+      "filing_date": "2026-04-29",
+      "form": "SCHEDULE 13G",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/2100121/000210012126000594/0002100121-26-000594-index.html"
+    },
+    {
+      "accession": "0001140361-26-017466",
+      "description": "DEFA14A",
+      "filing_date": "2026-04-28",
+      "form": "DEFA14A",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126017466/0001140361-26-017466-index.html"
+    },
+    {
+      "accession": "0001140361-26-017460",
+      "description": "DEF 14A",
+      "filing_date": "2026-04-28",
+      "form": "DEF 14A",
+      "highlight": true,
+      "items": null,
+      "report_date": "2026-06-11",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126017460/0001140361-26-017460-index.html"
+    },
+    {
+      "accession": "0000895421-26-000103",
+      "description": "SCHEDULE 13G/A",
+      "filing_date": "2026-04-08",
+      "form": "SCHEDULE 13G/A",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000103/0000895421-26-000103-index.html"
+    },
+    {
+      "accession": "0000102909-26-001916",
+      "description": "SCHEDULE 13G/A",
+      "filing_date": "2026-03-27",
+      "form": "SCHEDULE 13G/A",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/102909/000010290926001916/0000102909-26-001916-index.html"
+    }
+  ],
+  "note": "列表不含 Form 3/4/5 与 Form 144，那些表格在「内部人交易」。申报日按 EDGAR 原文，不做时区换算。",
+  "ok": true,
+  "source_api": "https://data.sec.gov/submissions/CIK0001801169.json",
+  "source_label": "SEC EDGAR submissions",
+  "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
+  "stale": false
+}

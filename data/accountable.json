@@ -1,0 +1,1307 @@
+{
+  "contracts_label": "合约是 Opendoor 预期收购房产的协议（含 Cash Now, More Later），不是已完成的购买，也不扣除之后取消的合约。",
+  "crosscheck": {
+    "error": "Cloudflare challenge",
+    "latest": null,
+    "ok": false,
+    "source_url": "https://opendoor.army/charts/weekly"
+  },
+  "fetch_attempted_at": "2026-11-14T11:56:58Z",
+  "fetch_error": null,
+  "fetched_at": "2026-11-14T11:56:58Z",
+  "launches": [
+    {
+      "date": "2026-11-05",
+      "date_raw": "11/5/26",
+      "description": "Expanded distribution so more eligible Opendoor homes can appear in Google’s home listings carousel, giving buyers another way to discover our homes.",
+      "id": "product-109",
+      "tag": "Buyer Experience",
+      "title": "Expanded Home Listings on Google"
+    },
+    {
+      "date": "2026-11-02",
+      "date_raw": "11/2/26",
+      "description": "Rebuilt comparable-home search to work across fragmented regional listing systems, bringing available listings into one search across markets. New listing feeds become searchable without custom market-by-market setup, expanding the information behind our home valuations.",
+      "id": "product-108",
+      "tag": "AI & Automation",
+      "title": "Unified Comparable-Home Search"
+    },
+    {
+      "date": "2026-10-23",
+      "date_raw": "10/23/26",
+      "description": "Rebuilt the Opendoor Android app from the ground up, bringing our redesigned mobile buyer experience to Android across home search, saved homes, and tours.",
+      "id": "product-106",
+      "tag": "Buyer Experience",
+      "title": "Opendoor Android App v2"
+    },
+    {
+      "date": "2026-10-23",
+      "date_raw": "10/23/26",
+      "description": "An AI agent automatically creates virtually staged photos for eligible Opendoor listings, helping buyers picture furnished spaces on our website and mobile apps.",
+      "id": "product-107",
+      "tag": "AI & Automation",
+      "title": "AI Virtual Staging"
+    },
+    {
+      "date": "2026-10-20",
+      "date_raw": "10/20/26",
+      "description": "Streamlined the daily workspace around the tools each person actually uses, keeping essential tools up front and distractions out of the way. Personalized layouts follow users across devices, helping teams spend less time navigating and more time getting work done.",
+      "id": "product-103",
+      "tag": "AI & Automation",
+      "title": "Customizable Operations Workspace"
+    },
+    {
+      "date": "2026-10-20",
+      "date_raw": "10/20/26",
+      "description": "Simplified the path to an offer with location-based address entry on mobile, one-tap ownership confirmation, and home details on a single screen.",
+      "id": "product-104",
+      "tag": "Seller Experience",
+      "title": "Seller Offer Onboarding"
+    },
+    {
+      "date": "2026-10-19",
+      "date_raw": "10/19/26",
+      "description": "Extended our underwriting valuation approach to eligible resale listings, tailoring the blend of AI estimates and human judgment to each home. Our team reviews cases where estimates differ significantly.",
+      "id": "product-101",
+      "tag": "AI & Automation",
+      "title": "Adaptive Resale Valuations"
+    },
+    {
+      "date": "2026-10-19",
+      "date_raw": "10/19/26",
+      "description": "Upgraded home-access tracking with clear property-level status and structured access categories, helping teams pinpoint barriers to self-tours and focus on getting buyers through the door.",
+      "id": "product-102",
+      "tag": "Buyer Experience",
+      "title": "Smarter Home Access Tracking"
+    },
+    {
+      "date": "2026-10-16",
+      "date_raw": "10/16/2026",
+      "description": "Expanded our live MLS data coverage and brought more comparable-home listings into our pricing tools, strengthening the information behind our home valuations.",
+      "id": "product-105",
+      "tag": "Seller Experience",
+      "title": "Broader Data Behind Our Home Offers"
+    },
+    {
+      "date": "2026-10-15",
+      "date_raw": "10/15/26",
+      "description": "Advanced our AI underwriting beyond automated valuations, creating a single automated path from home-data checks to a final offer for qualifying homes. Our team steps in where additional judgment is needed.",
+      "id": "product-99",
+      "tag": "AI & Automation",
+      "title": "End-to-End AI Underwriting"
+    },
+    {
+      "date": "2026-10-15",
+      "date_raw": "10/15/26",
+      "description": "Upgraded the training platform behind our home-valuation AI, making it faster and more efficient to retrain the models that support our offers.",
+      "id": "product-100",
+      "tag": "AI & Automation",
+      "title": "AI Valuation Training Platform"
+    },
+    {
+      "date": "2026-10-05",
+      "date_raw": "10/5/26",
+      "description": "Buyers can now book a self tour directly from a home's page on our website. Identity verification happens in the Opendoor app before the tour, and door access goes only to verified buyers.",
+      "id": "product-98",
+      "tag": "Buyer Experience",
+      "title": "Self-Tour Booking on the Web"
+    },
+    {
+      "date": "2026-10-01",
+      "date_raw": "10/1/26",
+      "description": "Moved opendoor.com onto a new API platform built around how customers buy and sell homes. It is structured so AI coding agents can build on it reliably, which speeds up how fast we ship.",
+      "id": "product-96",
+      "tag": "AI & Automation",
+      "title": "AI-Native API Platform"
+    },
+    {
+      "date": "2026-09-30",
+      "date_raw": "9/30/26",
+      "description": "Sellers can now choose multiple availability windows for their final inspection, making it faster to lock in a visit after signing.",
+      "id": "product-95",
+      "tag": "Seller Experience",
+      "title": "Flexible Inspection Scheduling"
+    },
+    {
+      "date": "2026-09-29",
+      "date_raw": "9/29/26",
+      "description": "Buyers can now preview homes before they list and get notified the moment one goes live, capturing demand from day one.",
+      "id": "product-92",
+      "tag": "Buyer Experience",
+      "title": "Coming Soon Home Alerts"
+    },
+    {
+      "date": "2026-09-29",
+      "date_raw": "9/29/26",
+      "description": "Extended our AI home scoping to explicitly tailor renovation plans to the comparable homes around it, so repair investment tracks what each neighborhood values at resale.",
+      "id": "product-97",
+      "tag": "AI & Automation",
+      "title": "Hyperlocal Repair Scoping"
+    },
+    {
+      "date": "2026-09-26",
+      "date_raw": "9/26/26",
+      "description": "Buyers can now shop every Opendoor home carrying a special financing incentive, with monthly payments shown upfront, a map view, and a direct path to preapproval.",
+      "id": "product-93",
+      "tag": "Buyer Experience",
+      "title": "Opendoor Drops"
+    },
+    {
+      "date": "2026-09-18",
+      "date_raw": "9/18/26",
+      "description": "Published developer docs and read-only endpoints that let AI assistants run Opendoor's mortgage, home-value, and sale-proceeds estimates and send customers straight into our product.",
+      "id": "product-94",
+      "tag": "AI & Automation",
+      "title": "Calculator APIs for AI Agents"
+    },
+    {
+      "date": "2026-09-18",
+      "date_raw": "9/18/2026",
+      "description": "We rebuilt our front door to tell a clearer, more complete Opendoor story, from getting a cash offer and Cash Now, More Later to tracking your home value, working with an agent, exploring nearby homes, and financing with Opendoor Home Loans.",
+      "id": "product-91",
+      "tag": "Seller Experience",
+      "title": "A Redesigned Opendoor Homepage"
+    },
+    {
+      "date": "2026-09-15",
+      "date_raw": "9/15/26",
+      "description": "Added resale tracking to the seller dashboard so Cash Now, More Later customers can dynamically follow their home through renovation, listing, and sale.",
+      "id": "product-90",
+      "tag": "Seller Experience",
+      "title": "Resale Tracking in the Seller Dashboard"
+    },
+    {
+      "date": "2026-09-11",
+      "date_raw": "9/11/26",
+      "description": "Rebuilt the portal agents use to submit offers on Opendoor homes, adding nationwide property search, a guided step-by-step flow, and a review stage to check and edit every section before submitting.",
+      "id": "product-88",
+      "tag": "Agent & Partner",
+      "title": "Agent Offer Portal"
+    },
+    {
+      "date": "2026-09-11",
+      "date_raw": "9/11/26",
+      "description": "Deployed new machine learning model that recommends the initial list price for every home we resell, reading comparable homes, local demand, and seasonality on a property-by-property basis. Portfolio managers retain the final call.",
+      "id": "product-89",
+      "tag": "AI & Automation",
+      "title": "Refactored AI-Powered Resale Pricing Engine"
+    },
+    {
+      "date": "2026-09-10",
+      "date_raw": "9/10/26",
+      "description": "Buyers can now watch a walkthrough video of a home on select listing pages, giving a clearer read on layout and flow than photos alone.",
+      "id": "product-87",
+      "tag": "Buyer Experience",
+      "title": "Walkthrough Videos on Listing Pages"
+    },
+    {
+      "date": "2026-09-09",
+      "date_raw": "9/9/26",
+      "description": "Buyers now receive unified, branded text messages from Opendoor across tour booking, reminders and access codes, post-tour follow-up, account verification, and mortgage offers.",
+      "id": "product-85",
+      "tag": "Buyer Experience",
+      "title": "Unified Buyer Messaging"
+    },
+    {
+      "date": "2026-09-09",
+      "date_raw": "9/9/26",
+      "description": "Update from Kaz on housing environment and Opendoor's response.",
+      "id": "product-86",
+      "tag": "Agent & Partner",
+      "title": "Update From Kaz (Sep 2026)"
+    },
+    {
+      "date": "2026-09-03",
+      "date_raw": "9/3/26",
+      "description": "Sellers with a signed listing agreement can now invite their agent onto their acquisition deal. Sellers and agents each get their own dashboard and communications.",
+      "id": "product-82",
+      "tag": "Agent & Partner",
+      "title": "Multi-Party Deals for Listed Sellers"
+    },
+    {
+      "date": "2026-09-03",
+      "date_raw": "9/3/26",
+      "description": "Shipped a workflow for reviewing and resolving customer-raised disputes on inspection repairs, with pricing updating automatically based on the outcome.",
+      "id": "product-83",
+      "tag": "AI & Automation",
+      "title": "Automated Repair Dispute Resolution"
+    },
+    {
+      "date": "2026-09-03",
+      "date_raw": "9/3/26",
+      "description": "Connected sellers who are also buying to an Opendoor Home Loans quote earlier in the onboarding experience.",
+      "id": "product-84",
+      "tag": "Seller Experience",
+      "title": "Home Loans Connection in Seller Onboarding"
+    },
+    {
+      "date": "2026-08-26",
+      "date_raw": "8/26/26",
+      "description": "The homepage and buy articles now surface homes for sale near the visitor, with pricing, new listing labels, and links into the full market directory.",
+      "id": "product-81",
+      "tag": "Buyer Experience",
+      "title": "Local Inventory Discovery"
+    },
+    {
+      "date": "2026-08-18",
+      "date_raw": "8/18/26",
+      "description": "Sellers can now get an Opendoor cash offer directly on Realtor.com, through its seller marketplace and My Home dashboard.",
+      "id": "product-80",
+      "tag": "Agent & Partner",
+      "title": "Realtor.com Partnership"
+    },
+    {
+      "date": "2026-08-17",
+      "date_raw": "8/17/26",
+      "description": "Rebuilt the component system behind our consumer web experiences on industry-standard tooling that AI coding agents work with natively. Engineers and AI tools now ship changes to the site faster and with more precision.",
+      "id": "product-79",
+      "tag": "AI & Automation",
+      "title": "AI-Native Web Component System"
+    },
+    {
+      "date": "2026-08-14",
+      "date_raw": "8/14/26",
+      "description": "Reworked our valuation model to incorporate additional visual features drawn from listing and assessment photos, sharpening how we assess each home before making an offer.",
+      "id": "product-78",
+      "tag": "AI & Automation",
+      "title": "Visual Signal in Underwriting Valuations"
+    },
+    {
+      "date": "2026-08-13",
+      "date_raw": "8/13/26",
+      "description": "Extended our internal AI tooling so employees can request automation of a repeatable task in plain language and have an agent build, review, and deploy it, with a human approving the work before it starts.",
+      "id": "product-77",
+      "tag": "AI & Automation",
+      "title": "Agent-Built Internal Automation"
+    },
+    {
+      "date": "2026-08-04",
+      "date_raw": "8/4/26",
+      "description": "Redesigned the article experience to put key content and navigation up front, including an expandable mobile module that lets readers act without scrolling.",
+      "id": "product-75",
+      "tag": "Seller Experience",
+      "title": "Content Experience Rebuild"
+    },
+    {
+      "date": "2026-08-04",
+      "date_raw": "8/4/26",
+      "description": "Reengineered how sellers track a pending offer, replacing a single status line with a four-stage tracker that surfaces the current step, the next action, and expected timing.",
+      "id": "product-76",
+      "tag": "Seller Experience",
+      "title": "Offer Status Transparency"
+    },
+    {
+      "date": "2026-07-31",
+      "date_raw": "7/31/26",
+      "description": "Took the Lennar trade-in program from pilot to full national coverage. An Opendoor cash offer on the buyer's current home is now built directly into the Lennar purchase experience across every Lennar market.",
+      "id": "product-73",
+      "tag": "Agent & Partner",
+      "title": "Nationwide Homebuilder Trade-In"
+    },
+    {
+      "date": "2026-07-31",
+      "date_raw": "7/31/26",
+      "description": "Rebuilt how sellers start an offer on mobile, putting address entry within reach at every point on the page.",
+      "id": "product-74",
+      "tag": "Seller Experience",
+      "title": "Mobile Offer Entry"
+    },
+    {
+      "date": "2026-07-29",
+      "date_raw": "7/29/26",
+      "description": "Extended seller acquisition into AI assistants, meeting homeowners inside the conversations where they research selling options.",
+      "id": "product-72",
+      "tag": "AI & Automation",
+      "title": "Seller Ads in ChatGPT"
+    },
+    {
+      "date": "2026-07-23",
+      "date_raw": "7/23/26",
+      "description": "Added Sign in with Apple across web and our apps, so customers can create an account or log in with one tap using Face ID or Touch ID.",
+      "id": "product-71",
+      "tag": "Seller Experience",
+      "title": "One-Tap Sign-In"
+    },
+    {
+      "date": "2026-07-21",
+      "date_raw": "7/21/26",
+      "description": "Sharpened the AI valuation flow to select comparables, score them, and run the full sequence in one pass, with analysts stepping in at the decision points that matter.",
+      "id": "product-70",
+      "tag": "AI & Automation",
+      "title": "Smarter Valuation Automation"
+    },
+    {
+      "date": "2026-07-17",
+      "date_raw": "7/17/26",
+      "description": "Offer changes after inspection now flow through the seller dashboard instead of a manual paperwork process.",
+      "id": "product-69",
+      "tag": "Seller Experience",
+      "title": "Streamlined Post-Inspection Offer Updates"
+    },
+    {
+      "date": "2026-07-13",
+      "date_raw": "7/13/26",
+      "description": "Shipped an assistant that reaches out to sellers and books their offer call directly onto an advisor's calendar, no manual coordination required.",
+      "id": "product-67",
+      "tag": "AI & Automation",
+      "title": "AI-Powered Call Booking for Sellers"
+    },
+    {
+      "date": "2026-07-13",
+      "date_raw": "7/13/26",
+      "description": "We moved every remaining home assessment onto our AI-powered assessment tool, creating one reliable process for evaluating homes across the business.",
+      "id": "product-68",
+      "tag": "AI & Automation",
+      "title": "Consistent AI Assessments, End to End"
+    },
+    {
+      "date": "2026-07-10",
+      "date_raw": "7/10/26",
+      "description": "Partner agents now get notified when an Opendoor home lists nearby or drops in price, so they can share it with buyers faster.",
+      "id": "product-66",
+      "tag": "Agent & Partner",
+      "title": "Agent Alerts for New Listings and Price Drops"
+    },
+    {
+      "date": "2026-07-09",
+      "date_raw": "7/9/26",
+      "description": "Restructured how we publish our articles and market pages so AI assistants and AI-powered search can read them directly. As more people start their home search with AI, Opendoor shows up where they look.",
+      "id": "product-62",
+      "tag": "AI & Automation",
+      "title": "Content Built for AI Search"
+    },
+    {
+      "date": "2026-07-09",
+      "date_raw": "7/9/26",
+      "description": "Buyers who book a tour now get a set of nearby recommended homes in their confirmation email, making it easy to keep browsing inventory close to the one they're touring.",
+      "id": "product-63",
+      "tag": "Buyer Experience",
+      "title": "Recommended Homes at Tour Booking"
+    },
+    {
+      "date": "2026-07-09",
+      "date_raw": "7/9/26",
+      "description": "Active buyers now get an alert when a home matching their search comes on the market nearby, so the right listings reach them without constant checking.",
+      "id": "product-64",
+      "tag": "Buyer Experience",
+      "title": "Matching Home Alerts"
+    },
+    {
+      "date": "2026-07-09",
+      "date_raw": "7/9/26",
+      "description": "Launched alerts that notify buyers when a home they've toured drops in price, bringing them back at the moment affordability changes.",
+      "id": "product-65",
+      "tag": "Buyer Experience",
+      "title": "Price Drop Alerts for Past Tourers"
+    },
+    {
+      "date": "2026-06-30",
+      "date_raw": "6/30/26",
+      "description": "A unified customer dashboard at opendoor.com pulls selling and buying into one view, surfacing upcoming tasks and quick paths into every active transaction.",
+      "id": "product-61",
+      "tag": "Buyer Experience",
+      "title": "One Dashboard for Buying and Selling"
+    },
+    {
+      "date": "2026-06-29",
+      "date_raw": "6/29/26",
+      "description": "Sellers who already have an Opendoor offer now skip the homepage and go directly to their sell dashboard on return visits.",
+      "id": "product-60",
+      "tag": "Seller Experience",
+      "title": "One-Click Reentry for Active Sellers"
+    },
+    {
+      "date": "2026-06-23",
+      "date_raw": "6/23/26",
+      "description": "Shipped a set of performance and loading-experience improvements that make the offer experience faster, clearer and more responsive.",
+      "id": "product-59",
+      "tag": "Seller Experience",
+      "title": "Faster Offer Experience"
+    },
+    {
+      "date": "2026-06-11",
+      "date_raw": "6/11/26",
+      "description": "Re-engineered the seller dashboard onto a leaner, faster foundation built to scale, laying the groundwork for one seamless experience across the entire customer journey.",
+      "id": "product-58",
+      "tag": "Seller Experience",
+      "title": "Faster, Unified Customer Platform Foundation"
+    },
+    {
+      "date": "2026-06-03",
+      "date_raw": "6/3/26",
+      "description": "Expanded our AI assistant's capabilities across voice and text, handling a growing share of the early seller journey - scheduling, answering questions, and moving sellers forward - while routing to a person when human judgment matters.",
+      "id": "product-57",
+      "tag": "Seller Experience",
+      "title": "Smarter Seller AI Assistant"
+    },
+    {
+      "date": "2026-06-02",
+      "date_raw": "6/2/26",
+      "description": "We upgraded the offer experience with clearer pricing and more seamless execution, making it faster and easier to move from offer to signed contract - and giving customers a clearer view of their offer along the way.",
+      "id": "product-55",
+      "tag": "Seller Experience",
+      "title": "Upgraded Agent Offer Experience"
+    },
+    {
+      "date": "2026-06-02",
+      "date_raw": "6/2/26",
+      "description": "Rebuilt the system behind home contracts from the ground up, giving our teams faster, more reliable tools to generate and update agreements across markets.",
+      "id": "product-56",
+      "tag": "AI & Automation",
+      "title": "Rebuilt Contract Tooling"
+    },
+    {
+      "date": "2026-05-25",
+      "date_raw": "5/25/26",
+      "description": " Rebuilt the Opendoor iOS app from the ground up in native SwiftUI, with every buyer flow redesigned - search, listing detail, tours, offers, and account. The new foundation gives us a faster, more polished mobile experience and an architecture we can iterate on for years.",
+      "id": "product-54",
+      "tag": "Buyer Experience",
+      "title": "A New Mobile Home for Buyers"
+    },
+    {
+      "date": "2026-05-19",
+      "date_raw": "5/19/26",
+      "description": "Rebuilt our paid-marketing measurement stack with unified browser and backend event tracking, end-to-end event quality cleanup, bot suppression, and a standardized ecommerce funnel mapped to industry-standard events — giving us cleaner signal across the full acquisition funnel and a platform-agnostic foundation to extend to other paid channels.",
+      "id": "product-51",
+      "tag": "Seller Experience",
+      "title": "Marketing Attribution Rebuild"
+    },
+    {
+      "date": "2026-05-19",
+      "date_raw": "5/19/26",
+      "description": "Expanded Opendoor's reach to more homeowners by bringing offer paths into the agent workflow, beginning with RealScout. Agents can now present an Opendoor solution — cash offer or Cash Now, More Later — from inside their existing platform, without redirecting clients elsewhere.",
+      "id": "product-52",
+      "tag": "Agent & Partner",
+      "title": "Opendoor 2.0 for Agents"
+    },
+    {
+      "date": "2026-05-19",
+      "date_raw": "5/19/26",
+      "description": "Refactored the Partner API to support multiple Opendoor products side-by-side, so partner integrations can surface Cash Now, More Later alongside cash offers. Also published a Ruby SDK and a self-maintaining docs site to make new partner integrations faster to launch.",
+      "id": "product-53",
+      "tag": "Agent & Partner",
+      "title": "Multi-Product Partner API"
+    },
+    {
+      "date": "2026-05-18",
+      "date_raw": "5/18/26",
+      "description": "Launched a new version of our auto-underwriter, moving from a rules-based system to an ML model that learns from our underwriters and unlocks automated valuations across a wider range of homes.",
+      "id": "product-50",
+      "tag": "AI & Automation",
+      "title": "ML-Powered Underwriting Automation"
+    },
+    {
+      "date": "2026-04-24",
+      "date_raw": "4/24/26",
+      "description": "Completed migration to a single modern component library across core consumer surfaces, clearing the path for AI-assisted coding workflows and faster product iteration.",
+      "id": "product-49",
+      "tag": "AI & Automation",
+      "title": "Unified Frontend Component Library"
+    },
+    {
+      "date": "2026-04-23",
+      "date_raw": "4/23/26",
+      "description": "Launched an end-to-end AI co-pilot that handles the routine steps of home valuation automatically, pausing only when human judgment is needed. A foundational step toward faster, more consistent pricing across our portfolio.",
+      "id": "product-48",
+      "tag": "AI & Automation",
+      "title": "Valuation AI Co-Pilot"
+    },
+    {
+      "date": "2026-04-14",
+      "date_raw": "4/14/2026",
+      "description": "Redesigned and experimenting on the final offer page to give sellers more transparency into how their offer comes together — including comparable sales, valuation factors, and market context.",
+      "id": "product-47",
+      "tag": "Seller Experience",
+      "title": "Redesigned Final Offer Experience"
+    },
+    {
+      "date": "2026-04-10",
+      "date_raw": "4/10/2026",
+      "description": "Rebuilt buyer-facing email and SMS touchpoints spanning tour booking through post-close, creating a more cohesive and personalized communication experience throughout the purchase journey.",
+      "id": "product-46",
+      "tag": "Buyer Experience",
+      "title": "Buyer Emails + SMS Relaunch"
+    },
+    {
+      "date": "2026-04-07",
+      "date_raw": "4/7/2026",
+      "description": "Enabled the Zillow cash offer experience in 5,000+ new zip codes year-to-date, including several newly launched markets. Sellers in these areas can now receive an Opendoor cash offer through Zillow’s platform — one of the fastest channels to reach homeowners in markets where we’re still building brand awareness.",
+      "id": "product-45",
+      "tag": "Seller Experience",
+      "title": "Zillow Partnership Expanded to New Zip Codes"
+    },
+    {
+      "date": "2026-03-30",
+      "date_raw": "3/30/26",
+      "description": "New flows in the Key App let certain sellers hand off their home assessment via a secure link or schedule a partner-assisted visit, expanding who can complete assessments and unlocking homes that might otherwise drop out of the funnel.",
+      "id": "product-44",
+      "tag": "Seller Experience",
+      "title": "Flexible Assessment Completion"
+    },
+    {
+      "date": "2026-03-26",
+      "date_raw": "3/26/26",
+      "description": "Upgraded our AI-powered SDR bots across voice and SMS with smarter calling windows, faster outreach timing, improved conversation quality, and better intent routing — driving meaningful improvements in contact and conversion rates.",
+      "id": "product-43",
+      "tag": "AI & Automation",
+      "title": "SDR Bot Optimization"
+    },
+    {
+      "date": "2026-03-19",
+      "date_raw": "3/19/26",
+      "description": "Launched an AI audit tool that automatically reconciles inspection scopes with actual repair decisions, giving field teams real-time, actionable feedback to improve operator compliance and cost discipline.",
+      "id": "product-42",
+      "tag": "AI & Automation",
+      "title": "AI Scoping & Spend Reconciliation"
+    },
+    {
+      "date": "2026-03-17",
+      "date_raw": "3/17/26",
+      "description": "Improved the accuracy and completeness of listing data across our MLS integrations, ensuring key home attributes flow correctly into downstream systems.",
+      "id": "product-41",
+      "tag": "Seller Experience",
+      "title": "MLS Data Quality Improvements"
+    },
+    {
+      "date": "2026-03-05",
+      "date_raw": "3/5/26",
+      "description": "We launched new capabilities that allow certain homes to be valued and re-offered automatically, reducing duplicative, manual reviews.",
+      "id": "product-38",
+      "tag": "AI & Automation",
+      "title": "Underwriting Automation"
+    },
+    {
+      "date": "2026-03-04",
+      "date_raw": "3/4/26",
+      "description": "We launched a fully rebuilt customer help center with refreshed content and a more flexible architecture, making it easier for customers to find answers and for our team to keep information current.",
+      "id": "product-39",
+      "tag": "Seller Experience",
+      "title": "Redesigned Help Center"
+    },
+    {
+      "date": "2026-03-04",
+      "date_raw": "3/4/26",
+      "description": "We deepened our partnership with homebuilders by embedding Opendoor's offer flow into their sales centers, removing a key barrier for homebuyers who need to sell before they can buy.",
+      "id": "product-40",
+      "tag": "Seller Experience",
+      "title": "Homebuilder Trade-In"
+    },
+    {
+      "date": "2026-02-24",
+      "date_raw": "2/24/26",
+      "description": "Shipped improvements to the refresh pipeline — including off-market homes, flywheel leads, and expansion market fixes.",
+      "id": "product-37",
+      "tag": "Seller Experience",
+      "title": "Offer Refresh Pipeline Improvements"
+    },
+    {
+      "date": "2026-02-20",
+      "date_raw": "2/20/26",
+      "description": "Redesigned homepage running rapid A/B tests to validate modernized look and feel.",
+      "id": "product-36",
+      "tag": "Seller Experience",
+      "title": "Homepage Experiments"
+    },
+    {
+      "date": "2026-02-20",
+      "date_raw": "2/20/2026",
+      "description": "Automated email order processing for title operations using an LLM-powered extractor, reducing response times from 1–5 hours to under 15 minutes.",
+      "id": "product-35",
+      "tag": "AI & Automation",
+      "title": "Title Automation"
+    },
+    {
+      "date": "2026-02-11",
+      "date_raw": "2/11/26",
+      "description": "Automated HOA and payoff receipt processing that extracts data, matches files, and queues reviews -- reducing manual handling time while improving accuracy for escrow teams.",
+      "id": "product-34",
+      "tag": "AI & Automation",
+      "title": "Escrow Automation"
+    },
+    {
+      "date": "2026-01-29",
+      "date_raw": "1/29/2026",
+      "description": "Shipped pre-qualification form in buyer checkout flow",
+      "id": "product-33",
+      "tag": "Buyer Experience",
+      "title": "Mortgage Pre-Qualification Form"
+    },
+    {
+      "date": "2026-01-23",
+      "date_raw": "1/23/2026",
+      "description": "AI SMS agent helping homesellers through their customer journey",
+      "id": "product-32",
+      "tag": "Seller Experience",
+      "title": "AI SMS Agent"
+    },
+    {
+      "date": "2026-01-16",
+      "date_raw": "1/16/2026",
+      "description": "Working with our partners at Lennar on a fully AI-native mortgage product",
+      "id": "product-31",
+      "tag": "AI & Automation",
+      "title": "Mortgage Product Development"
+    },
+    {
+      "date": "2026-01-12",
+      "date_raw": "1/12/2026",
+      "description": "Unlocked certain home segments (I.e. home age, lot size, price point) in existing and expansion markets",
+      "id": "product-29",
+      "tag": "Seller Experience",
+      "title": "Buybox Expansion"
+    },
+    {
+      "date": "2026-01-12",
+      "date_raw": "1/12/2026",
+      "description": "Faster, less repetitive flow and smarter permissions",
+      "id": "product-30",
+      "tag": "Seller Experience",
+      "title": "Self-Assessment App Improvements"
+    },
+    {
+      "date": "2026-01-01",
+      "date_raw": "1/1/2026",
+      "description": "AI document analysis combined with deep web research to gather comprehensive HOA information for title transactions.",
+      "id": "product-28",
+      "tag": "AI & Automation",
+      "title": "HOA Research Automation"
+    },
+    {
+      "date": "2025-12-31",
+      "date_raw": "12/31/2025",
+      "description": "Performance experiment optimizing for mobile users.",
+      "id": "product-27",
+      "tag": "Seller Experience",
+      "title": "Homepage Performance"
+    },
+    {
+      "date": "2025-12-19",
+      "date_raw": "12/19/2025",
+      "description": "Opendoor can deliver offers in 100% of ZIP codes across the lower 48 states!",
+      "id": "product-25",
+      "tag": "Seller Experience",
+      "title": "100% Zip Coverage in Lower 48 States"
+    },
+    {
+      "date": "2025-12-19",
+      "date_raw": "12/19/2025",
+      "description": "Simplified customer experience and pricing for Cash Plus offering",
+      "id": "product-26",
+      "tag": "Seller Experience",
+      "title": "Refined Cash Plus Offer Experience"
+    },
+    {
+      "date": "2025-12-12",
+      "date_raw": "12/12/2025",
+      "description": "Replaced third-party vendor with proprietary vision model for home photos",
+      "id": "product-23",
+      "tag": "AI & Automation",
+      "title": "In-House Vision Model"
+    },
+    {
+      "date": "2025-12-12",
+      "date_raw": "12/12/2025",
+      "description": "Launched program that gives active-duty military and veterans $4,000 towards closing costs when they buy an Opendoor home using Opendoor Checkout.",
+      "id": "product-24",
+      "tag": "Buyer Experience",
+      "title": "Opendoor Hero's Home Credit"
+    },
+    {
+      "date": "2025-12-08",
+      "date_raw": "12/8/2025",
+      "description": "Integrated pre-approval mortgage flow in select markets",
+      "id": "product-22",
+      "tag": "Buyer Experience",
+      "title": "Revamped Mortgage Experience"
+    },
+    {
+      "date": "2025-11-25",
+      "date_raw": "11/25/2025",
+      "description": "Consolidated seller experience to reduce technical debt and unlock scalable expansion motions.",
+      "id": "product-21",
+      "tag": "Faster Acquisitions",
+      "title": "Cash Plus Experience Simplification"
+    },
+    {
+      "date": "2025-11-24",
+      "date_raw": "11/24/2025",
+      "description": "Simplification and instrumentation for agent experience on Opendoor Key app",
+      "id": "product-20",
+      "tag": "Faster Acquisitions",
+      "title": "Key App Experience for Agents"
+    },
+    {
+      "date": "2025-11-18",
+      "date_raw": "11/18/2025",
+      "description": "Smarter, targeted and more context-aware resale pricing strategy",
+      "id": "product-19",
+      "tag": "Buyer Experience",
+      "title": "Resale Pricing Optimization"
+    },
+    {
+      "date": "2025-11-13",
+      "date_raw": "11/13/2025",
+      "description": "Adjusted SEO strategy calibrated to high-intent, high-volume keywords",
+      "id": "product-18",
+      "tag": "Faster Acquisitions",
+      "title": "New Homes Directory"
+    },
+    {
+      "date": "2025-11-06",
+      "date_raw": "11/6/2025",
+      "description": "New partnership with Roam, connecting our seller funnel to Roam’s assumable mortgage platform. ",
+      "id": "product-14",
+      "tag": "Agent & Partner",
+      "title": "Roam Partnership"
+    },
+    {
+      "date": "2025-11-06",
+      "date_raw": "11/6/2025",
+      "description": "To accelerate transaction speed and customer choice, we can now accept USDC as payment for home purchase.",
+      "id": "product-15",
+      "tag": "Buyer Experience",
+      "title": "USDC Payment Acceptance"
+    },
+    {
+      "date": "2025-11-06",
+      "date_raw": "11/6/2025",
+      "description": "Opendoor Announces Shareholder‑First Dividend of Tradable Warrants Aligning Shareholders and Management",
+      "id": "product-17",
+      "tag": "Agent & Partner",
+      "title": "Warrant Dividend"
+    },
+    {
+      "date": "2025-11-05",
+      "date_raw": "11/5/2025",
+      "description": "Market expansion to Seattle, Baltimore, Chicago, and Philadelphia",
+      "id": "product-16",
+      "tag": "Seller Experience",
+      "title": "Market Expansion"
+    },
+    {
+      "date": "2025-11-04",
+      "date_raw": "11/4/2025",
+      "description": "Implemented a re-engagement process to recapture customers from the Agent-Led Offer (ALO) funnel who had dropped off, directing them into the new Self-Schedule Home Assessment flow within the Direct-to-Consumer (DTC) Seller Hub.",
+      "id": "product-10",
+      "tag": "Seller Experience",
+      "title": "Delightful reengagement in Seller Dashboard"
+    },
+    {
+      "date": "2025-10-25",
+      "date_raw": "10/25/2025",
+      "description": "Allows agents, Opendoor experts, or any homeowner to assess their homes like an expert, now fully powered with AI rather than pen and paper.",
+      "id": "product-12",
+      "tag": "Seller Experience",
+      "title": "Self assessment support in Opendoor Key App"
+    },
+    {
+      "date": "2025-10-23",
+      "date_raw": "10/23/2025",
+      "description": "Customers can now schedule their post-contract inspection in the Seller dashboard, eliminating the need for an operator call and removing a bottleneck in the closing process.",
+      "id": "product-3",
+      "tag": "AI & Automation",
+      "title": "Self-Serve Inspection Scheduling"
+    },
+    {
+      "date": "2025-10-17",
+      "date_raw": "10/17/2025",
+      "description": "Machines automatically recommend and drive what repairs and renovations need to be done, driving scale, speed, and efficiency.",
+      "id": "product-0",
+      "tag": "AI & Automation",
+      "title": "End-to-End AI Home Scoping"
+    },
+    {
+      "date": "2025-10-15",
+      "date_raw": "10/15/2025",
+      "description": "AI has started doing some of the work involved in closing a transaction, increasing efficiency.",
+      "id": "product-2",
+      "tag": "AI & Automation",
+      "title": "Automating Title & Escrow"
+    },
+    {
+      "date": "2025-10-14",
+      "date_raw": "10/14/2025",
+      "description": "Unlocked Cash Plus access for all agents in existing markets, allowing them to submit their perspective on the estimated list price for their own leads.",
+      "id": "product-7",
+      "tag": "Agent & Partner",
+      "title": "Cash Plus for ALL Agents"
+    },
+    {
+      "date": "2025-10-01",
+      "date_raw": "10/1/2025",
+      "description": "Launched new buyer benefits, including a 100-day home warranty and a 7-day home test drive allowing buyers to move in early and walk away if they don't love the home.",
+      "id": "product-9",
+      "tag": "Buyer Experience",
+      "title": "Buyer Peace of Mind Guarantee"
+    },
+    {
+      "date": "2025-09-30",
+      "date_raw": "9/30/2025",
+      "description": "The pricing team launched an MVP pricing stack that allows pricing Cash Plus offers across all 50 states, utilizing confidence-based, risk-aware pricing.",
+      "id": "product-4",
+      "tag": "Faster Acquisitions",
+      "title": "Cash Plus Pricing Unblocked Nationwide"
+    },
+    {
+      "date": "2025-09-29",
+      "date_raw": "9/29/2025",
+      "description": "Shipped the second version of the true seller targeting model, improving acquisition in direct mail, email, and sales by utilizing more features and making mailers/HSAs 5x more likely to reach true sellers.",
+      "id": "product-5",
+      "tag": "Faster Acquisitions",
+      "title": "True Seller Model v2"
+    },
+    {
+      "date": "2025-09-25",
+      "date_raw": "9/25/2025",
+      "description": "Launched a model with the largest measurable improvement ( >20bps AAE backtested) to underwriting valuations in 4+ years by blending human and AI confidence levels.",
+      "id": "product-1",
+      "tag": "AI & Automation",
+      "title": "Universal Underwriting Ensembler"
+    },
+    {
+      "date": "2025-09-25",
+      "date_raw": "9/25/2025",
+      "description": "Rebuilt website sitemaps to remove outdated pages and improve organization, making it easier for Google to crawl and improving organic traffic.",
+      "id": "product-13",
+      "tag": "Faster Acquisitions",
+      "title": "Cleaner, Smarter Sitemaps!"
+    },
+    {
+      "date": "2025-09-19",
+      "date_raw": "9/19/2025",
+      "description": "Launched a nationwide experience using LLM-Powered Valuations to intelligently route leads to alternatives like partner agent referrals when Opendoor can't make an initial cash offer.",
+      "id": "product-11",
+      "tag": "Seller Experience",
+      "title": "Serve all sellers"
+    },
+    {
+      "date": "2025-09-18",
+      "date_raw": "9/18/2025",
+      "description": "Agents can now submit recommendations and commissions for a list price on homes and their commission rate as an input to Cash Plus offers, leading to more personalized offers and better conversion.",
+      "id": "product-8",
+      "tag": "Agent & Partner",
+      "title": "Agent-Provided Cash Plus Recommendations"
+    },
+    {
+      "date": "2025-09-15",
+      "date_raw": "9/15/2025",
+      "description": "Launched the Opendoor Key app on the App Store and Google Play, providing a structured, feature-based assessment tool for agents to conduct home assessments directly on their Apple or Android devices.",
+      "id": "product-6",
+      "tag": "Agent & Partner",
+      "title": "Opendoor Key App on iOS & Android"
+    }
+  ],
+  "official_note": "Acquisition contract volume is based on any contract under which Opendoor expects to acquire a property, including through its Cash Now, More Later program, and does not account for contracts that are later cancelled.",
+  "ok": true,
+  "source_label": "Opendoor Accountable",
+  "source_url": "https://accountable.opendoor.com/",
+  "stale": false,
+  "weeks": [
+    {
+      "contracts": 125,
+      "prior_year": 210,
+      "week_ending": "2025-10-04",
+      "wow": null,
+      "wow_pct": null
+    },
+    {
+      "contracts": 125,
+      "prior_year": 244,
+      "week_ending": "2025-10-11",
+      "wow": 0,
+      "wow_pct": 0.0
+    },
+    {
+      "contracts": 132,
+      "prior_year": 319,
+      "week_ending": "2025-10-18",
+      "wow": 7,
+      "wow_pct": 5.6000000000000005
+    },
+    {
+      "contracts": 140,
+      "prior_year": 341,
+      "week_ending": "2025-10-25",
+      "wow": 8,
+      "wow_pct": 6.0606060606060606
+    },
+    {
+      "contracts": 236,
+      "prior_year": 281,
+      "week_ending": "2025-11-01",
+      "wow": 96,
+      "wow_pct": 68.57142857142857
+    },
+    {
+      "contracts": 294,
+      "prior_year": 354,
+      "week_ending": "2025-11-08",
+      "wow": 58,
+      "wow_pct": 24.576271186440678
+    },
+    {
+      "contracts": 270,
+      "prior_year": 382,
+      "week_ending": "2025-11-15",
+      "wow": -24,
+      "wow_pct": -8.16326530612245
+    },
+    {
+      "contracts": 245,
+      "prior_year": 317,
+      "week_ending": "2025-11-22",
+      "wow": -25,
+      "wow_pct": -9.25925925925926
+    },
+    {
+      "contracts": 190,
+      "prior_year": 358,
+      "week_ending": "2025-11-29",
+      "wow": -55,
+      "wow_pct": -22.448979591836736
+    },
+    {
+      "contracts": 184,
+      "prior_year": 425,
+      "week_ending": "2025-12-06",
+      "wow": -6,
+      "wow_pct": -3.1578947368421053
+    },
+    {
+      "contracts": 237,
+      "prior_year": 462,
+      "week_ending": "2025-12-13",
+      "wow": 53,
+      "wow_pct": 28.804347826086957
+    },
+    {
+      "contracts": 192,
+      "prior_year": 268,
+      "week_ending": "2025-12-20",
+      "wow": -45,
+      "wow_pct": -18.9873417721519
+    },
+    {
+      "contracts": 163,
+      "prior_year": 244,
+      "week_ending": "2025-12-27",
+      "wow": -29,
+      "wow_pct": -15.104166666666666
+    },
+    {
+      "contracts": 146,
+      "prior_year": 375,
+      "week_ending": "2026-01-03",
+      "wow": -17,
+      "wow_pct": -10.429447852760736
+    },
+    {
+      "contracts": 260,
+      "prior_year": 358,
+      "week_ending": "2026-01-10",
+      "wow": 114,
+      "wow_pct": 78.08219178082192
+    },
+    {
+      "contracts": 266,
+      "prior_year": 358,
+      "week_ending": "2026-01-17",
+      "wow": 6,
+      "wow_pct": 2.307692307692308
+    },
+    {
+      "contracts": 287,
+      "prior_year": 392,
+      "week_ending": "2026-01-24",
+      "wow": 21,
+      "wow_pct": 7.894736842105263
+    },
+    {
+      "contracts": 303,
+      "prior_year": 338,
+      "week_ending": "2026-01-31",
+      "wow": 16,
+      "wow_pct": 5.574912891986063
+    },
+    {
+      "contracts": 242,
+      "prior_year": 275,
+      "week_ending": "2026-02-07",
+      "wow": -61,
+      "wow_pct": -20.13201320132013
+    },
+    {
+      "contracts": 537,
+      "prior_year": 218,
+      "week_ending": "2026-02-14",
+      "wow": 295,
+      "wow_pct": 121.900826446281
+    },
+    {
+      "contracts": 449,
+      "prior_year": 257,
+      "week_ending": "2026-02-21",
+      "wow": -88,
+      "wow_pct": -16.387337057728118
+    },
+    {
+      "contracts": 442,
+      "prior_year": 253,
+      "week_ending": "2026-02-28",
+      "wow": -7,
+      "wow_pct": -1.55902004454343
+    },
+    {
+      "contracts": 390,
+      "prior_year": 223,
+      "week_ending": "2026-03-07",
+      "wow": -52,
+      "wow_pct": -11.76470588235294
+    },
+    {
+      "contracts": 447,
+      "prior_year": 168,
+      "week_ending": "2026-03-14",
+      "wow": 57,
+      "wow_pct": 14.615384615384617
+    },
+    {
+      "contracts": 610,
+      "prior_year": 197,
+      "week_ending": "2026-03-21",
+      "wow": 163,
+      "wow_pct": 36.46532438478747
+    },
+    {
+      "contracts": 545,
+      "prior_year": 213,
+      "week_ending": "2026-03-28",
+      "wow": -65,
+      "wow_pct": -10.655737704918032
+    },
+    {
+      "contracts": 658,
+      "prior_year": 182,
+      "week_ending": "2026-04-04",
+      "wow": 113,
+      "wow_pct": 20.733944954128443
+    },
+    {
+      "contracts": 594,
+      "prior_year": 130,
+      "week_ending": "2026-04-11",
+      "wow": -64,
+      "wow_pct": -9.72644376899696
+    },
+    {
+      "contracts": 465,
+      "prior_year": 113,
+      "week_ending": "2026-04-18",
+      "wow": -129,
+      "wow_pct": -21.71717171717172
+    },
+    {
+      "contracts": 424,
+      "prior_year": 108,
+      "week_ending": "2026-04-25",
+      "wow": -41,
+      "wow_pct": -8.817204301075268
+    },
+    {
+      "contracts": 511,
+      "prior_year": 101,
+      "week_ending": "2026-05-02",
+      "wow": 87,
+      "wow_pct": 20.5188679245283
+    },
+    {
+      "contracts": 582,
+      "prior_year": 113,
+      "week_ending": "2026-05-09",
+      "wow": 71,
+      "wow_pct": 13.894324853228962
+    },
+    {
+      "contracts": 655,
+      "prior_year": 119,
+      "week_ending": "2026-05-16",
+      "wow": 73,
+      "wow_pct": 12.542955326460481
+    },
+    {
+      "contracts": 542,
+      "prior_year": 93,
+      "week_ending": "2026-05-23",
+      "wow": -113,
+      "wow_pct": -17.251908396946565
+    },
+    {
+      "contracts": 429,
+      "prior_year": 76,
+      "week_ending": "2026-05-30",
+      "wow": -113,
+      "wow_pct": -20.84870848708487
+    },
+    {
+      "contracts": 564,
+      "prior_year": 78,
+      "week_ending": "2026-06-06",
+      "wow": 135,
+      "wow_pct": 31.46853146853147
+    },
+    {
+      "contracts": 538,
+      "prior_year": 80,
+      "week_ending": "2026-06-13",
+      "wow": -26,
+      "wow_pct": -4.609929078014184
+    },
+    {
+      "contracts": 529,
+      "prior_year": 87,
+      "week_ending": "2026-06-20",
+      "wow": -9,
+      "wow_pct": -1.6728624535315983
+    },
+    {
+      "contracts": 523,
+      "prior_year": 88,
+      "week_ending": "2026-06-27",
+      "wow": -6,
+      "wow_pct": -1.1342155009451798
+    },
+    {
+      "contracts": 551,
+      "prior_year": 107,
+      "week_ending": "2026-07-04",
+      "wow": 28,
+      "wow_pct": 5.353728489483748
+    },
+    {
+      "contracts": 568,
+      "prior_year": 105,
+      "week_ending": "2026-07-11",
+      "wow": 17,
+      "wow_pct": 3.0852994555353903
+    },
+    {
+      "contracts": 635,
+      "prior_year": 121,
+      "week_ending": "2026-07-18",
+      "wow": 67,
+      "wow_pct": 11.795774647887324
+    },
+    {
+      "contracts": 671,
+      "prior_year": 119,
+      "week_ending": "2026-07-25",
+      "wow": 36,
+      "wow_pct": 5.669291338582677
+    },
+    {
+      "contracts": 716,
+      "prior_year": 128,
+      "week_ending": "2026-08-01",
+      "wow": 45,
+      "wow_pct": 6.7064083457526085
+    },
+    {
+      "contracts": 610,
+      "prior_year": 142,
+      "week_ending": "2026-08-08",
+      "wow": -106,
+      "wow_pct": -14.804469273743019
+    },
+    {
+      "contracts": 615,
+      "prior_year": 132,
+      "week_ending": "2026-08-15",
+      "wow": 5,
+      "wow_pct": 0.819672131147541
+    },
+    {
+      "contracts": 558,
+      "prior_year": 107,
+      "week_ending": "2026-08-22",
+      "wow": -57,
+      "wow_pct": -9.268292682926829
+    },
+    {
+      "contracts": 499,
+      "prior_year": 102,
+      "week_ending": "2026-08-29",
+      "wow": -59,
+      "wow_pct": -10.57347670250896
+    },
+    {
+      "contracts": 444,
+      "prior_year": 128,
+      "week_ending": "2026-09-05",
+      "wow": -55,
+      "wow_pct": -11.022044088176353
+    },
+    {
+      "contracts": 380,
+      "prior_year": 131,
+      "week_ending": "2026-09-12",
+      "wow": -64,
+      "wow_pct": -14.414414414414415
+    },
+    {
+      "contracts": 444,
+      "prior_year": 132,
+      "week_ending": "2026-09-19",
+      "wow": 64,
+      "wow_pct": 16.842105263157894
+    },
+    {
+      "contracts": 357,
+      "prior_year": 127,
+      "week_ending": "2026-09-26",
+      "wow": -87,
+      "wow_pct": -19.594594594594593
+    },
+    {
+      "contracts": 477,
+      "prior_year": 126,
+      "week_ending": "2026-10-03",
+      "wow": 120,
+      "wow_pct": 33.61344537815126
+    },
+    {
+      "contracts": 525,
+      "prior_year": 129,
+      "week_ending": "2026-10-10",
+      "wow": 48,
+      "wow_pct": 10.062893081761008
+    },
+    {
+      "contracts": 428,
+      "prior_year": 144,
+      "week_ending": "2026-10-17",
+      "wow": -97,
+      "wow_pct": -18.476190476190478
+    },
+    {
+      "contracts": 477,
+      "prior_year": 237,
+      "week_ending": "2026-10-24",
+      "wow": 49,
+      "wow_pct": 11.448598130841122
+    },
+    {
+      "contracts": 417,
+      "prior_year": 294,
+      "week_ending": "2026-10-31",
+      "wow": -60,
+      "wow_pct": -12.578616352201259
+    },
+    {
+      "contracts": 330,
+      "prior_year": 268,
+      "week_ending": "2026-11-07",
+      "wow": -87,
+      "wow_pct": -20.863309352517987
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+name: Update data and deploy Pages
+
+# Daily 00:00 UTC is 08:00 MYT.
+# Wednesday 00:00 UTC is the same clock time, kept so the run sits after
+# Opendoor's Tuesday-evening (US) Accountable update.
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 0 * * 3"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "data/**"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: opendoor-radar-pages
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Fetch public data
+        run: python3 scripts/fetch.py
+
+      - name: Commit data if it changed
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "data unchanged"
+          else
+            git commit -m "data: refresh Opendoor public snapshots"
+            git push origin HEAD:main
+          fi
+
+      - name: Stage site
+        run: |
+          rm -rf _site
+          mkdir -p _site/data
+          cp index.html styles.css app.js _site/
+          cp .nojekyll _site/.nojekyll
+          cp data/*.json _site/data/
+
+      - name: Try to enable GitHub Pages
+        id: pages_enable
+        continue-on-error: true
+        uses: actions/configure-pages@v6
+        with:
+          enablement: true
+
+      - name: Pages needs a manual source setting
+        if: steps.pages_enable.outcome != 'success'
+        run: echo "GITHUB_TOKEN cannot enable Pages. Set Settings → Pages → Source to GitHub Actions, then rerun this workflow."
+
+      - name: Configure GitHub Pages
+        if: steps.pages_enable.outcome != 'success'
+        continue-on-error: true
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+          include-hidden-files: true
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
