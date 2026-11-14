@@ -1,7 +1,7 @@
 {
-  "fetch_attempted_at": "2026-11-14T11:57:24Z",
+  "fetch_attempted_at": "2026-11-14T12:12:20Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T11:57:24Z",
+  "fetched_at": "2026-11-14T12:12:20Z",
   "filings_13dg": [
     {
       "accession": "0000895421-26-000249",
@@ -99,7 +99,7 @@
       "filing_date": "2026-02-17",
       "form": "SCHEDULE 13G/A",
       "kind": "13G",
-      "parse_error": "13D/G document HTTP 503",
+      "parse_error": "13D/G document HTTP 404",
       "reporting_persons": [],
       "url": "https://www.sec.gov/Archives/edgar/data/1104659/000110465926016393/0001104659-26-016393-index.html"
     },
@@ -203,7 +203,7 @@
       "filing_date": "2025-11-20",
       "form": "SCHEDULE 13G",
       "kind": "13G",
-      "parse_error": "13D/G document HTTP 503",
+      "parse_error": "13D/G document HTTP 404",
       "reporting_persons": [],
       "url": "https://www.sec.gov/Archives/edgar/data/1104659/000110465925114605/0001104659-25-114605-index.html"
     },
@@ -245,7 +245,7 @@
     }
   ],
   "filings_13dg_error": null,
-  "filings_13dg_fetched_at": "2026-11-14T11:57:24Z",
+  "filings_13dg_fetched_at": "2026-11-14T12:12:20Z",
   "filings_13dg_stale": false,
   "note_13f": "13F 在季度结束后最多滞后约 45 天才申报。上表是已核对的 2026-06-30 静态快照，自动任务不会用未核对的数字覆盖它。",
   "ok": true,
