@@ -1,7 +1,7 @@
 {
-  "fetch_attempted_at": "2026-11-14T13:57:45Z",
+  "fetch_attempted_at": "2026-11-14T14:07:31Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T13:57:45Z",
+  "fetched_at": "2026-11-14T14:07:31Z",
   "filings_13dg": [
     {
       "accession": "0000895421-26-000249",
@@ -244,9 +244,9 @@
       "url": "https://www.sec.gov/Archives/edgar/data/1595888/000159588825000147/0001595888-25-000147-index.html"
     }
   ],
-  "filings_13dg_error": null,
+  "filings_13dg_error": "RuntimeError: every 13G/13D document failed to parse",
   "filings_13dg_fetched_at": "2026-11-14T13:57:45Z",
-  "filings_13dg_stale": false,
+  "filings_13dg_stale": true,
   "note_13f": "13F filings can lag up to 45 days after quarter end. The table above is a checked static snapshot as of 2026-06-30. The automatic job does not replace it with unchecked figures.",
   "ok": true,
   "snapshot_13f": {

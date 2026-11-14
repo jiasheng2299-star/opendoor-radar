@@ -1,6 +1,6 @@
 {
-  "fetch_attempted_at": "2026-11-14T13:57:59Z",
-  "fetch_error": null,
+  "fetch_attempted_at": "2026-11-14T14:07:43Z",
+  "fetch_error": "AttributeError: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
   "fetched_at": "2026-11-14T13:57:59Z",
   "items": [
     {
@@ -113,5 +113,5 @@
   "ok": true,
   "source_label": "Google News RSS",
   "source_url": "https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en",
-  "stale": false
+  "stale": true
 }

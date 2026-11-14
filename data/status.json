@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-11-14T13:57:59Z",
+  "fetched_at": "2026-11-14T14:07:43Z",
   "ok": true,
   "sources": [
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:35Z",
-      "fetched_at": "2026-11-14T13:57:35Z",
+      "fetch_attempted_at": "2026-11-14T14:07:20Z",
+      "fetched_at": "2026-11-14T14:07:20Z",
       "id": "quote",
       "label": "Price",
       "ok": true,
@@ -15,8 +15,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:36Z",
-      "fetched_at": "2026-11-14T13:57:36Z",
+      "fetch_attempted_at": "2026-11-14T14:07:20Z",
+      "fetched_at": "2026-11-14T14:07:20Z",
       "id": "accountable",
       "label": "Opendoor Accountable",
       "ok": true,
@@ -26,8 +26,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:36Z",
-      "fetched_at": "2026-11-14T13:57:36Z",
+      "fetch_attempted_at": "2026-11-14T14:07:20Z",
+      "fetched_at": "2026-11-14T14:07:20Z",
       "id": "filings",
       "label": "Company filings",
       "ok": true,
@@ -36,20 +36,20 @@
       "stale": false
     },
     {
-      "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:40Z",
+      "error": "RuntimeError: Form 4 XML parse produced no transactions; 0001816739-26-000008: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0002096999-26-000013: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0001957238-26-000016: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
+      "fetch_attempted_at": "2026-11-14T14:07:24Z",
       "fetched_at": "2026-11-14T13:57:40Z",
       "id": "insiders",
       "label": "Insider trades",
       "ok": true,
       "placeholder": false,
       "source_url": "https://www.sec.gov/edgar/browse/?CIK=1801169",
-      "stale": false
+      "stale": true
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:45Z",
-      "fetched_at": "2026-11-14T13:57:45Z",
+      "fetch_attempted_at": "2026-11-14T14:07:31Z",
+      "fetched_at": "2026-11-14T14:07:31Z",
       "id": "holders",
       "label": "Institutional holdings",
       "ok": true,
@@ -59,8 +59,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:59Z",
-      "fetched_at": "2026-11-14T13:57:59Z",
+      "fetch_attempted_at": "2026-11-14T14:07:42Z",
+      "fetched_at": "2026-11-14T14:07:42Z",
       "id": "short",
       "label": "Short interest",
       "ok": true,
@@ -69,20 +69,20 @@
       "stale": false
     },
     {
-      "error": null,
-      "fetch_attempted_at": "2026-11-14T13:57:59Z",
+      "error": "AttributeError: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
+      "fetch_attempted_at": "2026-11-14T14:07:43Z",
       "fetched_at": "2026-11-14T13:57:59Z",
       "id": "news",
       "label": "News",
       "ok": true,
       "placeholder": false,
       "source_url": "https://news.google.com/rss/search?q=Opendoor&hl=en-US&gl=US&ceid=US:en",
-      "stale": false
+      "stale": true
     },
     {
       "error": null,
       "fetch_attempted_at": null,
-      "fetched_at": "2026-11-14T13:57:59Z",
+      "fetched_at": "2026-11-14T14:07:43Z",
       "id": "briefing",
       "label": "Daily briefing",
       "ok": true,

@@ -3,9 +3,9 @@
   "change_pct": -3.6437,
   "currency": "USD",
   "fallback_error": "Yahoo: Yahoo chart HTTP 429",
-  "fetch_attempted_at": "2026-11-14T13:57:35Z",
+  "fetch_attempted_at": "2026-11-14T14:07:20Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T13:57:35Z",
+  "fetched_at": "2026-11-14T14:07:20Z",
   "last_close": 1.19,
   "ok": true,
   "points": [

@@ -44,7 +44,7 @@
   ],
   "date": "2026-11-14",
   "fetch_error": null,
-  "fetched_at": "2026-11-14T14:06:45Z",
+  "fetched_at": "2026-11-14T14:07:43Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -315,5 +315,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-14T14:06:45Z"
+  "updated_at": "2026-11-14T14:07:43Z"
 }
