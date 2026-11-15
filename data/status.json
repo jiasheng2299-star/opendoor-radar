@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-11-14T14:07:43Z",
+  "fetched_at": "2026-11-15T05:14:20Z",
   "ok": true,
   "sources": [
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T14:07:20Z",
-      "fetched_at": "2026-11-14T14:07:20Z",
+      "fetch_attempted_at": "2026-11-15T05:14:06Z",
+      "fetched_at": "2026-11-15T05:14:06Z",
       "id": "quote",
       "label": "Price",
       "ok": true,
@@ -15,8 +15,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T14:07:20Z",
-      "fetched_at": "2026-11-14T14:07:20Z",
+      "fetch_attempted_at": "2026-11-15T05:14:07Z",
+      "fetched_at": "2026-11-15T05:14:07Z",
       "id": "accountable",
       "label": "Opendoor Accountable",
       "ok": true,
@@ -26,8 +26,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T14:07:20Z",
-      "fetched_at": "2026-11-14T14:07:20Z",
+      "fetch_attempted_at": "2026-11-15T05:14:07Z",
+      "fetched_at": "2026-11-15T05:14:07Z",
       "id": "filings",
       "label": "Company filings",
       "ok": true,
@@ -37,7 +37,7 @@
     },
     {
       "error": "RuntimeError: Form 4 XML parse produced no transactions; 0001816739-26-000008: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0002096999-26-000013: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0001957238-26-000016: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
-      "fetch_attempted_at": "2026-11-14T14:07:24Z",
+      "fetch_attempted_at": "2026-11-15T05:14:10Z",
       "fetched_at": "2026-11-14T13:57:40Z",
       "id": "insiders",
       "label": "Insider trades",
@@ -48,8 +48,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T14:07:31Z",
-      "fetched_at": "2026-11-14T14:07:31Z",
+      "fetch_attempted_at": "2026-11-15T05:14:15Z",
+      "fetched_at": "2026-11-15T05:14:15Z",
       "id": "holders",
       "label": "Institutional holdings",
       "ok": true,
@@ -59,8 +59,8 @@
     },
     {
       "error": null,
-      "fetch_attempted_at": "2026-11-14T14:07:42Z",
-      "fetched_at": "2026-11-14T14:07:42Z",
+      "fetch_attempted_at": "2026-11-15T05:14:20Z",
+      "fetched_at": "2026-11-15T05:14:20Z",
       "id": "short",
       "label": "Short interest",
       "ok": true,
@@ -70,7 +70,7 @@
     },
     {
       "error": "AttributeError: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
-      "fetch_attempted_at": "2026-11-14T14:07:43Z",
+      "fetch_attempted_at": "2026-11-15T05:14:20Z",
       "fetched_at": "2026-11-14T13:57:59Z",
       "id": "news",
       "label": "News",
@@ -82,7 +82,7 @@
     {
       "error": null,
       "fetch_attempted_at": null,
-      "fetched_at": "2026-11-14T14:07:43Z",
+      "fetched_at": "2026-11-15T05:14:20Z",
       "id": "briefing",
       "label": "Daily briefing",
       "ok": true,
