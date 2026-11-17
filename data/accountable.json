@@ -6,10 +6,18 @@
     "ok": false,
     "source_url": "https://opendoor.army/charts/weekly"
   },
-  "fetch_attempted_at": "2026-11-16T05:11:00Z",
+  "fetch_attempted_at": "2026-11-17T06:55:33Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-16T05:11:00Z",
+  "fetched_at": "2026-11-17T06:55:33Z",
   "launches": [
+    {
+      "date": "2026-11-12",
+      "date_raw": "11/12/2026",
+      "description": "Shortened the path to a preliminary estimate, so homeowners can see their estimate before answering detailed questions about their home’s condition and upgrades.",
+      "id": "product-110",
+      "tag": "Seller Experience",
+      "title": "Simplified Seller Estimate Flow"
+    },
     {
       "date": "2026-11-05",
       "date_raw": "11/5/26",

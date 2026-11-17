@@ -1,5 +1,5 @@
 {
-  "fetch_attempted_at": "2026-11-16T05:11:07Z",
+  "fetch_attempted_at": "2026-11-17T06:55:38Z",
   "fetch_error": "RuntimeError: Form 4 XML parse produced no transactions; 0001816739-26-000008: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0002096999-26-000013: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'; 0001957238-26-000016: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
   "fetched_at": "2026-11-14T13:57:40Z",
   "filings": [

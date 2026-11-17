@@ -3,7 +3,7 @@
     {
       "category": "price",
       "href": "https://www.nasdaq.com/market-activity/stocks/open",
-      "text": "Last close $1.19 on 2026-11-13, change -$0.045 (-3.64%), volume 30,922,450."
+      "text": "Last close $1.13 on 2026-11-16, change -$0.06 (-5.04%), volume 42,970,030."
     },
     {
       "category": "filings",
@@ -25,15 +25,13 @@
     },
     {
       "category": "accountable",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://accountable.opendoor.com/",
+      "text": "New launch [Seller Experience] on 2026-11-12: Simplified Seller Estimate Flow."
     },
     {
       "category": "short",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261116.txt",
+      "text": "FINRA short-volume ratio 62.9% on 2026-11-16 (short volume 14,927,469.71, total volume 23,719,033.34)."
     },
     {
       "category": "news",
@@ -42,9 +40,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "fetch_error": null,
-  "fetched_at": "2026-11-16T05:11:28Z",
+  "fetched_at": "2026-11-17T06:56:05Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -148,7 +146,8 @@
       "2026-11-10",
       "2026-11-11",
       "2026-11-12",
-      "2026-11-13"
+      "2026-11-13",
+      "2026-11-16"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -180,6 +179,7 @@
       "product-108",
       "product-109",
       "product-11",
+      "product-110",
       "product-12",
       "product-13",
       "product-14",
@@ -315,5 +315,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-16T05:11:28Z"
+  "updated_at": "2026-11-17T06:56:05Z"
 }

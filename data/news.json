@@ -1,6 +1,6 @@
 {
-  "fetch_attempted_at": "2026-11-16T05:11:28Z",
-  "fetch_error": "AttributeError: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
+  "fetch_attempted_at": "2026-11-17T06:56:05Z",
+  "fetch_error": "RuntimeError: Google News RSS HTTP 429",
   "fetched_at": "2026-11-14T13:57:59Z",
   "items": [
     {
