@@ -3,7 +3,7 @@
     {
       "category": "price",
       "href": "https://www.nasdaq.com/market-activity/stocks/open",
-      "text": "Last close $1.13 on 2026-11-16, change -$0.06 (-5.04%), volume 42,970,030."
+      "text": "Last close $1.18 on 2026-11-17, change +$0.05 (+4.42%), volume 42,018,550."
     },
     {
       "category": "filings",
@@ -26,12 +26,12 @@
     {
       "category": "accountable",
       "href": "https://accountable.opendoor.com/",
-      "text": "New launch [Seller Experience] on 2026-11-12: Simplified Seller Estimate Flow."
+      "text": "Latest weekly acquisition contracts: 381 for the week ending 2026-11-14 (+51 versus the prior week). These are agreements to buy, not completed purchases."
     },
     {
       "category": "short",
-      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261116.txt",
-      "text": "FINRA short-volume ratio 62.9% on 2026-11-16 (short volume 14,927,469.71, total volume 23,719,033.34)."
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261117.txt",
+      "text": "FINRA short-volume ratio 56.3% on 2026-11-17 (short volume 13,014,487.69, total volume 23,131,184.11)."
     },
     {
       "category": "news",
@@ -40,9 +40,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "fetch_error": null,
-  "fetched_at": "2026-11-17T06:56:05Z",
+  "fetched_at": "2026-11-18T05:12:55Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -104,7 +104,8 @@
       "2026-10-17",
       "2026-10-24",
       "2026-10-31",
-      "2026-11-07"
+      "2026-11-07",
+      "2026-11-14"
     ],
     "filings": [
       "0001140361-26-017460",
@@ -147,7 +148,8 @@
       "2026-11-11",
       "2026-11-12",
       "2026-11-13",
-      "2026-11-16"
+      "2026-11-16",
+      "2026-11-17"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -315,5 +317,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-17T06:56:05Z"
+  "updated_at": "2026-11-18T05:12:55Z"
 }
