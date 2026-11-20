@@ -1,22 +1,13 @@
 {
-  "fetch_attempted_at": "2026-11-19T06:19:20Z",
+  "fetch_attempted_at": "2026-11-20T06:02:32Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-19T06:19:20Z",
+  "fetched_at": "2026-11-20T06:02:32Z",
   "finra": {
     "directory_url": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files",
     "fetch_error": null,
-    "fetched_at": "2026-11-19T06:19:20Z",
+    "fetched_at": "2026-11-20T06:02:32Z",
     "ok": true,
     "rows": [
-      {
-        "date": "2026-10-22",
-        "markets": "B,Q,N",
-        "short_exempt_volume": 13420.0,
-        "short_ratio": 0.39207456357379517,
-        "short_volume": 7581043.107851,
-        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261022.txt",
-        "total_volume": 19335717.774571
-      },
       {
         "date": "2026-10-23",
         "markets": "B,Q,N",
@@ -187,17 +178,26 @@
         "short_volume": 16986000.713688,
         "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261118.txt",
         "total_volume": 29154353.329694
+      },
+      {
+        "date": "2026-11-19",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 35485.0,
+        "short_ratio": 0.49787373076320135,
+        "short_volume": 19765700.7907,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261119.txt",
+        "total_volume": 39700228.329783
       }
     ],
     "source_label": "FINRA Reg SHO CNMS",
-    "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261118.txt",
+    "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261119.txt",
     "stale": false
   },
   "note": "Exchange short interest is a settlement figure published about every two weeks. The daily ratio is FINRA Reg SHO short volume divided by that file's total volume. They are not the same measure.",
   "ok": true,
   "short_interest": {
     "fetch_error": null,
-    "fetched_at": "2026-11-19T06:19:11Z",
+    "fetched_at": "2026-11-20T06:02:19Z",
     "history": [
       {
         "avg_daily_volume": 32715850,

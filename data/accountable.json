@@ -6,10 +6,26 @@
     "ok": false,
     "source_url": "https://opendoor.army/charts/weekly"
   },
-  "fetch_attempted_at": "2026-11-19T06:19:01Z",
+  "fetch_attempted_at": "2026-11-20T06:02:08Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-19T06:19:01Z",
+  "fetched_at": "2026-11-20T06:02:08Z",
   "launches": [
+    {
+      "date": "2026-11-19",
+      "date_raw": "11/19/26",
+      "description": "Upgraded the forecasting models behind our pricing engine, with steadier forecasts, stronger backtest results, and fewer manual adjustments.",
+      "id": "product-112",
+      "tag": "AI & Automation",
+      "title": "Pricing Engine Upgrade"
+    },
+    {
+      "date": "2026-11-16",
+      "date_raw": "11/16/26",
+      "description": "Eligible homeowners can now access Opendoor cash offers through FSBO.com’s listing experience, giving sellers another way to explore a direct sale.",
+      "id": "product-111",
+      "tag": "Agent & Partner",
+      "title": "FSBO.com Partnership"
+    },
     {
       "date": "2026-11-12",
       "date_raw": "11/12/2026",

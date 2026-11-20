@@ -3,13 +3,12 @@
     {
       "category": "price",
       "href": "https://www.nasdaq.com/market-activity/stocks/open",
-      "text": "Last close $1.27 on 2026-11-18, change +$0.09 (+7.63%), volume 50,620,370."
+      "text": "Last close $1.46 on 2026-11-19, change +$0.19 (+14.96%), volume 69,026,830. The absolute move is over 10%."
     },
     {
       "category": "filings",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://www.sec.gov/Archives/edgar/data/1354457/000135445726001093/0001354457-26-001093-index.html",
+      "text": "New SEC filing 25-NSE, filed 2026-11-19."
     },
     {
       "category": "insiders",
@@ -25,14 +24,18 @@
     },
     {
       "category": "accountable",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://accountable.opendoor.com/",
+      "text": "New launch [AI & Automation] on 2026-11-19: Pricing Engine Upgrade."
+    },
+    {
+      "category": "accountable",
+      "href": "https://accountable.opendoor.com/",
+      "text": "New launch [Agent & Partner] on 2026-11-16: FSBO.com Partnership."
     },
     {
       "category": "short",
-      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261118.txt",
-      "text": "FINRA short-volume ratio 58.3% on 2026-11-18 (short volume 16,986,000.71, total volume 29,154,353.33)."
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261119.txt",
+      "text": "FINRA short-volume ratio 49.8% on 2026-11-19 (short volume 19,765,700.79, total volume 39,700,228.33)."
     },
     {
       "category": "news",
@@ -41,9 +44,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "fetch_error": null,
-  "fetched_at": "2026-11-19T06:19:20Z",
+  "fetched_at": "2026-11-20T06:02:32Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -117,6 +120,7 @@
       "0001140361-26-040415",
       "0001140361-26-041096",
       "0001140361-26-041579",
+      "0001354457-26-001093",
       "0001801169-26-000013",
       "0001801169-26-000014",
       "0001801169-26-000016",
@@ -151,7 +155,8 @@
       "2026-11-13",
       "2026-11-16",
       "2026-11-17",
-      "2026-11-18"
+      "2026-11-18",
+      "2026-11-19"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -184,6 +189,8 @@
       "product-109",
       "product-11",
       "product-110",
+      "product-111",
+      "product-112",
       "product-12",
       "product-13",
       "product-14",
@@ -319,5 +326,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-19T06:19:20Z"
+  "updated_at": "2026-11-20T06:02:32Z"
 }

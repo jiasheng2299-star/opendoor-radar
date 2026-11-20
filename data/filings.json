@@ -1,10 +1,20 @@
 {
   "cik": "0001801169",
   "company": "Opendoor Technologies Inc.",
-  "fetch_attempted_at": "2026-11-19T06:19:01Z",
+  "fetch_attempted_at": "2026-11-20T06:02:08Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-19T06:19:01Z",
+  "fetched_at": "2026-11-20T06:02:08Z",
   "filings": [
+    {
+      "accession": "0001354457-26-001093",
+      "description": "25-NSE",
+      "filing_date": "2026-11-19",
+      "form": "25-NSE",
+      "highlight": false,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/1354457/000135445726001093/0001354457-26-001093-index.html"
+    },
     {
       "accession": "0001801169-26-000028",
       "description": "10-Q",
@@ -194,16 +204,6 @@
       "items": null,
       "report_date": null,
       "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000103/0000895421-26-000103-index.html"
-    },
-    {
-      "accession": "0000102909-26-001916",
-      "description": "SCHEDULE 13G/A",
-      "filing_date": "2026-03-27",
-      "form": "SCHEDULE 13G/A",
-      "highlight": false,
-      "items": null,
-      "report_date": null,
-      "url": "https://www.sec.gov/Archives/edgar/data/102909/000010290926001916/0000102909-26-001916-index.html"
     }
   ],
   "note": "Form 3/4/5 and Form 144 are omitted here and listed under Insider trades. Filing dates are the EDGAR dates, with no timezone conversion.",
