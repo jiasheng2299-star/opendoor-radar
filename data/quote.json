@@ -1,19 +1,14 @@
 {
-  "change": 0.19,
-  "change_pct": 14.9606,
+  "change": -0.155,
+  "change_pct": -10.6164,
   "currency": "USD",
   "fallback_error": "Yahoo: Yahoo chart HTTP 429",
-  "fetch_attempted_at": "2026-11-20T06:02:08Z",
+  "fetch_attempted_at": "2026-11-21T05:55:59Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-20T06:02:08Z",
-  "last_close": 1.46,
+  "fetched_at": "2026-11-21T05:55:59Z",
+  "last_close": 1.305,
   "ok": true,
   "points": [
-    {
-      "close": 4.47,
-      "date": "2026-05-14",
-      "volume": 42756410
-    },
     {
       "close": 4.38,
       "date": "2026-05-15",
@@ -668,16 +663,21 @@
       "close": 1.46,
       "date": "2026-11-19",
       "volume": 69026830
+    },
+    {
+      "close": 1.305,
+      "date": "2026-11-20",
+      "volume": 87528430
     }
   ],
-  "previous_close": 1.27,
-  "previous_session_date": "2026-11-18",
-  "session_date": "2026-11-19",
+  "previous_close": 1.46,
+  "previous_session_date": "2026-11-19",
+  "session_date": "2026-11-20",
   "source": "nasdaq",
-  "source_api": "https://api.nasdaq.com/api/quote/OPEN/historical?assetclass=stocks&fromdate=2026-05-14&todate=2026-11-20&limit=300",
+  "source_api": "https://api.nasdaq.com/api/quote/OPEN/historical?assetclass=stocks&fromdate=2026-05-15&todate=2026-11-21&limit=300",
   "source_label": "Nasdaq",
   "source_url": "https://www.nasdaq.com/market-activity/stocks/open",
   "stale": false,
   "symbol": "OPEN",
-  "volume": 69026830
+  "volume": 87528430
 }
