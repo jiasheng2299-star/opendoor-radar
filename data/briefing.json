@@ -31,8 +31,9 @@
     },
     {
       "category": "short",
-      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261120.txt",
-      "text": "FINRA short-volume ratio 48.4% on 2026-11-20 (short volume 26,443,167.35, total volume 54,668,990.43)."
+      "href": null,
+      "muted": true,
+      "text": "No new updates"
     },
     {
       "category": "news",
@@ -41,9 +42,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "fetch_error": null,
-  "fetched_at": "2026-11-21T05:56:20Z",
+  "fetched_at": "2026-11-22T05:30:26Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -324,5 +325,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-21T05:56:20Z"
+  "updated_at": "2026-11-22T05:30:26Z"
 }
