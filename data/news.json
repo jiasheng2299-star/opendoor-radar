@@ -1,5 +1,5 @@
 {
-  "fetch_attempted_at": "2026-11-23T06:09:51Z",
+  "fetch_attempted_at": "2026-11-24T08:47:09Z",
   "fetch_error": "AttributeError: 'zoneinfo.ZoneInfo' object has no attribute 'fromstring'",
   "fetched_at": "2026-11-14T13:57:59Z",
   "items": [
