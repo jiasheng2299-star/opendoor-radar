@@ -25,18 +25,15 @@
     },
     {
       "category": "accountable",
-      "href": "https://accountable.opendoor.com/",
-      "text": "Latest weekly acquisition contracts: 364 for the week ending 2026-11-21 (-17 versus the prior week). These are agreements to buy, not completed purchases."
+      "href": null,
+      "muted": true,
+      "text": "No new updates"
     },
     {
       "category": "short",
-      "href": "https://www.nasdaq.com/market-activity/stocks/open/short-interest",
-      "text": "Exchange short interest 228,329,943 shares, settlement date 2026-11-13, average daily volume 39,178,042, days to cover 5.83."
-    },
-    {
-      "category": "short",
-      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261124.txt",
-      "text": "FINRA short-volume ratio 49.5% on 2026-11-24 (short volume 13,331,839.54, total volume 26,932,837.83)."
+      "href": null,
+      "muted": true,
+      "text": "No new updates"
     },
     {
       "category": "news",
@@ -47,7 +44,7 @@
   ],
   "date": "2026-11-25",
   "fetch_error": null,
-  "fetched_at": "2026-11-25T06:09:23Z",
+  "fetched_at": "2026-11-25T07:22:43Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -332,5 +329,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-25T06:09:23Z"
+  "updated_at": "2026-11-25T07:22:43Z"
 }
