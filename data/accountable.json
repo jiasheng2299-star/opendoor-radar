@@ -6,9 +6,9 @@
     "ok": false,
     "source_url": "https://opendoor.army/charts/weekly"
   },
-  "fetch_attempted_at": "2026-11-24T08:46:46Z",
+  "fetch_attempted_at": "2026-11-25T06:09:00Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-24T08:46:46Z",
+  "fetched_at": "2026-11-25T06:09:00Z",
   "launches": [
     {
       "date": "2026-11-19",
@@ -1333,6 +1333,13 @@
       "week_ending": "2026-11-14",
       "wow": 51,
       "wow_pct": 15.454545454545453
+    },
+    {
+      "contracts": 364,
+      "prior_year": 190,
+      "week_ending": "2026-11-21",
+      "wow": -17,
+      "wow_pct": -4.4619422572178475
     }
   ]
 }

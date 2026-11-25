@@ -3,7 +3,7 @@
     {
       "category": "price",
       "href": "https://www.nasdaq.com/market-activity/stocks/open",
-      "text": "Last close $1.27 on 2026-11-23, change -$0.035 (-2.68%), volume 46,131,450."
+      "text": "Last close $1.18 on 2026-11-24, change -$0.09 (-7.09%), volume 44,070,960."
     },
     {
       "category": "filings",
@@ -25,14 +25,18 @@
     },
     {
       "category": "accountable",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://accountable.opendoor.com/",
+      "text": "Latest weekly acquisition contracts: 364 for the week ending 2026-11-21 (-17 versus the prior week). These are agreements to buy, not completed purchases."
     },
     {
       "category": "short",
-      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261123.txt",
-      "text": "FINRA short-volume ratio 46.8% on 2026-11-23 (short volume 13,325,721.19, total volume 28,498,750.03)."
+      "href": "https://www.nasdaq.com/market-activity/stocks/open/short-interest",
+      "text": "Exchange short interest 228,329,943 shares, settlement date 2026-11-13, average daily volume 39,178,042, days to cover 5.83."
+    },
+    {
+      "category": "short",
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261124.txt",
+      "text": "FINRA short-volume ratio 49.5% on 2026-11-24 (short volume 13,331,839.54, total volume 26,932,837.83)."
     },
     {
       "category": "news",
@@ -41,9 +45,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "fetch_error": null,
-  "fetched_at": "2026-11-24T08:47:09Z",
+  "fetched_at": "2026-11-25T06:09:23Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -106,7 +110,8 @@
       "2026-10-24",
       "2026-10-31",
       "2026-11-07",
-      "2026-11-14"
+      "2026-11-14",
+      "2026-11-21"
     ],
     "filings": [
       "0001140361-26-017460",
@@ -155,7 +160,8 @@
       "2026-11-18",
       "2026-11-19",
       "2026-11-20",
-      "2026-11-23"
+      "2026-11-23",
+      "2026-11-24"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -319,11 +325,12 @@
       "0002100121-26-000594"
     ],
     "short_settlements": [
-      "2026-10-30"
+      "2026-10-30",
+      "2026-11-13"
     ]
   },
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-24T08:47:09Z"
+  "updated_at": "2026-11-25T06:09:23Z"
 }

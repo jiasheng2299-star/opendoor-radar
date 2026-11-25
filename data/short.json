@@ -1,22 +1,13 @@
 {
-  "fetch_attempted_at": "2026-11-24T08:47:08Z",
+  "fetch_attempted_at": "2026-11-25T06:09:22Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-24T08:47:08Z",
+  "fetched_at": "2026-11-25T06:09:22Z",
   "finra": {
     "directory_url": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files",
     "fetch_error": null,
-    "fetched_at": "2026-11-24T08:47:08Z",
+    "fetched_at": "2026-11-25T06:09:22Z",
     "ok": true,
     "rows": [
-      {
-        "date": "2026-10-27",
-        "markets": "B,Q,N",
-        "short_exempt_volume": 51858.0,
-        "short_ratio": 0.48085441937397544,
-        "short_volume": 8039497.924631,
-        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261027.txt",
-        "total_volume": 16719193.170976
-      },
       {
         "date": "2026-10-28",
         "markets": "B,Q,N",
@@ -187,18 +178,33 @@
         "short_volume": 13325721.18832,
         "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261123.txt",
         "total_volume": 28498750.029682
+      },
+      {
+        "date": "2026-11-24",
+        "markets": "B,Q,N",
+        "short_exempt_volume": 74365.0,
+        "short_ratio": 0.49500314904434556,
+        "short_volume": 13331839.538717,
+        "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261124.txt",
+        "total_volume": 26932837.830336
       }
     ],
     "source_label": "FINRA Reg SHO CNMS",
-    "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261123.txt",
+    "source_url": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261124.txt",
     "stale": false
   },
   "note": "Exchange short interest is a settlement figure published about every two weeks. The daily ratio is FINRA Reg SHO short volume divided by that file's total volume. They are not the same measure.",
   "ok": true,
   "short_interest": {
     "fetch_error": null,
-    "fetched_at": "2026-11-24T08:47:06Z",
+    "fetched_at": "2026-11-25T06:09:18Z",
     "history": [
+      {
+        "avg_daily_volume": 39178042,
+        "days_to_cover": 5.828008,
+        "settlement_date": "2026-11-13",
+        "shares_short": 228329943
+      },
       {
         "avg_daily_volume": 32715850,
         "days_to_cover": 6.971956,
@@ -240,19 +246,13 @@
         "days_to_cover": 2.500394,
         "settlement_date": "2026-07-31",
         "shares_short": 164602470
-      },
-      {
-        "avg_daily_volume": 92218828,
-        "days_to_cover": 1.821341,
-        "settlement_date": "2026-07-15",
-        "shares_short": 167961940
       }
     ],
     "latest": {
-      "avg_daily_volume": 32715850,
-      "days_to_cover": 6.971956,
-      "settlement_date": "2026-10-30",
-      "shares_short": 228093454
+      "avg_daily_volume": 39178042,
+      "days_to_cover": 5.828008,
+      "settlement_date": "2026-11-13",
+      "shares_short": 228329943
     },
     "ok": true,
     "source_api": "https://api.nasdaq.com/api/quote/OPEN/short-interest?assetclass=stocks",
