@@ -3,7 +3,7 @@
     {
       "category": "price",
       "href": "https://www.nasdaq.com/market-activity/stocks/open",
-      "text": "Last close $1.18 on 2026-11-24, change -$0.09 (-7.09%), volume 44,070,960."
+      "text": "Last close $1.26 on 2026-11-25, change +$0.08 (+6.78%), volume 50,263,830."
     },
     {
       "category": "filings",
@@ -31,9 +31,8 @@
     },
     {
       "category": "short",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261125.txt",
+      "text": "FINRA short-volume ratio 47.9% on 2026-11-25 (short volume 14,397,367.15, total volume 30,044,003.65)."
     },
     {
       "category": "news",
@@ -42,9 +41,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "fetch_error": null,
-  "fetched_at": "2026-11-25T07:22:43Z",
+  "fetched_at": "2026-11-26T07:11:20Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -158,7 +157,8 @@
       "2026-11-19",
       "2026-11-20",
       "2026-11-23",
-      "2026-11-24"
+      "2026-11-24",
+      "2026-11-25"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -329,5 +329,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-25T07:22:43Z"
+  "updated_at": "2026-11-26T07:11:20Z"
 }
