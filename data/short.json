@@ -1,11 +1,11 @@
 {
-  "fetch_attempted_at": "2026-11-26T07:11:20Z",
+  "fetch_attempted_at": "2026-11-27T07:07:11Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-26T07:11:20Z",
+  "fetched_at": "2026-11-27T07:07:11Z",
   "finra": {
     "directory_url": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files",
     "fetch_error": null,
-    "fetched_at": "2026-11-26T07:11:20Z",
+    "fetched_at": "2026-11-27T07:07:11Z",
     "ok": true,
     "rows": [
       {
@@ -197,7 +197,7 @@
   "ok": true,
   "short_interest": {
     "fetch_error": null,
-    "fetched_at": "2026-11-26T07:11:10Z",
+    "fetched_at": "2026-11-27T07:07:03Z",
     "history": [
       {
         "avg_daily_volume": 39178042,
