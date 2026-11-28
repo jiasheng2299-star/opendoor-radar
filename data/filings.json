@@ -1,10 +1,30 @@
 {
   "cik": "0001801169",
   "company": "Opendoor Technologies Inc.",
-  "fetch_attempted_at": "2026-11-27T07:06:49Z",
+  "fetch_attempted_at": "2026-11-28T06:40:36Z",
   "fetch_error": null,
-  "fetched_at": "2026-11-27T07:06:49Z",
+  "fetched_at": "2026-11-28T06:40:36Z",
   "filings": [
+    {
+      "accession": "0001140361-26-045884",
+      "description": "424B5",
+      "filing_date": "2026-11-27",
+      "form": "424B5",
+      "highlight": true,
+      "items": null,
+      "report_date": null,
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126045884/0001140361-26-045884-index.html"
+    },
+    {
+      "accession": "0001140361-26-045877",
+      "description": "Items 8.01 other events; 9.01 financial statements and exhibits",
+      "filing_date": "2026-11-27",
+      "form": "8-K",
+      "highlight": true,
+      "items": "8.01,9.01",
+      "report_date": "2026-11-27",
+      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126045877/0001140361-26-045877-index.html"
+    },
     {
       "accession": "0001354457-26-001093",
       "description": "25-NSE",
@@ -184,26 +204,6 @@
       "items": null,
       "report_date": null,
       "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126017466/0001140361-26-017466-index.html"
-    },
-    {
-      "accession": "0001140361-26-017460",
-      "description": "DEF 14A",
-      "filing_date": "2026-04-28",
-      "form": "DEF 14A",
-      "highlight": true,
-      "items": null,
-      "report_date": "2026-06-11",
-      "url": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126017460/0001140361-26-017460-index.html"
-    },
-    {
-      "accession": "0000895421-26-000103",
-      "description": "SCHEDULE 13G/A",
-      "filing_date": "2026-04-08",
-      "form": "SCHEDULE 13G/A",
-      "highlight": false,
-      "items": null,
-      "report_date": null,
-      "url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000103/0000895421-26-000103-index.html"
     }
   ],
   "note": "Form 3/4/5 and Form 144 are omitted here and listed under Insider trades. Filing dates are the EDGAR dates, with no timezone conversion.",

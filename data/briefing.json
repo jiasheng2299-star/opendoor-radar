@@ -7,9 +7,13 @@
     },
     {
       "category": "filings",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126045884/0001140361-26-045884-index.html",
+      "text": "Highlighted new SEC filing 424B5, filed 2026-11-27."
+    },
+    {
+      "category": "filings",
+      "href": "https://www.sec.gov/Archives/edgar/data/1140361/000114036126045877/0001140361-26-045877-index.html",
+      "text": "Highlighted new SEC filing 8-K: Items 8.01 other events; 9.01 financial statements and exhibits, filed 2026-11-27."
     },
     {
       "category": "insiders",
@@ -31,9 +35,8 @@
     },
     {
       "category": "short",
-      "href": null,
-      "muted": true,
-      "text": "No new updates"
+      "href": "https://cdn.finra.org/equity/regsho/daily/CNMSshvol20261127.txt",
+      "text": "FINRA short-volume ratio 52.5% on 2026-11-27 (short volume 6,891,433.47, total volume 13,114,877.16)."
     },
     {
       "category": "news",
@@ -42,9 +45,9 @@
       "text": "No new updates"
     }
   ],
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "fetch_error": null,
-  "fetched_at": "2026-11-27T07:07:11Z",
+  "fetched_at": "2026-11-28T06:41:00Z",
   "ok": true,
   "placeholder": false,
   "seen": {
@@ -119,6 +122,8 @@
       "0001140361-26-040415",
       "0001140361-26-041096",
       "0001140361-26-041579",
+      "0001140361-26-045877",
+      "0001140361-26-045884",
       "0001354457-26-001093",
       "0001801169-26-000013",
       "0001801169-26-000014",
@@ -159,7 +164,8 @@
       "2026-11-20",
       "2026-11-23",
       "2026-11-24",
-      "2026-11-25"
+      "2026-11-25",
+      "2026-11-27"
     ],
     "insiders": [
       "0001195975-26-000002|2026-06-11|A|41667.0|Common Stock",
@@ -330,5 +336,5 @@
   "source_label": "This site's fetch",
   "source_url": null,
   "stale": false,
-  "updated_at": "2026-11-27T07:07:11Z"
+  "updated_at": "2026-11-28T06:41:00Z"
 }
